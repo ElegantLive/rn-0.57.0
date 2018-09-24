@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import reducers from './reduces';
 // import storage from 'redux-persist/lib/storage';
 
+/** 自定义logger中间件 */
 const logger = store => next => action => {
 	if(typeof action === 'function') console.log('dispatching a function');
 	else console.log('dispatching', action);

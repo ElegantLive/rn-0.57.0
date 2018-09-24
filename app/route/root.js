@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {View,TextInput,StyleSheet,Button} from 'react-native';
+import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
 import {initName,rename} from '../redux/name';
+import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
 
 class Root extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name:this.props.name
+            name:this.props.name || ""
         }
     }
 
@@ -20,28 +21,21 @@ class Root extends Component{
     }
 
     shouldComponentUpdate(newProps, newState){
-        console.log(
-            'rendering',
-            newProps,
-            newState,
-            (newState !== this.state),
-            (newProps.name !== this.props.name)
-        );
-        return true;
+        return defaultUpdate(newProps,newState,this);
     }
 
     componentWillUpdate(){
         console.log('updating')
     }
-
-    initName = async () => {
-        await this.props.initName('init');
-        // if (res) this.setState({name:'init'})
+    
+    initName = () => {
+        this.setState({name:'init'});
+        this.props.rename(this.state);
     }
-    // initName = () => {
-    //     console.log('init');
-    //     this.props.initName('init');
-    // }
+
+    initNameAsync = async () => {
+        await this.props.initName('init');
+    }
     
     render(){
         console.log(this.state,this.props);
@@ -54,6 +48,8 @@ class Root extends Component{
                 />
                 <Button title="Submit" onPress={this.reName} />
                 <Button title="Init" onPress={this.initName} />
+                <Button title="asnycInit" onPress={this.initNameAsync} />
+                <Text>{this.state.name}</Text>
             </View>
         )
     }

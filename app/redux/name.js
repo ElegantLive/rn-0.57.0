@@ -28,7 +28,7 @@ export function rename (newname){
 export function initName (newName) {
     return dispatch=>{
         setTimeout(() => {
-            dispatch(designObject(newName))
+            dispatch(designObject(newName));
         }, 2000);
     }
 }
