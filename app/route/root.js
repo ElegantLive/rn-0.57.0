@@ -38,7 +38,6 @@ class Root extends Component{
     }
     
     render(){
-        console.log(this.state,this.props);
         return (
             <View style={styles.container}>
                 <TextInput
@@ -54,7 +53,8 @@ class Root extends Component{
         )
     }
 }
-function mapStatetoProps(store){
+
+function mapStateToProps(store){
     console.log(store);
     return {
         name: store.name.name,
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default connect(mapStatetoProps,{initName,rename})(Root);
+export default connect(mapStateToProps,{initName,rename})(Root);

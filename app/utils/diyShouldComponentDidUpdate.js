@@ -14,11 +14,10 @@ export default defaultUpdate = (newProps,newState,object) => {
     );
     const propsCheck = (newProps.name !== object.props.name);
     const stateCheck = (newState !== object.state);
-    
-    if (!propsCheck && stateCheck) return true;
 
-    if (propsCheck && !stateCheck) {
-        newState.name = newProps.name;
+    if (propsCheck || stateCheck) {
+        if (!stateCheck) newState.name = newProps.name;
+
         return true;
     }
 
