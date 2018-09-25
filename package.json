@@ -19,6 +19,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.1.0",
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.5",

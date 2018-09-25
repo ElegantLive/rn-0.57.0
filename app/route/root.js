@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
-import {initName,rename} from '../redux/name';
+import {initName,reName} from '../redux/name';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
 
-class Root extends Component{
+@connect(
+    state => state.name,
+    { initName,reName }
+)
+
+export default class Root extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -17,7 +22,7 @@ class Root extends Component{
     }
 
     reName = () => {
-        this.props.rename(this.state);
+        this.props.reName(this.state);
     }
 
     shouldComponentUpdate(newProps, newState){
@@ -30,7 +35,7 @@ class Root extends Component{
     
     initName = () => {
         this.setState({name:'init'});
-        this.props.rename(this.state);
+        this.props.reName(this.state);
     }
 
     initNameAsync = async () => {
@@ -54,13 +59,6 @@ class Root extends Component{
     }
 }
 
-function mapStateToProps(store){
-    console.log(store);
-    return {
-        name: store.name.name,
-    }
-}
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -69,6 +67,3 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
-  
-
-export default connect(mapStateToProps,{initName,rename})(Root);

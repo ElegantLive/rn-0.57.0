@@ -21,7 +21,7 @@ function designObject(newName) {
 }
 
 /** export action */
-export function rename (newname){
+export function reName (newname){
     return {type: RENAME, payload: newname}
 }
 
