@@ -13,7 +13,8 @@ export default class Root extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name:this.props.name || ""
+            name:this.props.name || "",
+            root:this.props.root || false
         }
     }
 
@@ -34,8 +35,7 @@ export default class Root extends Component{
     }
     
     initName = () => {
-        this.setState({name:'init'});
-        this.props.reName(this.state);
+        this.props.reName({...this.state,name:'init'});
     }
 
     initNameAsync = async () => {

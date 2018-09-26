@@ -3,7 +3,8 @@ const RENAME = 'RENAME';
 
 /** init state */
 const initState = {
-    name : 'piaopiao'
+    name : 'piaopiao',
+    root : false
 };
 
 /** expport object */
