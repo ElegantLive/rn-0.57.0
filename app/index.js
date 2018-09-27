@@ -9,7 +9,7 @@ export default class App extends Component {
         return (
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
-                    <Root />
+                        <Root />
                 </PersistGate>
             </Provider>
         )

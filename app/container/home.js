@@ -59,7 +59,7 @@ export default class Home extends Component{
                 <Button title="asnycInit" onPress={this.initNameAsync} />
                 <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
                 <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
-                <Button title="go popToTop" onPress={()=>this.props.navigation.popToTop()} />
+                {/* <Button title="go popToTop" onPress={()=>this.props.navigation.popToTop()} /> */}
                 <Text>{this.state.name} home screen</Text>
             </View>
         )
