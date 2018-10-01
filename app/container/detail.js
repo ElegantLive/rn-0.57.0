@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import {Button,View,Text,StyleSheet} from 'react-native';
 
 export default class Detail extends Component{
-    static navigationOptions = {
-        title:"详情",
-        headerBackTitle: "回到首页"
-    }
-
     render(){
         return (
             <View style={styles.container}>

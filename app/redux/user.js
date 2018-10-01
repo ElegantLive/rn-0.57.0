@@ -28,7 +28,7 @@ export function login (mobile,password) {
 
         dispatch({type:LOG_IN,payload:res.data.data});
 
-        console.log(res.data.msg);
+        // console.log(res.data.msg);
     }
 }
 
@@ -36,7 +36,7 @@ export function info () {
     return async dispatch => {
         const res = await axios.get('user/self');
 
-        console.log(res.data);
+        // console.log(res);
 
         dispatch({type:LOAD_DATA,payload:res.data})
     }

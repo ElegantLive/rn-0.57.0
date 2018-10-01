@@ -33,7 +33,8 @@ axios.interceptors.request.use((request) => {
             if (request.method === 'post' || request.method === 'put') {
                 request.data = handleRequestData(request.headers['Content-Type'],request.data);
             }
-
+            
+            console.log(request);
             return request;
         }
     });
@@ -43,10 +44,10 @@ axios.interceptors.request.use((request) => {
 })
 
 axios.interceptors.response.use((response) => {
-    // console.log(response);
+    console.log(response);
     return response;
 },(error) => {
-    // console.log(error);
+    console.log(error);
     if (error.response) {
         console.log(error.response);
         switch (error.response.data.error_code) {

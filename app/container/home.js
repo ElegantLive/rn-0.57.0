@@ -11,11 +11,8 @@ import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
 
 export default class Home extends Component{
     static navigationOptions = {
-        title: 'home',
-        // header:null
-        headerTintColor: 'white',
-        headerStyle: { backgroundColor: 'deepskyblue', borderWidth: 1, borderBottomColor: 'white'}
-      };
+        title:"shouye"
+    }
 
     constructor(props){
         super(props);
