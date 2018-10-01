@@ -73,6 +73,6 @@ const MainRoute = createBottomTabNavigator({
 });
 
 /** 用自定义的header标题栏 */
-MainRoute.navigationOptions = { header : null,tabBarColor: Theme.activeTintColor};
+MainRoute.navigationOptions = { header : null};
 
 export default MainRoute;

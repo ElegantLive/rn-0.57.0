@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as conf from '../config/config';
 import { getToken } from './token';
+import NavigationService from '../navigation/service';
 
 axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091' */
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
@@ -28,15 +29,14 @@ const encodeQuery = (params) => {
 axios.interceptors.request.use((request) => {
     return getToken()
     .then((token) => {
-        if (token){
-            request.headers['token'] = token;
-            if (request.method === 'post' || request.method === 'put') {
-                request.data = handleRequestData(request.headers['Content-Type'],request.data);
-            }
-            
-            console.log(request);
-            return request;
+        if (token) request.headers['token'] = token;
+        
+        if (request.method === 'post' || request.method === 'put') {
+            request.data = handleRequestData(request.headers['Content-Type'],request.data);
         }
+        
+        // console.log(request);
+        return request;
     });
 },(error) => {
     console.log(error);
@@ -53,9 +53,11 @@ axios.interceptors.response.use((response) => {
         switch (error.response.data.error_code) {
             case 10003:
                 console.log('token没有获取到，请登录');
+                NavigationService.navigate('Login');
+                return false;
             default:
                 return Promise.reject(error);
         }
     }
-    return error;
+    // return error;
 });
