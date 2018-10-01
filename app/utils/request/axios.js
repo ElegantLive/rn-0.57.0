@@ -46,13 +46,13 @@ axios.interceptors.response.use((response) => {
     // console.log(response);
     return response;
 },(error) => {
-    console.log(error);
+    // console.log(error);
     if (error.response) {
         console.log(error.response);
         switch (error.response.data.error_code) {
             case 10003:
                 console.log('token没有获取到，请登录');
-            default: 
+            default:
                 return Promise.reject(error);
         }
     }

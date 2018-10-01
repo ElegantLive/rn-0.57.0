@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import {Button,View,Text,StyleSheet} from 'react-native';
+import axios from 'axios';
 
-export default class Detail extends Component{
-    static navigationOptions = {
-        title:"详情",
-        headerBackTitle: "回到首页"
-    }
+export default class Login extends Component{
+    login = async () => {
+        const user = {mobile:13263995262,password:111111};
+        const res = await axios.post("token/user",user);
+        if (res) console.log(res);
+    } 
 
     render(){
         return (
             <View style={styles.container}>
-                <Text>Detail screen</Text>
+                <Text>login screen</Text>
                 <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
-                <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
+                <Button title="go to Register" onPress={()=>this.props.navigation.navigate('Register')} />
+                <Button title="login" onPress={this.login} />
                 <Button title="asnycInit" onPress={()=>console.log(`test for ${JSON.stringify(this.props)}`)} />
             </View>
         )

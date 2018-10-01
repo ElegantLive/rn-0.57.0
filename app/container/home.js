@@ -12,6 +12,9 @@ import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
 export default class Home extends Component{
     static navigationOptions = {
         title: 'home',
+        // header:null
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: 'deepskyblue', borderWidth: 1, borderBottomColor: 'white'}
       };
 
     constructor(props){
@@ -58,7 +61,9 @@ export default class Home extends Component{
                 <Button title="Init" onPress={this.initName} />
                 <Button title="asnycInit" onPress={this.initNameAsync} />
                 <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
+                <Button title="go Detail" onPress={()=>this.props.navigation.navigate('Detail')} />
                 <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
+                <Button title="go Register" onPress={()=>this.props.navigation.navigate('Register')} />
                 {/* <Button title="go popToTop" onPress={()=>this.props.navigation.popToTop()} /> */}
                 <Text>{this.state.name} home screen</Text>
             </View>

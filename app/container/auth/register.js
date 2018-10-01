@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import {Button,View,Text,StyleSheet} from 'react-native';
 import axios from 'axios';
 
-export default class Login extends Component{
-    login = async () => {
-        const user = {mobile:13263995262,password:111111};
-        const res = await axios.post("token/user",user);
-        if (res) console.log(res);
+export default class Register extends Component{
+    register = async () => {
+        // const user = {mobile:13263995262,password:111111};
+        // const res = await axios.post("token/user",user);
+        // if (res) console.log(res);
+        console.log('register');
     } 
 
     render(){
         return (
             <View style={styles.container}>
-                <Text>login screen</Text>
+                <Text>register screen</Text>
                 <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
-                <Button title="login" onPress={this.login} />
+                <Button title="go to login" onPress={()=>this.props.navigation.navigate('Login')} />
+                <Button title="register" onPress={this.register} />
                 <Button title="asnycInit" onPress={()=>console.log(`test for ${JSON.stringify(this.props)}`)} />
             </View>
         )
