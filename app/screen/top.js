@@ -4,12 +4,14 @@ import Detail from '../container/detail';
 import MainRoute from './main';
 import Login from '../container/auth/login';
 import Register from '../container/auth/register';
+import Test from '../container/test';
 
 export default AppRouter = createStackNavigator({
     MainRoute:MainRoute,
     Detail:Detail,
     Login:Login,
-    Register:Register
+    Register:Register,
+    Test:Test
 },{
     initialRouteName:"MainRoute"
 });

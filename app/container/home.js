@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
-import {initName,reName} from '../redux/name';
+import {initName,reName} from '../redux/user';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
+// import TabBar from '../component/tabBar';
+import {NavigationBar } from 'teaset';
 
 @connect(
-    state => state.name,
+    state => state.user,
     { initName,reName }
 )
 
@@ -49,6 +51,7 @@ export default class Home extends Component{
     render(){
         return (
             <View style={styles.container}>
+                <NavigationBar title='Teaset' type='ios' />
                 <TextInput
                     placeholder="Choose a Username"
                     onChangeText={this.handleChange}
@@ -59,6 +62,7 @@ export default class Home extends Component{
                 <Button title="asnycInit" onPress={this.initNameAsync} />
                 <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
                 <Button title="go Detail" onPress={()=>this.props.navigation.navigate('Detail')} />
+                <Button title="go Test" onPress={()=>this.props.navigation.navigate('Test')} />
                 <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
                 <Button title="go Register" onPress={()=>this.props.navigation.navigate('Register')} />
                 {/* <Button title="go popToTop" onPress={()=>this.props.navigation.popToTop()} /> */}

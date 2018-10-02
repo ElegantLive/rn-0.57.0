@@ -35,7 +35,7 @@ axios.interceptors.request.use((request) => {
             request.data = handleRequestData(request.headers['Content-Type'],request.data);
         }
         
-        // console.log(request);
+        console.log(request);
         return request;
     });
 },(error) => {
@@ -45,19 +45,31 @@ axios.interceptors.request.use((request) => {
 
 axios.interceptors.response.use((response) => {
     console.log(response);
-    return response;
+    return response.data;
 },(error) => {
     console.log(error);
     if (error.response) {
         console.log(error.response);
         switch (error.response.data.error_code) {
+            // 通用错误处理开始
+            case 10000:
+                console.log('入参错误');
+                return false;
+            case 10001:
+                console.log('权限错误');
+                return false;
+            // case 10002:
+            //     console.log('请求资源未找到');
+            //     return false;
             case 10003:
                 console.log('token没有获取到，请登录');
                 NavigationService.navigate('Login');
                 return false;
+            // 未catch的错误交给redux处理
             default:
-                return Promise.reject(error);
+                // Promise.reject(error);
+                return error.response.data;
         }
     }
-    // return error;
+    return error;
 });
