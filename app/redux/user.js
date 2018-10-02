@@ -14,6 +14,8 @@ export function user (state = initState,action) {
     switch(action.type) {
         case LOAD_DATA:
             return {...state,...action.payload};
+        case RENAME:
+            return {...state,...action.payload};
         default:
             return state;
     }
@@ -29,15 +31,6 @@ export function info () {
     }
 }
 
-/** expport object */
-export function name (state = initState,action) {
-    switch(action.type) {
-        case RENAME:
-            return {...state,...action.payload};
-        default:
-            return state;
-    }
-}
 /** deal function */
 function designObject(newName) {
     return {type:RENAME,payload:{name:newName}};
