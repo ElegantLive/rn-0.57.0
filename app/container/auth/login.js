@@ -41,14 +41,24 @@ export default class Login extends Component {
         console.log(error);
         if (error.error_code > 0) console.log(error.msg);
     }
+
+    componentDidCatch(error, errorInfo) {
+        console.log(error);
+        console.log(errorInfo);
+    }
     
     login = () => {
         const user = this.state;
-        this.props.LoginAction(user);
+        this.props.LoginAction(user,(config)=>this.diyDeal(config));
     }
+
+    diyDeal = (config) => {
+        console.log('自定义处理事件',config)
+    }
+
     goBack = () => {
         this.props.navigation.goBack();
-    }  
+    }
     
     goRegister = () => {
         this.props.navigation.navigate('Register');

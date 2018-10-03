@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {setToken,clearToken} from '../utils/request/token';
-import type from './error/errorType';
 
 /** declear all actions */
 const LOG_IN = 'LOG_IN';
@@ -29,9 +28,9 @@ export function token (state = initState,action) {
     }
 }
 
-export function login ({mobile,password}) {
+export function login ({mobile,password},callBack) {
     return async dispatch => {
-        const res = await axios.post("token/user",{mobile,password,is_third:''});
+        const res = await axios.post("token/user",{mobile,password,is_third:''},{adapter: (config)=>callBack(config)});
 
         // console.log(res);
         (res.error_code === 0) ?
