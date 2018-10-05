@@ -8,7 +8,8 @@ const LOG_ERROR = 'LOG_ERROR';
 
 /** init state */
 const initState = {
-    token : ''
+    token : '',
+    msg : ''
 };
 
 /** expport object */
@@ -19,7 +20,7 @@ export function token (state = initState,action) {
             setToken(token);
             return {...state,token};
         case LOG_ERROR:
-            return {...state};
+            return {...state,msg:action.payload.msg};
         case LOG_OUT:
             clearToken();
             return {...initState};
@@ -28,14 +29,14 @@ export function token (state = initState,action) {
     }
 }
 
-export function login ({mobile,password},callBack) {
+export function login ({mobile,password}) {
     return async dispatch => {
-        const res = await axios.post("token/user",{mobile,password,is_third:''},{adapter: (config)=>callBack(config)});
+        const res = await axios.post("token/user",{mobile,password,is_third:''},{loading:true,diydeal:true});
 
         // console.log(res);
         (res.error_code === 0) ?
             dispatch({type:LOG_IN,payload:res.data}):
-            dispatch({type:type.NORMAL,payload:res});
+            dispatch({type:LOG_ERROR,payload:res});
         // console.log(res.data.msg);
     }
 }

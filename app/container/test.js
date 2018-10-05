@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
-import TabBar from '../component/tabBar';
-
+import { StyleSheet } from 'react-native'
 export default class Test extends Component {
-    render(){
-        return <TabBar />
+    static navigationOptions = {
+        header:null
+    }
+
+    goRegister = () => {
+        this.props.navigation.navigate('Register');
+    }
+
+    render() {
+        return null
     }
 }
+
+const styles = StyleSheet.create({
+    rightTitle:{
+        fontSize:15
+    }
+})

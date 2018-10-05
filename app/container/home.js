@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
 import {initName,reName} from '../redux/user';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
+// import {Container, Header,Title,Icon,Body,Left,Right,Text } from 'native-base';
 // import TabBar from '../component/tabBar';
-import {NavigationBar } from 'teaset';
+// import {NavigationBar } from 'teaset';
 
 @connect(
     state => state.user,
@@ -51,7 +52,7 @@ export default class Home extends Component{
     render(){
         return (
             <View style={styles.container}>
-                <NavigationBar title='Teaset' type='ios' />
+                {/* <NavigationBar title='Teaset' type='ios' /> */}
                 <TextInput
                     placeholder="Choose a Username"
                     onChangeText={this.handleChange}

@@ -1,7 +1,7 @@
 // 用户进入的首页路由配置
 import React from 'react';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { Theme } from 'teaset';
+// import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+// import { Theme } from 'teaset';
 import { createBottomTabNavigator } from 'react-navigation';
 import Home from '../container/home';
 import User from '../container/user';
@@ -58,10 +58,10 @@ const MainRoute = createBottomTabNavigator({
     swipeEnabled:true,
     animationEnabled:true,
     tabBarOptions:{
-        activeTintColor:Theme.activeTintColor,
-        inactiveTintColor:Theme.inactiveTintColor,
-        activeBackgroundColor:Theme.activeBackgroundColor,
-        inactiveBackgroundColor:Theme.inactiveBackgroundColor,
+        activeTintColor:'#007aff',
+        inactiveTintColor:'#999',
+        // activeBackgroundColor:Theme.activeBackgroundColor,
+        // inactiveBackgroundColor:Theme.inactiveBackgroundColor,
         showLabel:true,
         showIcon:true,
         // tabStyle :{ backgroundColor : "orange"},

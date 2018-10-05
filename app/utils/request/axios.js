@@ -7,6 +7,8 @@ axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
 axios.defaults.timeout = conf.timeout;
 axios.defaults.withCredentials = false; /** 是否允许携带cookie */
+axios.defaults.loading = false; /** 自定义loading弹窗 */
+axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 */
 
 /** 发现axios有内置的转换器，就不用自己定义的了 */
 // const handleRequestData = (type,data) => {
@@ -29,6 +31,8 @@ axios.defaults.withCredentials = false; /** 是否允许携带cookie */
 
 /** see https://github.com/axios/axios/issues/754 */
 axios.interceptors.request.use((request) => {
+    if (request.loading) console.log('loading');
+
     return getToken()
     .then((token) => {
         if (token) request.headers['token'] = token;
@@ -47,13 +51,18 @@ axios.interceptors.request.use((request) => {
 });
 
 axios.interceptors.response.use((response) => {
+    if (response.loading) console.log('loaded');
     console.log(response);
     return response.data;
 },(error) => {
-    console.log(error);
-    if (error.response) {
-        console.log(error.response);
-        switch (error.response.data.error_code) {
+    const response = error.response;
+    const request = response.config;
+    if (request.loading) console.log('loaded');
+    
+    console.log(response);
+    
+    if (response) {
+        switch (response.data.error_code) {
             // 通用错误处理开始
             case 10000:
                 console.log('入参错误');
@@ -70,9 +79,9 @@ axios.interceptors.response.use((response) => {
                 return false;
             // 通用错误弹窗
             default:
-                Promise.reject(error);
-                throw error;
+                return (request.diydeal) ? response.data : Promise.reject(error);
         }
     }
+    Promise.reject(error);
     return error;
 });
