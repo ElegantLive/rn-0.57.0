@@ -2,12 +2,13 @@ import axios from 'axios';
 import * as conf from '../config/config';
 import { getToken } from './token';
 import NavigationService from '../navigation/service';
+import { RRCLoading,RRCAlert } from 'react-native-overlayer';
 
 axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091' */
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
 axios.defaults.timeout = conf.timeout;
 axios.defaults.withCredentials = false; /** 是否允许携带cookie */
-axios.defaults.loading = false; /** 自定义loading弹窗 */
+axios.defaults.loading = true; /** 自定义loading弹窗 */
 axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 */
 
 /** 发现axios有内置的转换器，就不用自己定义的了 */
@@ -31,7 +32,7 @@ axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 *
 
 /** see https://github.com/axios/axios/issues/754 */
 axios.interceptors.request.use((request) => {
-    if (request.loading) console.log('loading');
+    if (request.loading) RRCLoading.show();
 
     return getToken()
     .then((token) => {
@@ -51,37 +52,35 @@ axios.interceptors.request.use((request) => {
 });
 
 axios.interceptors.response.use((response) => {
-    if (response.loading) console.log('loaded');
+    const request = response.config;
+    
+    if (request.loading) RRCLoading.hide();
+
     console.log(response);
     return response.data;
 },(error) => {
     const response = error.response;
     const request = response.config;
-    if (request.loading) console.log('loaded');
+    if (request.loading) RRCLoading.hide();
     
     console.log(response);
     
     if (response) {
         switch (response.data.error_code) {
             // 通用错误处理开始
-            case 10000:
-                console.log('入参错误');
-                return false;
-            case 10001:
-                console.log('权限错误');
-                return false;
-            case 10002:
-                console.log('请求资源未找到');
-                return false;
             case 10003:
                 console.log('token没有获取到，请登录');
                 NavigationService.navigate('Login');
                 return false;
             // 通用错误弹窗
             default:
-                return (request.diydeal) ? response.data : Promise.reject(error);
+                if (request.diydeal) return response.data;
+
+                RRCAlert.alert('wrong',response.data.msg);
+                return false;
         }
     }
+
     Promise.reject(error);
     return error;
 });

@@ -4321,6 +4321,10 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-overlayer@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-overlayer/-/react-native-overlayer-0.0.2.tgz#2b20330e925c531eef4191d4dccc869372e5cde2"
+
 react-native-paper@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-2.0.1.tgz#0221ead52e35811ca6d2ce41cf069d424fe92bcf"

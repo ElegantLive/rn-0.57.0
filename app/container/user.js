@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { login,logout,info } from '../redux/user';
+import { logout } from '../redux/token';
+import { info } from '../redux/user';
 import {Button,View,Text,StyleSheet} from 'react-native';
 
 @connect(
     state => state.user,
-    { login,logout,info }
+    { logout,info }
 )
 
 export default class User extends Component{
     login = () => {
-        this.props.login(13263995262,123456);
+        this.props.navigation.navigate('Login');
     }
 
     logout = () => {

@@ -4,8 +4,6 @@ import {setToken,clearToken} from '../utils/request/token';
 /** declear all actions */
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
-const LOG_ERROR = 'LOG_ERROR';
-
 /** init state */
 const initState = {
     token : '',
@@ -16,11 +14,9 @@ const initState = {
 export function token (state = initState,action) {
     switch(action.type) {
         case LOG_IN:
-            const {token} = action.payload;
+            const {token,msg} = action.payload;
             setToken(token);
-            return {...state,token};
-        case LOG_ERROR:
-            return {...state,msg:action.payload.msg};
+            return {...state,token,msg};
         case LOG_OUT:
             clearToken();
             return {...initState};
@@ -31,12 +27,15 @@ export function token (state = initState,action) {
 
 export function login ({mobile,password}) {
     return async dispatch => {
-        const res = await axios.post("token/user",{mobile,password,is_third:''},{loading:true,diydeal:true});
+        const res = await axios.post("token/user",{mobile,password,is_third:''});
 
         // console.log(res);
-        (res.error_code === 0) ?
-            dispatch({type:LOG_IN,payload:res.data}):
-            dispatch({type:LOG_ERROR,payload:res});
+        if (res.error_code === 0) {
+            const msg = res.msg;
+            const {token} = res.data
+
+            dispatch({type:LOG_IN,payload:{msg,token}});
+        }
         // console.log(res.data.msg);
     }
 }

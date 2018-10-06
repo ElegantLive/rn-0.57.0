@@ -6,7 +6,7 @@ import {
     Text,
     StyleSheet,
     ScrollView,
-    SafeAreaView
+    SafeAreaView,
 } from 'react-native';
 import { NavigationBar,Input,Theme,Button } from 'teaset';
 import {connect} from 'react-redux';
@@ -27,26 +27,32 @@ export default class Login extends Component {
         this.state = {
             mobile: '',
             password : '',
-            msg:''
         }
     }
 
-    componentDidMount() {
+    componentWillReceiveProps(){
         console.log(this.props)
+        if (this.props.msg === 'ok') this.props.navigation.navigate('User');
+    }
+
+    componentDidMount() {
+        // console.log(this.props)
     }
 
     componentDidUpdate() {
         // const error = this.props.error;
         // console.log(error);
         // if (error.error_code > 0) console.log(error.msg);
+        // if (this.props.msg)
     }
 
     componentDidCatch(error, errorInfo) {
-        console.log(error);
-        console.log(errorInfo);
+        // console.log(error);
+        // console.log(errorInfo);
     }
     
     login = () => {
+        // alert('login');
         const user = this.state;
         this.props.LoginAction(user);
     }
@@ -93,12 +99,12 @@ export default class Login extends Component {
                     rightView = {<NavigationBar.LinkButton title='去注册' onPress={this.goRegister} />}
                 />
                 <View style={styles.scrollView}>
-                    <Input 
+                    <TextInput 
                         style={styles.InputStyle}
                         maxLength = {11}
                         placeholder = "请输入您的手机号"
-                        keyboardType="number-pad"
-                        autoCapitalize="none" // 不转化为大写 其他属性-sentences-每句首字母转大写-word-每个单词首字母转大写-characters-所有字母
+                        keyboardType = "number-pad"
+                        // autoCapitalize="none" // 不转化为大写 其他属性-sentences-每句首字母转大写-word-每个单词首字母转大写-characters-所有字母
                         // placeholderTextColor="red" // 占位文本的颜色
                         autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
                         clearButtonMode= "always" // 清除按钮-总是出现
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
     //   justifyContent: 'center',
     },
     scrollView: {
-		backgroundColor: Theme.blank,
+		// backgroundColor: Theme.blank,
 		// flex: 0,
         marginTop: px2dp(200),
         // border:"none"
@@ -150,6 +156,7 @@ const styles = StyleSheet.create({
         borderRightWidth:0,
         borderTopWidth:0,
         // borderBottomColor:'',
+        paddingLeft:px2dp(15),
         borderBottomWidth:1,
         height: px2dp(80),
         fontSize:FontSize(15),
