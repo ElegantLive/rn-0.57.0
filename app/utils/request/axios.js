@@ -3,6 +3,8 @@ import * as conf from '../config/config';
 import { getToken } from './token';
 import NavigationService from '../navigation/service';
 import { RRCLoading,RRCAlert } from 'react-native-overlayer';
+import {Loading} from "../../component/loading";
+import {Toast} from "../../component/toast";
 
 axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091' */
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
@@ -32,7 +34,7 @@ axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 *
 
 /** see https://github.com/axios/axios/issues/754 */
 axios.interceptors.request.use((request) => {
-    if (request.loading) RRCLoading.show();
+    if (request.loading) Loading.show();
 
     return getToken()
     .then((token) => {
@@ -54,14 +56,14 @@ axios.interceptors.request.use((request) => {
 axios.interceptors.response.use((response) => {
     const request = response.config;
     
-    if (request.loading) RRCLoading.hide();
+    if (request.loading) Loading.hidden();
 
     console.log(response);
     return response.data;
 },(error) => {
     const response = error.response;
     const request = response.config;
-    if (request.loading) RRCLoading.hide();
+    if (request.loading) Loading.hidden();
     
     console.log(response);
     
@@ -75,8 +77,9 @@ axios.interceptors.response.use((response) => {
             // 通用错误弹窗
             default:
                 if (request.diydeal) return response.data;
-
-                RRCAlert.alert('wrong',response.data.msg);
+                
+                Toast.showError(response.data.msg);
+                // RRCAlert.alert('wrong',response.data.msg);
                 return false;
         }
     }

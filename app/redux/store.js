@@ -24,7 +24,7 @@ const perisistedReducer = persistReducer(persistConfig,reducers);
 
 const logger = createLogger();
 
-let middlewares = [
+const middlewares = [
     logger,
     thunk
 ];

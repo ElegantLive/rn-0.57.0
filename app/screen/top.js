@@ -4,6 +4,7 @@ import Detail from '../container/detail';
 import MainRoute from './main';
 import Login from '../container/auth/login';
 import Register from '../container/auth/register';
+import FindPwd from '../container/auth/findPwd';
 import Test from '../container/test';
 
 export default AppRouter = createStackNavigator({
@@ -11,7 +12,8 @@ export default AppRouter = createStackNavigator({
     Detail:Detail,
     Login:Login,
     Register:Register,
-    Test:Test
+    Test:Test,
+    FindPwd:FindPwd
 },{
     initialRouteName:"MainRoute"
 });

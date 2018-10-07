@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View,ActivityIndicator } from 'react-native';
-import { Theme } from "teaset";
 
 export default class Init extends Component {
 	componentDidMount() {
@@ -10,7 +9,7 @@ export default class Init extends Component {
 	render() {
 		return (
 			<View>
-				<ActivityIndicator animating={true} size="large" color={Theme.skayBlue} />
+				<ActivityIndicator animating={true} size="large" />
 			</View>
 		);
 	}

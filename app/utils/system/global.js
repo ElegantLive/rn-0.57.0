@@ -1,8 +1,9 @@
 import { Dimensions, PixelRatio, Platform } from 'react-native';
 import { FontSize } from './fontSize';
 import { Px2Dp } from './tool';
+import { baseColor } from './themeSet';
 // import { ApiConfig } from './ApiConfig';
-import {Theme} from 'teaset';
+// import {Theme} from 'teaset';
 
 
 const {height, width} = Dimensions.get('window');
@@ -28,4 +29,5 @@ global.px2dp = Px2Dp;
 
 // global.Config = Config;
 
-global.Theme = Theme;
+// global.Theme = Theme;
+global.BaseColor = baseColor;

@@ -7,16 +7,16 @@ const LOG_OUT = 'LOG_OUT';
 /** init state */
 const initState = {
     token : '',
-    msg : ''
+    auth : false
 };
 
 /** expport object */
 export function token (state = initState,action) {
     switch(action.type) {
         case LOG_IN:
-            const {token,msg} = action.payload;
+            const {token} = action.payload;
             setToken(token);
-            return {...state,token,msg};
+            return {...state,...action.payload};
         case LOG_OUT:
             clearToken();
             return {...initState};
@@ -29,12 +29,12 @@ export function login ({mobile,password}) {
     return async dispatch => {
         const res = await axios.post("token/user",{mobile,password,is_third:''});
 
-        // console.log(res);
         if (res.error_code === 0) {
-            const msg = res.msg;
-            const {token} = res.data
+            // console.log(res);
+            const {token} = res.data;
+            const auth = true;
 
-            dispatch({type:LOG_IN,payload:{msg,token}});
+            dispatch({type:LOG_IN,payload:{token,auth}});
         }
         // console.log(res.data.msg);
     }
