@@ -4,26 +4,20 @@ import {
     StyleSheet,
 } from 'react-native';
 import { Content,Container,Form,Label,Input,Item } from 'native-base';
-import NavBar from '../../component/navBar';
 import {connect} from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
-import LinkBar from "../../component/linkBar";
+import NavBar from '../../component/base/navBar';
+import LinkBar from "../../component/base/linkBar";
+import form from "../../component/high/form";
 
 @connect(
     state => state.token,
     { LoginAction }
 )
+@form
 export default class Login extends Component {
-    static navigationOptions = {
-        header:null
-    }
-
     constructor(props){
         super(props);
-        this.state = {
-            mobile: '',
-            password : '',
-        }
     }
 
     componentWillReceiveProps(){
@@ -48,7 +42,7 @@ export default class Login extends Component {
     }
     
     login = () => {
-        const user = this.state;
+        const user = this.props.state;
         this.props.LoginAction(user);
     }
 
@@ -62,12 +56,6 @@ export default class Login extends Component {
 
     goFindPwd = () => {
         this.props.navigation.navigate('FindPwd');
-    } 
-
-    handleChange = (name,value) => {
-        this.setState({
-            [name] : value
-        })
     }
 
     render(){
@@ -86,7 +74,7 @@ export default class Login extends Component {
                                 keyboardType = "number-pad"
                                 autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
                                 clearButtonMode= "always" // 清除按钮-总是出现
-                                onChangeText = {v => this.handleChange('mobile',v)} 
+                                onChangeText = {v => this.props._handleChange('mobile',v)} 
                             />
                         </Item>
                         <Item floatingLabel last>
@@ -95,7 +83,7 @@ export default class Login extends Component {
                                 secureTextEntry={true}
                                 autoCapitalize="none"
                                 clearButtonMode= "always" // 清除按钮-总是出现
-                                onChangeText = {v => this.handleChange('password',v)}
+                                onChangeText = {v => this.props._handleChange('password',v)}
                             />
                         </Item>
                         <View style={styles.btnView}>

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import NavigationService from '../utils/navigation/service';
+import NavigationService from '../../utils/navigation/service';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { 

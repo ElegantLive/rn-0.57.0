@@ -15,5 +15,8 @@ export default AppRouter = createStackNavigator({
     Test:Test,
     FindPwd:FindPwd
 },{
-    initialRouteName:"MainRoute"
+    initialRouteName:"MainRoute",
+    navigationOptions:{
+        header:null, // 重写所有页面头部
+    }
 });

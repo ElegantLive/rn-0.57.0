@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form(Comp) {
+export default function form(Comp) {
     return class WrapperComp extends React.Component {
         constructor(props) {
             super(props);
