@@ -2,9 +2,9 @@ import axios from 'axios';
 import * as conf from '../config/config';
 import { getToken } from './token';
 import NavigationService from '../navigation/service';
-import { RRCLoading,RRCAlert } from 'react-native-overlayer';
-import {Loading} from "../../component/loading";
-import {Toast} from "../../component/toast";
+// import { RRCLoading,RRCAlert } from 'react-native-overlayer';
+import {Loading} from "../../component/base/loading";
+import {Toast} from "../../component/base/toast";
 
 axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091' */
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
@@ -79,7 +79,6 @@ axios.interceptors.response.use((response) => {
                 if (request.diydeal) return response.data;
                 
                 Toast.showError(response.data.msg);
-                // RRCAlert.alert('wrong',response.data.msg);
                 return false;
         }
     }
