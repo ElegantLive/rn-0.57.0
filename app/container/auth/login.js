@@ -6,15 +6,24 @@ import {
 import { Content,Container,Form,Label,Input,Item } from 'native-base';
 import {connect} from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
+import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
 import form from "../../component/high/form";
+import {Toast} from '../../component/base/toast';
+
+const initState = {
+    mobile:'',
+    password:'',
+    disable:true
+}
 
 @connect(
     state => state.token,
     { LoginAction }
 )
-@form
+
+@form(initState)
 export default class Login extends Component {
     constructor(props){
         super(props);
@@ -42,6 +51,18 @@ export default class Login extends Component {
     }
     
     login = () => {
+        const res = this.check();
+
+        if(res) {
+            let error = '';
+            for (let i in res) {
+                error += res[i].join("\n");
+            }
+
+            Toast.showError(error);
+            return false;
+        }
+        
         const user = this.props.state;
         this.props.LoginAction(user);
     }
@@ -58,6 +79,50 @@ export default class Login extends Component {
         this.props.navigation.navigate('FindPwd');
     }
 
+    check = () => {
+        const constraints = {
+            mobile:{
+                presence:{
+                    message:"^请输入手机号码", // 错误提示
+                }, // 是否必须-isrequire
+                format:{
+                    pattern:/^(1[34578]\d{9})$/, // 正则表达式
+                    message:"^请输入正确的手机号码", // 错误提示
+                }
+            },
+            password:{
+                presence:{
+                    message:"^请输入您的密码", // 错误提示
+                },
+                length:{
+                    minimum:6, // 密码最小长度
+                    // maximum:20 , // 密码最大长度
+                    message:"^密码最短为6位数"
+                },
+            }
+        }
+
+        const user = {mobile,password} = this.props.state;
+
+        const res = validate(user,constraints);
+        
+        return res;
+    }
+
+    handleLoginBtn = () => {
+        const res = this.check();
+
+        return (res && res.mobile) ? true: false;
+    }
+
+    handleMobile = async (v) => {
+        await this.props._handleChange('mobile',v);
+
+        const res = this.handleLoginBtn();
+
+        this.props._handleChange('disable',res);
+    }
+    
     render(){
         return (
             <Container>
@@ -74,7 +139,7 @@ export default class Login extends Component {
                                 keyboardType = "number-pad"
                                 autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
                                 clearButtonMode= "always" // 清除按钮-总是出现
-                                onChangeText = {v => this.props._handleChange('mobile',v)} 
+                                onChangeText = {v => this.handleMobile(v)} 
                             />
                         </Item>
                         <Item floatingLabel last>
@@ -98,7 +163,7 @@ export default class Login extends Component {
                                 title="登录"
                                 primary={true}
                                 rounded={true}
-                                disabled={false}
+                                disabled={this.props.state.disable}
                                 block
                                 onPress={this.login}
                                 btnStyle={[styles.btn,styles.loginBtn]}

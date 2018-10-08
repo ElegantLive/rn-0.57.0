@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import RootSiblings from 'react-native-root-siblings';
 import {Spinner} from 'native-base';
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 let sibling = undefined
 
@@ -31,8 +28,8 @@ const styles = StyleSheet.create({
     maskStyle: {
       position: 'absolute',
       backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      width: width,
-      height: height,
+      width: SCREEN_WIDTH,
+      height: SCREEN_HEIGHT,
       alignItems: 'center',
       justifyContent: 'center'
     },

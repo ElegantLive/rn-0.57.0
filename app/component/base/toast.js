@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
-import {View,Text, StyleSheet, Dimensions} from 'react-native'
+import {View,Text, StyleSheet} from 'react-native'
 import RootSiblings from 'react-native-root-siblings'
 import Icon from 'react-native-vector-icons/FontAwesome'
-const width = Dimensions.get('window').width
-const height = Dimensions.get('window').height
 
 let sibling = undefined;
 
@@ -68,28 +66,27 @@ const Toast = {
 
 const styles = StyleSheet.create({
     maskStyle: {
-      position: 'absolute',
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      width: width,
-      height: height,
-      alignItems: 'center',
-      justifyContent: 'center'
+        position: 'absolute',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        width: SCREEN_WIDTH,
+        height: SCREEN_HEIGHT,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     backViewStyle: {
-      backgroundColor: "#fff",
-      width: px2dp(400),
-      height: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 5,
+        backgroundColor: "#fff",
+        width: px2dp(400),
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
     },
     message: {
-      color: '#000',
-      marginTop: 10,
-      textAlign: 'center',
-      lineHeight: 20,
+        color: '#000',
+        marginTop: 10,
+        textAlign: 'center',
+        lineHeight: 20,
     }
-  }
-)
+})
 
 export {Toast}
