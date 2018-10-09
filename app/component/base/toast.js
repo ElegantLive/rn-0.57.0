@@ -46,17 +46,32 @@ const renderType = (type) => {
 }
 
 const Toast = {
-    showSuccess: (msg) => {
+    showSuccess: (msg,callBack = false) => {
         sibling = createSiblings(msg,SUCCESS);
-        setTimeout(Toast.hidden, 2000)
+
+        setTimeout(() => {
+            Toast.hidden();
+
+            (typeof callBack === 'function') ? callBack && callBack(): null
+        }, 2000)
     },
-    showWaring: (msg) => {
+    showWaring: (msg,callBack = false) => {
         sibling = createSiblings(msg,WARING);
-        setTimeout(Toast.hidden, 2000)
+        
+        setTimeout(() => {
+            Toast.hidden();
+
+            (typeof callBack === 'function') ? callBack && callBack(): null
+        }, 2000)
     },
-    showError: (msg) => {
+    showError: (msg,callBack = false) => {
         sibling = createSiblings(msg,ERROR);
-        setTimeout(Toast.hidden, 2000)
+        
+        setTimeout(() => {
+            Toast.hidden();
+
+            (typeof callBack === 'function') ? callBack && callBack(): null
+        }, 2000)
     },
 
     hidden: () => {

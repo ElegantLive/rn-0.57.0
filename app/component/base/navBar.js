@@ -47,6 +47,7 @@ export default class NavBar extends PureComponent<Props> {
         const defaultLeft = (<Button
             transparent = {true}
             iconLeft
+            style={{color:BaseColor.skayBlue}}
         >
             <Icon name='arrow-back' onPress={this.goBack} style={styles.leftIcon}/>
         </Button>);
@@ -68,7 +69,7 @@ export default class NavBar extends PureComponent<Props> {
         const rightStyls = (props.rightStyle) ? props.rightStyle: {} ;
 
         return  (
-            <Right style={[rightStyls,styles.headerRightTitle]}>
+            <Right style={rightStyls}>
                {props.right}
             </Right>
         )
@@ -76,11 +77,12 @@ export default class NavBar extends PureComponent<Props> {
 
     render() {
         const props = this.props;
-        const styles = (props.style) ? props.style: {} ;
+        const headerStyle = (props.style) ? props.style: {} ;
 
         return (
             <Header
-                style={styles.header}
+                style={[styles.header,headerStyle]}
+                // androidStatusBarColor={BaseColor.brandLight}
             >
                 { this.renderLeft() }
                 <Body>
@@ -95,14 +97,13 @@ export default class NavBar extends PureComponent<Props> {
 const styles = StyleSheet.create({
     leftIcon:{
         fontSize:24,
+        color:BaseColor.skayBlue
     },
     headerTitle:{
-        // color:diyColor.skayBlue
-    },
-    headerRightTitle:{
-        color:'white'
+        color:BaseColor.blank
     },
     header:{
-        // backgroundColor:diyColor.skayBlue
+        backgroundColor:BaseColor.brandLight,
+        color:'white'
     }
 })

@@ -67,10 +67,6 @@ export default class Login extends Component {
         this.props.LoginAction(user);
     }
 
-    goBack = () => {
-        this.props.navigation.goBack();
-    }
-    
     goRegister = () => {
         this.props.navigation.navigate('Register');
     } 

@@ -3,6 +3,7 @@ import axios from 'axios';
 /** declear all actions */
 const LOAD_DATA = 'LOAD_DATA';
 const RENAME = 'RENAME';
+const FIND_PWD = 'FIND_PWD';
 
 /** init state */
 const initState = {
