@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
 import {store,persistor} from './redux/store';
+import {Root} from 'native-base';
 import RootRouter from './screen/root';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationService from './utils/navigation/service';
@@ -11,11 +12,13 @@ export default class App extends Component {
         return (
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
-                    <RootRouter
-                        ref = {navigationRef => {
-                            NavigationService.setTopLevelNavigator(navigationRef)
-                        }}
-                    />
+                    <Root>
+                        <RootRouter
+                            ref = {navigationRef => {
+                                NavigationService.setTopLevelNavigator(navigationRef)
+                            }}
+                        />
+                    </Root>
                 </PersistGate>
             </Provider>
         )

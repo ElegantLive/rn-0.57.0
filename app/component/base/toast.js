@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
+        bottom:px2dp(100)
     },
     message: {
         color: '#000',

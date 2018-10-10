@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item } from 'native-base';
+import { Content,Container,Form,Label,Input,Item} from 'native-base';
 import {connect} from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
-import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
 import form from "../../component/high/form";
-import {Toast} from '../../component/base/toast';
+import validate from 'validate.js';
+import {mobile,password} from '../../utils/validate/constraints';
+import {getResponce} from '../../utils/validate/validate';
 
 const initState = {
     mobile:'',
@@ -30,38 +32,17 @@ export default class Login extends Component {
     }
 
     componentWillReceiveProps(){
-        // console.log(this.props);
         if (this.props.auth) this.props.navigation.navigate('User');
-    }
-
-    componentDidMount() {
-        // console.log(this.props)
-    }
-
-    componentDidUpdate() {
-        // const error = this.props.error;
-        // console.log(error);
-        // if (error.error_code > 0) console.log(error.msg);
-        // if (this.props.msg)
-    }
-
-    componentDidCatch(error, errorInfo) {
-        // console.log(error);
-        // console.log(errorInfo);
     }
     
     login = () => {
+        Keyboard.dismiss();
+
         const res = this.check();
 
-        if(res) {
-            let error = '';
-            for (let i in res) {
-                error += res[i].join("\n");
-            }
+        const result = getResponce(res);
 
-            Toast.showError(error);
-            return false;
-        }
+        if(true !== result) return false;
         
         const user = this.props.state;
         this.props.LoginAction(user);
@@ -76,32 +57,12 @@ export default class Login extends Component {
     }
 
     check = () => {
-        const constraints = {
-            mobile:{
-                presence:{
-                    message:"^请输入手机号码", // 错误提示
-                }, // 是否必须-isrequire
-                format:{
-                    pattern:/^(1[34578]\d{9})$/, // 正则表达式
-                    message:"^请输入正确的手机号码", // 错误提示
-                }
-            },
-            password:{
-                presence:{
-                    message:"^请输入您的密码", // 错误提示
-                },
-                length:{
-                    minimum:6, // 密码最小长度
-                    // maximum:20 , // 密码最大长度
-                    message:"^密码最短为6位数"
-                },
-            }
-        }
+        const constraints = {mobile,password};
 
-        const user = {mobile,password} = this.props.state;
+        const user = this.props.state;
 
         const res = validate(user,constraints);
-        
+
         return res;
     }
 
@@ -118,7 +79,7 @@ export default class Login extends Component {
 
         this.props._handleChange('disable',res);
     }
-    
+
     render(){
         return (
             <Container>

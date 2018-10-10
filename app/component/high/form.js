@@ -6,7 +6,7 @@ export default function form(initState = {}) {
             constructor(props) {
                 super(props);
                 this.state = initState;
-                this._handleChange = this._handleChange.bind(this)
+                this._handleChange = this._handleChange.bind(this);
             }
     
             _handleChange(key, value) {
@@ -16,7 +16,11 @@ export default function form(initState = {}) {
             }
     
             render() {
-                return <Comp _handleChange={this._handleChange} state={this.state} {...this.props}/>
+                return <Comp 
+                    _handleChange={this._handleChange}
+                    state={this.state}
+                    {...this.props}
+                />
             }
         }
     }

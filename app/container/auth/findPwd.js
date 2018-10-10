@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item } from 'native-base';
+import { Content,Container,Form,Label,Input,Item,Toast } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
 import form from "../../component/high/form";
-import {Toast} from '../../component/base/toast';
-import {mobile,code,password,confirmPwd} from '../../utils/validate';
+import {mobile,code,password,confirmPwd} from '../../utils/validate/constraints';
+import {getResponce} from '../../utils/validate/validate';
 import axios from 'axios';
 import {sendCode} from '../../utils/functions';
 
@@ -20,34 +21,38 @@ const initState = {
     confirmPwd:'',
 }
 
+const constraints = {mobile,code,password,confirmPwd}; // 定义
+
 @form(initState)
 export default class FindPwd extends Component{
     findPwd = async () => {
-        const result = this.check();
+        Keyboard.dismiss();
+        
+        const response = this.check();
 
-        if(result) {
-            let error = '';
-            for (let i in result) {
-                error += result[i].join("\n") + "\n";
-            }
+        const result = getResponce(response);
 
-            Toast.showError(error);
-            return false;
-        }
+        if(true !== result) return false;
 
         const data = this.props.state;
 
         const res = await axios.post('user/find_pwd',data);
 
-        if (res.error === 0) Toast.showSuccess('找回密码成功！',this.goLogin);
+        if (res.error === 0) {
+            Toast.show({
+                text:"找回密码成功！",
+                type:"success",
+                onClose:(type) => {
+                    console.log(type);
+                    this.goLogin();
+                }
+            });
+        }
     }
+    
 
     sendCode = async () => {
-        const constraints = {mobile};
-
-        const checkMobile = this.props.state.mobile;
-
-        const res = validate({mobile:checkMobile},constraints);
+        const res = this.checkItem('mobile');
 
         if (res && res.mobile) {
             const error = res.mobile.join("\n");
@@ -56,7 +61,7 @@ export default class FindPwd extends Component{
             return false;
         }
         
-        sendCode(checkMobile);
+        sendCode(this.props.state.mobile);
     }
 
     goLogin = () => {
@@ -68,13 +73,25 @@ export default class FindPwd extends Component{
     }
 
     check = () => {
-        const constraints = {mobile,code,password,confirmPwd};
-
         const res = validate(this.props.state,constraints);
         
         return res;
     }
 
+    checkItem = (key) => {
+        const data = {
+            [key]:this.props.state[key]
+        }
+
+        const item = {
+            [key]:constraints[key]
+        }
+
+        const res = validate(data,item);
+        
+        return res;
+    }
+    
     render(){
         return (
             <Container>
@@ -137,7 +154,7 @@ export default class FindPwd extends Component{
                             <LinkBar
                                 title="去登陆"
                                 transparent
-                                onPress={this.goFindPwd}
+                                onPress={this.goLogin}
                                 btnStyle={styles.btn}
                                 titleStyle={styles.btnTitle}
                             />

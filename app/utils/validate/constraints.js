@@ -30,7 +30,7 @@ const confirmPwd = {
 
 const password = {
     presence:{
-        message:"^请输入确认密码", // 错误提示
+        message:"^请输入密码", // 错误提示
     },
     length:{
         minimum:6, // 密码最小长度
