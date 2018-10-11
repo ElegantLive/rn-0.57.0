@@ -6,6 +6,7 @@ import RootRouter from './screen/root';
 import { PersistGate } from 'redux-persist/integration/react';
 import NavigationService from './utils/navigation/service';
 import './utils/request/axios';
+import './utils/validate/validate';
 
 export default class App extends Component {
     render (){

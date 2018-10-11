@@ -1,37 +1,29 @@
-const code = {
-    presence:{
-        message:"^请输入验证码"
-    },
+const codeConstraint = {
+    presence:true,
     format:{
         pattern:/^(\d{4})$/, // 正则表达式
-        message:"^验证码是4个数字", // 错误提示
+        message:"^请输入验证码", // 错误提示
     }
 }
 
-const mobile = {
-    presence: {
-        message: "^请输入手机号码", // 错误提示
-    }, // 是否必须-isrequire
+const mobileConstraint = {
+    presence:true,// 是否必须-isrequire
     format: {
         pattern: /^(1[34578]\d{9})$/, // 正则表达式
-        message: "^请输入正确的手机号码", // 错误提示
+        message: "^请输入手机号码", // 错误提示
     }
 }
 
-const confirmPwd = {
-    presence:{
-        message:"^请输入确认密码", // 错误提示
-    },
+const confirmPwdConstraint = {
+    presence:true,
     equality: {
         attribute: "password",
         message: "^两次输入的密码不一样"
     }
 }
 
-const password = {
-    presence:{
-        message:"^请输入密码", // 错误提示
-    },
+const passwordConstraint = {
+    presence:true,
     length:{
         minimum:6, // 密码最小长度
         // maximum:20 , // 密码最大长度
@@ -39,9 +31,18 @@ const password = {
     },
 }
 
+const userNameConstraint = {
+    presence:true,
+    length:{
+        maximum:25,
+        message:"^昵称长度超出限制了"
+    }
+}
+
 export {
-    mobile,
-    code,
-    confirmPwd,
-    password
+    mobileConstraint,
+    codeConstraint,
+    confirmPwdConstraint,
+    passwordConstraint,
+    userNameConstraint
 }

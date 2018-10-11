@@ -8,6 +8,7 @@ export const baseColor = {
     endBlue : '#10aeff',
     GrayBG : '#848484',
     blank : '#000',
+    disableColor: '#b5b5b5',
 
     ...commonColor
 };

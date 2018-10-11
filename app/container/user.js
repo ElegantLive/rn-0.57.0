@@ -29,6 +29,7 @@ export default class User extends Component{
             <View style={styles.container}>
                 <Text>User screen</Text>
                 <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
+                <Button title="go to updatepwd" onPress={()=>this.props.navigation.navigate('UpdatePwd')} />
                 <Button title="login" onPress={this.login} />
                 <Button title="logout" onPress={this.logout} />
                 <Button title="get info" onPress={this.info} />

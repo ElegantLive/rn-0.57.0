@@ -11,8 +11,8 @@ import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
 import form from "../../component/high/form";
 import validate from 'validate.js';
-import {mobile,password} from '../../utils/validate/constraints';
-import {getResponce} from '../../utils/validate/validate';
+import {mobileConstraint,passwordConstraint} from '../../utils/validate/constraints';
+import {dealValidate} from '../../utils/functions';
 
 const initState = {
     mobile:'',
@@ -40,7 +40,7 @@ export default class Login extends Component {
 
         const res = this.check();
 
-        const result = getResponce(res);
+        const result = dealValidate(res);
 
         if(true !== result) return false;
         
@@ -57,7 +57,7 @@ export default class Login extends Component {
     }
 
     check = () => {
-        const constraints = {mobile,password};
+        const constraints = {mobile:mobileConstraint,password:passwordConstraint};
 
         const user = this.props.state;
 

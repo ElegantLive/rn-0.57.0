@@ -9,32 +9,44 @@ import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
 import form from "../../component/high/form";
-import {mobile,code,password,confirmPwd} from '../../utils/validate/constraints';
-import {getResponce} from '../../utils/validate/validate';
+import {
+    mobileConstraint,
+    codeConstraint,
+    passwordConstraint,
+    confirmPwdConstraint
+} from '../../utils/validate/constraints';
 import axios from 'axios';
-import {sendCode} from '../../utils/functions';
+import {sendCode,dealValidate} from '../../utils/functions';
 
 const initState = {
     mobile:'',
     code:'',
     password:'',
     confirmPwd:'',
+    sendSeconds: 0,
+    sendBtn:true
 }
 
-const constraints = {mobile,code,password,confirmPwd}; // 定义
+const constraints = {
+    mobile:mobileConstraint,
+    code:codeConstraint,
+    password:passwordConstraint,
+    confirmPwd:confirmPwdConstraint
+}; // 定义验证约束集合
 
 @form(initState)
 export default class FindPwd extends Component{
     findPwd = async () => {
         Keyboard.dismiss();
         
-        const response = this.check();
+        const {mobile,code,password,confirmPwd} = this.props.state;
+        const data = {mobile,code,password,confirmPwd};
 
-        const result = getResponce(response);
+        const response = validate(data,constraints);
+
+        const result = dealValidate(response);
 
         if(true !== result) return false;
-
-        const data = this.props.state;
 
         const res = await axios.post('user/find_pwd',data);
 
@@ -43,7 +55,7 @@ export default class FindPwd extends Component{
                 text:"找回密码成功！",
                 type:"success",
                 onClose:(type) => {
-                    console.log(type);
+                    // console.log(type);
                     this.goLogin();
                 }
             });
@@ -51,17 +63,32 @@ export default class FindPwd extends Component{
     }
     
 
-    sendCode = async () => {
+    getCode = async () => {
         const res = this.checkItem('mobile');
 
-        if (res && res.mobile) {
-            const error = res.mobile.join("\n");
+        if (res) {
+            const error = res.join("\n");
 
-            Toast.showError(error);
+            Toast.show({
+                text:error,
+                type:"warning"
+            });
+            // Toast.showError(error);
             return false;
         }
+
+        await sendCode(this.props.state.mobile);
         
-        sendCode(this.props.state.mobile);
+        this.props._handleChange('sendSeconds',60);
+        this.props._handleChange('sendBtn',false);
+        this.timers = setInterval(() => {
+            let sendSeconds = this.props.state.sendSeconds - 1;
+            this.props._handleChange('sendSeconds',sendSeconds);
+            if (sendSeconds == 0) {
+                this.props._handleChange('sendBtn',true);
+                clearInterval(this.timers)
+            }
+        },1000)
     }
 
     goLogin = () => {
@@ -70,12 +97,6 @@ export default class FindPwd extends Component{
 
     goRegister = () => {
         this.props.navigation.navigate('Register');
-    }
-
-    check = () => {
-        const res = validate(this.props.state,constraints);
-        
-        return res;
     }
 
     checkItem = (key) => {
@@ -123,11 +144,12 @@ export default class FindPwd extends Component{
                                 onChangeText = {v => this.props._handleChange('code',v)}
                             />
                             <LinkBar
-                                title="获取验证码"
+                                title={(this.props.state.sendSeconds === 0) ? '获取验证码': ` ${this.props.state.sendSeconds} 秒后获取` }
                                 transparent
-                                onPress={this.sendCode}
+                                disabled={!this.props.state.sendBtn}
+                                onPress={this.getCode}
                                 btnStyle={styles.sendBtn}
-                                titleStyle={styles.btnTitle}
+                                titleStyle={[styles.btnTitle,(this.props.state.sendBtn) ? styles.activeTitle: styles.disableTitle]}
                             />
                         </Item>
                         <Item 
@@ -214,8 +236,13 @@ const styles = StyleSheet.create({
         width:px2dp(200)
     },
     btnTitle:{
-        color:BaseColor.brandPrimary,
         fontSize:FONT_SIZE(14)
+    },
+    activeTitle:{
+        color:BaseColor.skayBlue,
+    },
+    disableTitle:{
+        color:BaseColor.disableColor,
     },
     submitBtn:{
         flex:1,
