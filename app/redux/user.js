@@ -26,9 +26,7 @@ export function info () {
     return async dispatch => {
         const res = await axios.get('user/self');
 
-        console.log(res);
-
-        dispatch({type:LOAD_DATA,payload:{name:res.data.name}})
+        if (res) dispatch({type:LOAD_DATA,payload:{name:res.data.name}});
     }
 }
 

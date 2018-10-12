@@ -36,8 +36,6 @@ export default class Login extends Component {
     }
     
     login = () => {
-        Keyboard.dismiss();
-
         const res = this.check();
 
         const result = dealValidate(res);
@@ -66,18 +64,18 @@ export default class Login extends Component {
         return res;
     }
 
-    handleLoginBtn = () => {
-        const res = this.check();
-
-        return (res && res.mobile) ? true: false;
-    }
-
     handleMobile = async (v) => {
         await this.props._handleChange('mobile',v);
 
-        const res = this.handleLoginBtn();
+        const constraints = {mobile:mobileConstraint};
 
-        this.props._handleChange('disable',res);
+        const data = {mobile:v};
+
+        const res = validate(data,constraints);
+
+        const disable = (res) ? true: false;
+
+        this.props._handleChange('disable',disable);
     }
 
     render(){

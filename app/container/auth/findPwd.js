@@ -17,6 +17,7 @@ import {
 } from '../../utils/validate/constraints';
 import axios from 'axios';
 import {sendCode,dealValidate} from '../../utils/functions';
+import {showMessage} from 'react-native-flash-message';
 
 const initState = {
     mobile:'',
@@ -37,8 +38,6 @@ const constraints = {
 @form(initState)
 export default class FindPwd extends Component{
     findPwd = async () => {
-        Keyboard.dismiss();
-        
         const {mobile,code,password,confirmPwd} = this.props.state;
         const data = {mobile,code,password,confirmPwd};
 
@@ -51,14 +50,11 @@ export default class FindPwd extends Component{
         const res = await axios.post('user/find_pwd',data);
 
         if (res.error === 0) {
-            Toast.show({
-                text:"找回密码成功！",
+            showMessage({
+                message:"找回密码成功！",
                 type:"success",
-                onClose:(type) => {
-                    // console.log(type);
-                    this.goLogin();
-                }
-            });
+                onHide: this.goLogin,
+            })
         }
     }
     
@@ -69,11 +65,10 @@ export default class FindPwd extends Component{
         if (res) {
             const error = res.join("\n");
 
-            Toast.show({
-                text:error,
-                type:"warning"
-            });
-            // Toast.showError(error);
+            showMessage({
+                message:error,
+                type:"danger",
+            })
             return false;
         }
 

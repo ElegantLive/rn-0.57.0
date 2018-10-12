@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
 import {initName,reName} from '../redux/user';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
-// import {Container, Header,Title,Icon,Body,Left,Right,Text } from 'native-base';
-// import TabBar from '../component/tabBar';
-// import {NavigationBar } from 'teaset';
 
 @connect(
     state => state.user,
@@ -48,11 +45,10 @@ export default class Home extends Component{
     initNameAsync = async () => {
         await this.props.initName('init');
     }
-    
+
     render(){
         return (
             <View style={styles.container}>
-                {/* <NavigationBar title='Teaset' type='ios' /> */}
                 <TextInput
                     placeholder="Choose a Username"
                     onChangeText={this.handleChange}
@@ -63,10 +59,9 @@ export default class Home extends Component{
                 <Button title="asnycInit" onPress={this.initNameAsync} />
                 <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
                 <Button title="go Detail" onPress={()=>this.props.navigation.navigate('Detail')} />
-                <Button title="go Test" onPress={()=>this.props.navigation.navigate('Test')} />
+                <Button title="go Test" onPress={()=>this.props.navigation.navigate('Drawer')} />
                 <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
                 <Button title="go Register" onPress={()=>this.props.navigation.navigate('Register')} />
-                {/* <Button title="go popToTop" onPress={()=>this.props.navigation.popToTop()} /> */}
                 <Text>{this.state.name} home screen</Text>
             </View>
         )

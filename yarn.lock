@@ -4391,6 +4391,12 @@ react-native-easy-grid@0.2.0:
   dependencies:
     lodash "^4.11.1"
 
+react-native-flash-message@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-flash-message/-/react-native-flash-message-0.1.10.tgz#aa1f4526cb798a2a1d2911c1c5143391c922ee0b"
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-iphone-x-helper@^1.0.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
@@ -4401,10 +4407,6 @@ react-native-keyboard-aware-scroll-view@0.5.0:
   dependencies:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
-
-react-native-overlayer@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-overlayer/-/react-native-overlayer-0.0.2.tgz#2b20330e925c531eef4191d4dccc869372e5cde2"
 
 react-native-paper@^2.0.1:
   version "2.0.1"

@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item,Toast } from 'native-base';
+import { Content,Container,Form,Label,Input,Item } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
@@ -15,6 +15,7 @@ import {
 } from '../../utils/validate/constraints';
 import axios from 'axios';
 import {dealValidate} from '../../utils/functions';
+import {showMessage} from 'react-native-flash-message';
 
 const initState = {
     password:'',
@@ -29,8 +30,6 @@ const constraints = {
 @form(initState)
 export default class UpdatePwd extends Component{
     updatePwd = async () => {
-        Keyboard.dismiss();
-        
         const data = this.props.state;
 
         const response = validate(data,constraints);
@@ -42,14 +41,13 @@ export default class UpdatePwd extends Component{
         const res = await axios.post('user/update_pwd',data);
 
         if (res.error === 0) {
-            Toast.show({
-                text:"修改密码成功！",
+            showMessage({
+                message:"修改密码成功！",
                 type:"success",
-                onClose:(type) => {
-                    // console.log(type);
+                onClose:() => {
                     this.props.navigation.navigate('User');
                 }
-            });
+            })
         }
     }
     
