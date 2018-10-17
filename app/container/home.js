@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {View,TextInput,StyleSheet,Button,Text} from 'react-native';
+import {View,TextInput,StyleSheet,Button,Text,Dimensions} from 'react-native';
+import { Container,Tabs,Tab } from 'native-base';
+import NavBar from '../component/base/navBar';
+// import TabBar from '../component/base/tabBar';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import {initName,reName} from '../redux/user';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
+
+
+const FirstRoute = () => (
+    <View style={[styles.container, { backgroundColor: '#ff4081' }]} />
+);
+const SecondRoute = () => (
+    <View style={[styles.container, { backgroundColor: '#673ab7' }]} />
+);
 
 @connect(
     state => state.user,
@@ -10,15 +22,16 @@ import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
 )
 
 export default class Home extends Component{
-    static navigationOptions = {
-        title:"shouye"
-    }
-
     constructor(props){
         super(props);
         this.state = {
             name:this.props.name || "",
-            root:this.props.root || false
+            root:this.props.root || false,
+            index: 1,
+            routes: [
+                { key: 'first', title: 'First' },
+                { key: 'second', title: 'Second' },
+            ],
         }
     }
 
@@ -46,33 +59,35 @@ export default class Home extends Component{
         await this.props.initName('init');
     }
 
-    render(){
+    render() {
         return (
-            <View style={styles.container}>
-                <TextInput
-                    placeholder="Choose a Username"
-                    onChangeText={this.handleChange}
-                    value={this.state.name}
+            <Container>
+                <NavBar 
+                    left="drawer"
+                    headerTitle='首页'
                 />
-                <Button title="Submit" onPress={this.reName} />
-                <Button title="Init" onPress={this.initName} />
-                <Button title="asnycInit" onPress={this.initNameAsync} />
-                <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
-                <Button title="go Detail" onPress={()=>this.props.navigation.navigate('Detail')} />
-                <Button title="go Test" onPress={()=>this.props.navigation.navigate('Drawer')} />
-                <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
-                <Button title="go Register" onPress={()=>this.props.navigation.navigate('Register')} />
-                <Text>{this.state.name} home screen</Text>
-            </View>
+                <TabView
+                    navigationState={this.state}
+                    renderScene={SceneMap({
+                        first: FirstRoute,
+                        second: SecondRoute,
+                    })}
+                    onIndexChange={index => this.setState({ index })}
+                    initialLayout={{ width: Dimensions.get('window').width,height: Dimensions.get('window').height }}
+                />
+            </Container>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-  });
+    tabBar:{
+        backgroundColor:BaseColor.skyBlue
+    }
+});

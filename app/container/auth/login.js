@@ -82,7 +82,7 @@ export default class Login extends Component {
         return (
             <Container>
                 <NavBar 
-                    left="default"
+                    left="back"
                     headerTitle='登录'
                 />
                 <Content>

@@ -55,7 +55,7 @@ export default class UpdatePwd extends Component{
         return (
             <Container>
                 <NavBar 
-                    left="default"
+                    left="back"
                     headerTitle='修改密码'
                 />
                 <Content>

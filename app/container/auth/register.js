@@ -118,7 +118,7 @@ export default class Register extends Component{
         return (
             <Container>
                 <NavBar 
-                    left="default"
+                    left="back"
                     headerTitle='注册'
                 />
                 <Content>

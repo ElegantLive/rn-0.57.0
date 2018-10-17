@@ -10,7 +10,8 @@ const sendCode = async (mobile) => {
 
     if (res.error_code === 0) showMessage({
         message:"短信验证码已发出",
-        type:"success"
+        type:"success",
+        icon:"success"
     })
 }
 
@@ -21,6 +22,7 @@ const dealValidate = (result, toast = true) => {
         if (toast) showMessage({
             message:error,
             type:"danger",
+            icon:"danger"
         })
 
         return result;

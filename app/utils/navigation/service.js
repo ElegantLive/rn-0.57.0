@@ -1,5 +1,6 @@
 import {
-    NavigationActions
+    NavigationActions,
+    DrawerActions
 } from 'react-navigation';
 
 let _navigator;
@@ -26,8 +27,15 @@ function back(routeName, params = null) {
     );
 }
 
+function drawer() {
+    _navigator.dispatch(
+        DrawerActions.openDrawer()
+    );
+}
+
 export default {
-    navigate,
     setTopLevelNavigator,
-    back
+    navigate,
+    back,
+    drawer
 };

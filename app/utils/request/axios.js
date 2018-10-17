@@ -5,12 +5,21 @@ import NavigationService from '../navigation/service';
 import { Loading } from "../../component/base/loading";
 import { showMessage } from "react-native-flash-message";
 
+const ECONNABORTED = 'ECONNABORTED'; // 请求超时错误码
+
 axios.defaults.baseURL = conf.baseUrl + conf.version; /** 'http://localhost:9091' */
 axios.defaults.headers['Content-Type'] = conf.contentType.json;
 axios.defaults.timeout = conf.timeout;
 axios.defaults.withCredentials = false; /** 是否允许携带cookie */
 axios.defaults.loading = true; /** 自定义loading弹窗 */
 axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 */
+axios.defaults.onTimeout = (request) => {
+    showMessage({
+        message: '请求超时，请检查网络稍后重试',
+        type: "danger",
+        icon: "danger"
+    });
+}
 
 /** 发现axios有内置的转换器，就不用自己定义的了 */
 // const handleRequestData = (type,data) => {
@@ -61,10 +70,10 @@ axios.interceptors.response.use((response) => {
     return response.data;
 },(error) => {
     const response = error.response;
-    const request = response.config;
-    if (request.loading) Loading.hidden();
-    
+    const request = error.config;
     console.log(response);
+    console.log(request);
+    if (request.loading) Loading.hidden();
     
     if (response) {
         switch (response.data.error_code) {
@@ -80,11 +89,21 @@ axios.interceptors.response.use((response) => {
                 showMessage({
                     message: response.data.msg,
                     type: "danger",
+                    icon: "danger"
                 });
-                return false;
+                return response.data;
+        }
+    } else {
+        // 请求超时-网络错误
+        switch (error.code) {
+            case ECONNABORTED:
+                request.onTimeout(request);
+                break;
+            default:
+                console.log('前端出现未知错误');
+                // Promise.reject(error);
+                // return error;
+                break;
         }
     }
-
-    Promise.reject(error);
-    return error;
 });

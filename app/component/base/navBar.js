@@ -37,6 +37,10 @@ export default class NavBar extends PureComponent<Props> {
         NavigationService.back()
     }
 
+    goDrawer= () => {
+        NavigationService.drawer()
+    }
+
     renderLeft() {
         const props = this.props;
 
@@ -47,18 +51,42 @@ export default class NavBar extends PureComponent<Props> {
         const defaultLeft = (<Button
             transparent = {true}
             iconLeft
-            style={{color:BaseColor.skayBlue}}
+            style={styles.leftBtn}
         >
-            <Icon name='arrow-back' onPress={this.goBack} style={styles.leftIcon}/>
+            {this.renderLeftIcon(props.left)}
         </Button>);
 
-        const leftComponents = (props.left === "default") ? defaultLeft: props.left;
+        const leftComponents = (typeof props.left === "string") ? defaultLeft: props.left;
 
         return (
             <Left style={leftStyles}>
                 {leftComponents}
             </Left> 
         )
+    }
+
+    renderLeftIcon(left) {
+        if (typeof left === "string") {
+            const backIcon = <Icon 
+                name='arrow-back' 
+                onPress={this.goBack} 
+                style={styles.leftIcon}
+            />;
+            const drawerIcon = <Icon 
+                type="Entypo" 
+                name='menu' 
+                onPress={this.goDrawer} 
+                style={styles.leftIcon}
+            />;
+            switch (left) {
+                case 'back':
+                    return backIcon;
+                case 'drawer':
+                    return drawerIcon;
+            }
+        }else{
+            Promise.reject('left is not string');
+        }
     }
 
     renderRight() {
@@ -82,7 +110,6 @@ export default class NavBar extends PureComponent<Props> {
         return (
             <Header
                 style={[styles.header,headerStyle]}
-                // androidStatusBarColor={BaseColor.brandLight}
             >
                 { this.renderLeft() }
                 <Body>
@@ -97,6 +124,9 @@ export default class NavBar extends PureComponent<Props> {
 const styles = StyleSheet.create({
     leftIcon:{
         fontSize:24,
+        color:BaseColor.skayBlue
+    },
+    leftBtn:{
         color:BaseColor.skayBlue
     },
     headerTitle:{

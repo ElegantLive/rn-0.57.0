@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text,StyleSheet,Button,ScrollView,SafeAreaView } from 'react-native';
+import { Text,TextInput,StyleSheet,Button,ScrollView,SafeAreaView } from 'react-native';
 import { Drawer as DraserBase } from 'native-base';
 
 export default class Drawer extends Component {
@@ -11,8 +11,20 @@ export default class Drawer extends Component {
         return (
             <ScrollView>
                 <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-                    <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
-                    <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
+                 {/* <TextInput
+                    placeholder="Choose a Username"
+                    onChangeText={this.handleChange}
+                    value={this.state.name}
+                />
+                <Button title="Submit" onPress={this.reName} />
+                <Button title="Init" onPress={this.initName} />
+                <Button title="asnycInit" onPress={this.initNameAsync} /> */}
+                <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
+                <Button title="go Detail" onPress={()=>this.props.navigation.navigate('Detail')} />
+                <Button title="go Test" onPress={()=>this.props.navigation.navigate('Drawer')} />
+                <Button title="go login" onPress={()=>this.props.navigation.navigate('Login')} />
+                <Button title="go Register" onPress={()=>this.props.navigation.navigate('Register')} />
+                <Button title="keep development" onPress={()=>console.log('keep development')} />
                 </SafeAreaView>
             </ScrollView>
         )

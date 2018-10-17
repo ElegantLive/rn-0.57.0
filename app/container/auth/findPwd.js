@@ -54,6 +54,7 @@ export default class FindPwd extends Component{
                 message:"找回密码成功！",
                 type:"success",
                 onHide: this.goLogin,
+                icon:"success"
             })
         }
     }
@@ -68,6 +69,7 @@ export default class FindPwd extends Component{
             showMessage({
                 message:error,
                 type:"danger",
+                icon:"danger"
             })
             return false;
         }
@@ -112,7 +114,7 @@ export default class FindPwd extends Component{
         return (
             <Container>
                 <NavBar 
-                    left="default"
+                    left="back"
                     headerTitle='找回密码'
                 />
                 <Content>
