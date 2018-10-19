@@ -1,22 +1,12 @@
 // 用户进入的首页路由配置
 import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import HomeRoute from './home'; // 以后看看
 import User from '../container/user';
 import Home from '../container/home';
 import Shop from '../container/shop';
 import Message from '../container/message';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { baseColor } from '../utils/system/themeSet';
-
-// const TabOptions = (tabBarTitle, tabBarIconName,tintColor) => {
-// 	const title = tabBarTitle;
-// 	const tabBarIcon = (){
-//         return  <Icon name={tabBarIconName} size={24} color={tintColor}/>
-//     }
-//     const tabBarVisible = true;
-// 	return { title, tabBarVisible, tabBarIcon };
-// };
 
 const MainRoute = createMaterialBottomTabNavigator({
     Home:{
@@ -85,8 +75,5 @@ const MainRoute = createMaterialBottomTabNavigator({
     inactiveColor: baseColor.GrayBG,
     barStyle: { backgroundColor: baseColor.diytabDefaultBg },
 });
-
-/** 用自定义的header标题栏 */
-// MainRoute.navigationOptions = { header : null};
 
 export default MainRoute;
