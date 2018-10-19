@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item,Toast } from 'native-base';
+import { Content,Container,Form,Label,Input,Item } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
         color:BaseColor.startBlue
     },
     form:{
-        marginTop: px2dp(30),
+        marginTop: px2dp(20),
         marginHorizontal:px2dp(30),
     },
     item:{
@@ -222,7 +221,7 @@ const styles = StyleSheet.create({
     btnView:{
         marginHorizontal:px2dp(5),
         flexDirection:"row",
-        marginTop: px2dp(100),
+        marginTop: px2dp(80),
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -233,6 +232,7 @@ const styles = StyleSheet.create({
         width:px2dp(200)
     },
     btnTitle:{
+        color:BaseColor.brandPrimary,
         fontSize:FONT_SIZE(14)
     },
     activeTitle:{

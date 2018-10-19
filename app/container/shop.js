@@ -14,6 +14,7 @@ export default class Shop extends Component{
                 <View style={styles.container}>
                     <Text>Shop screen</Text>
                     <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
+                    <Button title="go to find" onPress={()=>this.props.navigation.navigate('Find')} />
                     <Button title="asnycInit" onPress={()=>console.log(`test for ${JSON.stringify(this.props)}`)} />
                 </View>
             </Container>

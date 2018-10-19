@@ -14,7 +14,10 @@ const DrawerRouter = createDrawerNavigator({
 },{
     initialRouteName: 'MainRoute',
     drawerPosition: 'left',
-    contentComponent: Drawer
+    contentComponent: Drawer,
+    navigationOptions:{
+        header:null
+    }
 })
 
 export default AppRouter = createStackNavigator({
@@ -28,6 +31,6 @@ export default AppRouter = createStackNavigator({
 },{
     initialRouteName:"DrawerRouter",
     navigationOptions:{
-        header:null, // 重写所有页面头部
+        header:null,
     }
 });

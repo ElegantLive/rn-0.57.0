@@ -15,7 +15,8 @@ axios.defaults.loading = true; /** 自定义loading弹窗 */
 axios.defaults.diydeal = false; /** 是否使用自定义的错误响应处理 */
 axios.defaults.onTimeout = (request) => {
     showMessage({
-        message: '请求超时，请检查网络稍后重试',
+        message: '请求超时',
+        description:"请检查网络,并稍后重试",
         type: "danger",
         icon: "danger"
     });

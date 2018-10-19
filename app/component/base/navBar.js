@@ -124,16 +124,15 @@ export default class NavBar extends PureComponent<Props> {
 const styles = StyleSheet.create({
     leftIcon:{
         fontSize:24,
-        color:BaseColor.skayBlue
+        color:'white'
     },
     leftBtn:{
-        color:BaseColor.skayBlue
+        color:'white'
     },
     headerTitle:{
-        color:BaseColor.blank
+        color:'white'
     },
     header:{
-        backgroundColor:BaseColor.brandLight,
-        color:'white'
+        backgroundColor:BaseColor.skayBlue,
     }
 })

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import {Button,View,Text,StyleSheet} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export default class Detail extends Component{
+@withNavigation
+export default class New extends Component{
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
     render(){
         return (
             <View style={styles.container}>
-                <Text>Detail screen</Text>
-                <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
-                <Button title="go back" onPress={()=>this.props.navigation.goBack()} />
+                <Text>New screen</Text>
+                <Button title="go to Login" onPress={()=>this.props.navigation.navigate('Login')} />
+                <Button title="jump to find" onPress={()=>this.props.jumpTo('find')} />
                 <Button title="asnycInit" onPress={()=>console.log(`test for ${JSON.stringify(this.props)}`)} />
             </View>
         )

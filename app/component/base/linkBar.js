@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button } from 'native-base';
@@ -10,7 +10,8 @@ type Props = {
     ...Button.propTypes,
 }
 
-export default class LinkBar extends Component <Props> {
+// 浅对比
+export default class LinkBar extends PureComponent <Props> {
     static propTypes = {
         title:PropTypes.string.isRequired,
     }

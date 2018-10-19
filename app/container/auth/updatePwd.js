@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
         width:px2dp(200)
     },
     btnTitle:{
+        color:BaseColor.brandPrimary,
         fontSize:FONT_SIZE(14)
     },
     activeTitle:{
