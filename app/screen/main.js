@@ -6,7 +6,6 @@ import Home from '../container/home';
 import Shop from '../container/shop';
 import Message from '../container/message';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { baseColor } from '../utils/system/themeSet';
 
 const MainRoute = createMaterialBottomTabNavigator({
     Home:{
@@ -16,10 +15,10 @@ const MainRoute = createMaterialBottomTabNavigator({
             tabBarIcon: ({tintColor}) => (<Icon name='home' size={24} color={tintColor}/>),
             //  以下四项和最后四项二选一，相对于自己/全部
 
-            // tabBarColor:baseColor.diytabDefaultBg,
-            // activeBackgroundColor:baseColor.diytabDefaultBg,
-            // activeColor:baseColor.skayBlue,
-            // inactiveColor:baseColor.GrayBG,
+            // tabBarColor:BaseColor.diytabDefaultBg,
+            // activeBackgroundColor:BaseColor.diytabDefaultBg,
+            // activeColor:BaseColor.skayBlue,
+            // inactiveColor:BaseColor.GrayBG,
         },
     },
     Shop:{
@@ -27,10 +26,10 @@ const MainRoute = createMaterialBottomTabNavigator({
         navigationOptions: {
             title:"商城",
             tabBarIcon: ({tintColor}) => (<Icon name='shopping-cart' size={24} color={tintColor}/>),
-            // tabBarColor:baseColor.diytabDefaultBg,
-            // activeBackgroundColor:baseColor.diytabDefaultBg,
-            // activeColor:baseColor.skayBlue,
-            // inactiveColor:baseColor.GrayBG,
+            // tabBarColor:BaseColor.diytabDefaultBg,
+            // activeBackgroundColor:BaseColor.diytabDefaultBg,
+            // activeColor:BaseColor.skayBlue,
+            // inactiveColor:BaseColor.GrayBG,
         },
     },
     Message:{
@@ -38,10 +37,10 @@ const MainRoute = createMaterialBottomTabNavigator({
         navigationOptions: {
             title:"消息",
             tabBarIcon: ({tintColor}) => (<Icon name='envelope' size={24} color={tintColor}/>),
-            // tabBarColor:baseColor.diytabDefaultBg,
-            // activeBackgroundColor:baseColor.diytabDefaultBg,
-            // activeColor:baseColor.skayBlue,
-            // inactiveColor:baseColor.GrayBG,
+            // tabBarColor:BaseColor.diytabDefaultBg,
+            // activeBackgroundColor:BaseColor.diytabDefaultBg,
+            // activeColor:BaseColor.skayBlue,
+            // inactiveColor:BaseColor.GrayBG,
         },
     },
     User:{
@@ -49,10 +48,10 @@ const MainRoute = createMaterialBottomTabNavigator({
         navigationOptions: {
             title:"我的",
             tabBarIcon: ({tintColor}) => (<Icon name='user' size={24} color={tintColor}/>),
-            // tabBarColor:baseColor.diytabDefaultBg,
-            // activeBackgroundColor:baseColor.diytabDefaultBg,
-            // activeColor:baseColor.skayBlue,
-            // inactiveColor:baseColor.GrayBG,
+            // tabBarColor:BaseColor.diytabDefaultBg,
+            // activeBackgroundColor:BaseColor.diytabDefaultBg,
+            // activeColor:BaseColor.skayBlue,
+            // inactiveColor:BaseColor.GrayBG,
         },
     }
 },{
@@ -62,7 +61,7 @@ const MainRoute = createMaterialBottomTabNavigator({
     swipeEnabled:true,
     animationEnabled:true,
     tabBarOptions:{
-        activeTintColor:'#007aff',
+        activeTintColor:BaseColor.skayBlue,
         inactiveTintColor:'#999',
         // activeBackgroundColor:Theme.activeBackgroundColor,
         // inactiveBackgroundColor:Theme.inactiveBackgroundColor,
@@ -70,10 +69,10 @@ const MainRoute = createMaterialBottomTabNavigator({
         showIcon:true,
         // tabStyle :{ backgroundColor : "orange"},
     },
-    tabStyle :{ backgroundColor : "#007aff"},
-    activeColor: '#007aff',
-    inactiveColor: baseColor.GrayBG,
-    barStyle: { backgroundColor: baseColor.diytabDefaultBg },
+    tabStyle :{ backgroundColor : BaseColor.skayBlue},
+    activeColor: BaseColor.skayBlue,
+    inactiveColor: BaseColor.GrayBG,
+    barStyle: { backgroundColor: BaseColor.diytabDefaultBg },
 });
 
 export default MainRoute;

@@ -85,13 +85,12 @@ axios.interceptors.response.use((response) => {
                 return false;
             // 通用错误弹窗
             default:
-                if (request.diydeal) return response.data;
-                
-                showMessage({
+                if (true !== request.diydeal) showMessage({
                     message: response.data.msg,
                     type: "danger",
                     icon: "danger"
                 });
+
                 return response.data;
         }
     } else {

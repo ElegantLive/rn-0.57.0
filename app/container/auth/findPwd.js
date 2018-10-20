@@ -7,7 +7,7 @@ import { Content,Container,Form,Label,Input,Item } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
-import form from "../../component/high/form";
+import form from "../../component/higher/form";
 import {
     mobileConstraint,
     codeConstraint,

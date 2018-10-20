@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
         backgroundColor:BaseColor.skayBlue
     },
     Text:{
-        justifyContent:"center"
+        // justifyContent:"center"
     }
 })

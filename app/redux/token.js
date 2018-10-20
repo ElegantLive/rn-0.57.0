@@ -6,7 +6,7 @@ const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 /** init state */
 const initState = {
-    token : '',
+    token : null,
     auth : false
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,ActivityIndicator } from 'react-native';
+import { View,ActivityIndicator,StyleSheet } from 'react-native';
 
 export default class Init extends Component {
 	componentDidMount() {
@@ -8,9 +8,18 @@ export default class Init extends Component {
     
 	render() {
 		return (
-			<View>
+			<View style={styles.container}>
 				<ActivityIndicator animating={true} size="large" />
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+});

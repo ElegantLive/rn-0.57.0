@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
 import NavBar from '../../component/base/navBar';
 import LinkBar from "../../component/base/linkBar";
-import form from "../../component/high/form";
+import form from "../../component/higher/form";
 import validate from 'validate.js';
 import {mobileConstraint,passwordConstraint} from '../../utils/validate/constraints';
 import {dealValidate} from '../../utils/functions';

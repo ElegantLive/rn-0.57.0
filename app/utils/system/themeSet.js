@@ -4,6 +4,11 @@ import commonColor from 'native-base/src/theme/variables/commonColor'
 export const baseColor = {
     ...commonColor,
     skayBlue : '#2196f3', // 类似天空蓝-深色-主题常用色
+    skayGreen:'#5cb85c',
+    skayDanger:'#d9534f',
+    skayWarning:'#f0ad4e',
+    skayDark:'#000',
+    skayLight:'#f4f4f4',
     grassGreen : "#2b8339", // 草绿色
     startBlue: '#0dc7ff',
     endBlue : '#10aeff',
