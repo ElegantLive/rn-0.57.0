@@ -20,6 +20,7 @@ const loadType = {
 
 type Props = {
     data : Array,
+    loadType?: "none" | "empty" | "loading" | "normal" | "failure",
     style?: any,
 
     footerEmptyText?:string, // 数据为空时底部text
@@ -47,7 +48,7 @@ export default class RefreshList extends PureComponent <Props> {
         this.state = {
             data: props.data,
             refreshing: false,
-            loaddata: loadType.normal
+            loaddata: props.loadType
         }
     }
 
@@ -67,24 +68,41 @@ export default class RefreshList extends PureComponent <Props> {
     _loadData = () => {
         if (this.state.loaddata in forbidType) return false;
         
+        const { continueLoad,request } = this.props;
+
+        if (!continueLoad) return false;
+
         this.setState({loaddata: loadType.loading},()=>{
-            const stateData = [
-                {key: 'Devin'},
-                {key: 'Jackson'},
-                {key: 'James'},
-                {key: 'Joel'},
-                {key: 'John'},
-                {key: 'Jillian'},
-                {key: 'Jimmy'},
-                {key: 'Juli1e'},
-            ]
-    
-            const data = [...this.state.data,...stateData]
-    
-            setTimeout(() => {
-                this.setState({data,loaddata: loadType.normal})
-            }, 4000);
+            try {
+                const response = request();
+        
+                const {data,loaddata} = this._randerLoadType(response);
+        
+                this.setState({data:[...this.state.data,...data],loaddata});
+            } catch (error) {
+                this.setState({loaddata: loadType.failure})
+            }
         });
+    }
+
+    _randerLoadType = (response) => {
+        let loaddata = loadType.normal;
+
+        if (error_code in response) {
+            loaddata = loadType.failure;
+            return {data:[],loaddata};
+        }
+
+        const {data,current_page,has_more} = response;
+        if (data === []) {
+            loaddata = (current_page > 1) ? loadType.none:loadType.empty;
+
+            return {data,loaddata};
+        }
+
+        loaddata = (has_more) ? loadType.normal:loadType.none;
+
+        return {data,loaddata};
     }
 
     renderFooter = () => {
@@ -120,11 +138,6 @@ export default class RefreshList extends PureComponent <Props> {
             case loadType.loading:
                 return <FooterLoad 
                     text={footerLoadingText}
-                />;
-            default:
-                return <FooterLoad 
-                    spinner={null}
-                    text={footerNormalText}
                 />;
         }
     }

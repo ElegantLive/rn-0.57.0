@@ -9,26 +9,25 @@ import FooterLoad from '../../component/base/footerLoad';
 export default class Find extends Component {
     render(){
         return (
-            <FooterLoad 
-                        text="正在加载中..."
-                    />
-            // <View>
-            //     <RefreshList 
-            //         data = {[
-            //             {key: 'Devin'},
-            //             {key: 'Jackson'},
-            //             {key: 'James'},
-            //             {key: 'Joel'},
-            //             {key: 'John'},
-            //             {key: 'Jillian'},
-            //             {key: 'Jimmy'},
-            //             {key: 'Juli1e'},
-            //         ]}
-            //     />
-            //     <View>
-                    
-            //     </View>
-            // </View>
+            // <FooterLoad 
+            //             text="正在加载中..."
+            //             // onPress={()=>{console.log('onpress')}}
+            //         />
+            <View>
+                <RefreshList 
+                    data = {[
+                        // {key: 'Devin'},
+                        // {key: 'Jackson'},
+                        // {key: 'James'},
+                        // {key: 'Joel'},
+                        // {key: 'John'},
+                        // {key: 'Jillian'},
+                        // {key: 'Jimmy'},
+                        // {key: 'Juli1e'},
+                    ]}
+                    loadType="empty"
+                />
+            </View>
         )
     }
 }
