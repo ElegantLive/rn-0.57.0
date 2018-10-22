@@ -27,7 +27,7 @@ export default class FooterLoad extends Component<Props> {
 
         return (spinner === 'default') ? <Spinner 
             size="small"
-            style={styles.spinner}
+            style={styles.height}
             color={BaseColor.skayBlue}
         /> : spinner;
     }
@@ -40,7 +40,7 @@ export default class FooterLoad extends Component<Props> {
             title={text}
             transparent
             onPress={onPress}
-            btnStyle={styles.btn}
+            btnStyle={styles.height}
             titleStyle={[styles.textStyle,textStyle]}
         />: 
         <Text style={[styles.textStyle,textStyle]}>{text}</Text>;
@@ -48,7 +48,7 @@ export default class FooterLoad extends Component<Props> {
 
     render() {
         return (
-            <View style={[styles.View,this.props.style]}>
+            <View style={[styles.View,styles.height,this.props.style]}>
                 {this.renderSpinner()}
                 {this.renderText()}
             </View>
@@ -59,10 +59,7 @@ export default class FooterLoad extends Component<Props> {
 const styles = StyleSheet.create({
     View:{
         flexDirection:"row",
-        justifyContent:"center",
-    },
-    btn:{
-        height:35
+        justifyContent:"center"
     },
     textStyle:{
         fontSize:FONT_SIZE(14),
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
         paddingLeft:10,
         color:BaseColor.skayBlue
     },
-    spinner:{
+    height:{
         height:35
     }
 })
