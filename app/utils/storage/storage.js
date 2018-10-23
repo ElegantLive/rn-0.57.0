@@ -1,21 +1,19 @@
 import { AsyncStorage } from 'react-native';
 
-const key = 'token';
-
-const getToken = () => {
+const get = (key) => {
     return AsyncStorage.getItem(key);
 }
 
-const clearToken = () => {
+const remove = (key) => {
     AsyncStorage.removeItem(key);
 }
 
-const setToken = (value) => {
+const set = (key,value) => {
     AsyncStorage.setItem(key,value);
 }
 
 export {
-    setToken,
-    clearToken,
-    getToken
+    set,
+    remove,
+    get
 }

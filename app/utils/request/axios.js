@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as conf from '../config/config';
-import { getToken } from './token';
+import { getToken } from '../storage/token';
 import NavigationService from '../navigation/service';
 import { Loading } from "../../component/base/loading";
 import { showMessage } from "react-native-flash-message";

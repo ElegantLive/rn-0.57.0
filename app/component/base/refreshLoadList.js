@@ -3,7 +3,7 @@ import {Button,View,Text,StyleSheet,SafeAreaView,ScrollView,FlatList,RefreshCont
 import PropTypes from 'prop-types';
 import FooterLoad from './footerLoad';
 import {refreshLoadType} from '../../redux/actionType';
-import Empty from '../profession/empty';
+import NoticesView from '../profession/noticeView';
 
 // import { Content,Card,CardItem,Icon,Body,Left,Right,Thumbnail } from 'native-base';
 
@@ -49,14 +49,17 @@ export default class RefreshLoadList extends Component <Props> {
         super(props);
     }
 
-    renderFooter = () => {
+    _renderFooter = () => {
         const {
             footerNormalText,
             footerFailureText,
             footerLoadingText,
             footerNoneText,
-            loadType
+            loadType,
+            data
         } = this.props;
+
+        if (data.length === 0) return null; // 在数组数据为空的情况下直接跳过渲染
 
         switch(loadType) {
             case NORMAL:
@@ -81,7 +84,7 @@ export default class RefreshLoadList extends Component <Props> {
         }
     }
 
-    renderRefresh = () => {
+    _renderRefresh = () => {
         const {refreshing,refreshData} = this.props;
 
         return <RefreshControl
@@ -100,15 +103,15 @@ export default class RefreshLoadList extends Component <Props> {
         />
     }
 
-    renderEmpty = () => {
-        return (this.props.emptyComponent) ? this.props.emptyComponent: <Empty />;
+    _renderEmpty = () => {
+        return (this.props.emptyComponent) ? this.props.emptyComponent: <NoticesView />;
     }
 
-    renderHeader = () => {
+    _renderHeader = () => {
         return (this.props.headerComponent) ? this.props.headerComponent:null;
     }
 
-    renderSeparator = () => {
+    _renderSeparator = () => {
         return (this.props.separatorComponent) ? this.props.separatorComponent:null;
     }
 
@@ -122,11 +125,11 @@ export default class RefreshLoadList extends Component <Props> {
             <FlatList
                 data={data}
                 renderItem={this.props.listComponent}
-                refreshControl={this.renderRefresh()}
-                ListEmptyComponent={this.renderEmpty()}
-                ListFooterComponent={this.renderFooter()}
-                ListHeaderComponent={this.renderHeader()}
-                ItemSeparatorComponent={this.renderSeparator()}
+                refreshControl={this._renderRefresh()}
+                ListEmptyComponent={this._renderEmpty()}
+                ListFooterComponent={this._renderFooter()}
+                ListHeaderComponent={this._renderHeader()}
+                ItemSeparatorComponent={this._renderSeparator()}
                 onEndReached={loadData}
                 onEndReachedThreshold={0.1}
             />

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setToken,clearToken} from '../utils/request/token';
+import {setToken,clearToken} from '../utils/storage/token';
 
 /** declear all actions */
 const LOG_IN = 'LOG_IN';

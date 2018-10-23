@@ -4,6 +4,7 @@ import {Button,View,Text,StyleSheet,SafeAreaView,ScrollView,FlatList,RefreshCont
 import { withNavigation } from 'react-navigation';
 import RefreshLoadList from '../../component/base/refreshLoadList';
 import { forbidRefreshLoadType,refreshLoadType } from '../../redux/actionType';
+import NoticeView from '../../component/profession/noticeView';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
 
@@ -28,7 +29,10 @@ export default class Find extends Component {
     }
 
     componentDidMount () {
-        this.getRefreshData();
+        // fix for the refreshing is too fast to make refreshing up
+        setTimeout(() => {
+            this.getRefreshData();
+        }, 100);
     }
 
     getLoadData = () => {
@@ -36,8 +40,7 @@ export default class Find extends Component {
 
         this.setState({
             loaddata:LOADING
-        })
-        setTimeout(() => {
+        },()=>setTimeout(() => {
             const nextData = [
                 {key: `Devin${Math.random()}`},
                 {key: `ackson1${Math.random()}`},
@@ -46,14 +49,14 @@ export default class Find extends Component {
                 {key: `John1${Math.random()}`},
                 {key: `Jillian1${Math.random()}`},
                 {key: `Juli1e1${Math.random()}`},
-                {key: `Jimmy1${Math.random()}`},
+                {key: `Jimmy1${Math.random()}`}
             ];
 
             this.setState({
                 data:[...this.state.data,...nextData],
                 loaddata:NORMAL
             })
-        }, 4000);
+        }, 4000))
     }
 
     getRefreshData = () => {
@@ -61,8 +64,8 @@ export default class Find extends Component {
 
         this.setState({
             refreshing:true,
-        })
-        setTimeout(() => {
+        },()=>{
+            setTimeout(() => {
             const nextData = [
                 {key: `Devin${Math.random()}`},
                 {key: `ackson1${Math.random()}`},
@@ -76,22 +79,25 @@ export default class Find extends Component {
 
             this.setState({
                 data:nextData,
-                refreshing:false,
+                refreshing:false
             })
-        }, 4000);
+        }, 4000)})
     }
 
     render(){
+        const {data,refreshing,loaddata} = this.state;
+
         return (
             <RefreshLoadList
                 loadData={this.getLoadData}
                 refreshData={this.getRefreshData}
-                loadType={this.state.loaddata}
-                refreshing={this.state.refreshing}
-                data={this.state.data}
+                loadType={loaddata}
+                refreshing={refreshing}
+                data={data}
                 listComponent={({item}) => {
                     return <View style={{height:300}}><Text>{item.key}</Text></View>
                 }}
+                emptyComponent={<NoticeView onClickRefresh={this.getRefreshData}/>}
             />
         )
     }
