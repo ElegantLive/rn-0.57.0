@@ -11,7 +11,7 @@ type Props = {
 }
 
 // 用浅对比
-export default class TopTab extends PureComponent<Props> {
+export default class TopTab extends PureComponent <Props> {
     static propTypes = {
         routes:PropTypes.object,
         titles:PropTypes.object,

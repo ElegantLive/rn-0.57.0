@@ -18,7 +18,7 @@ type Props = {
 export default class NoticeView extends PureComponent <Props> {
     static defaultProps = {
         type:"dataEmpty",
-        onClickRefresh:()=>{
+        onClickRefresh: () => {
             console.log('onclick')
         }
     }
@@ -27,10 +27,10 @@ export default class NoticeView extends PureComponent <Props> {
         super(props);
     }
 
-    renderSourceView = () => {
+    _renderSourceView = () => {
         let {type,source} = this.props;
 
-        if (!source) source = this.renderSourceByType(type).source;
+        if (!source) source = this._renderSourceByType(type).source;
         
         const noticeImage = <Image source={source} style={styles.pic}/>;
 
@@ -41,10 +41,10 @@ export default class NoticeView extends PureComponent <Props> {
         )
     }
 
-    renderTextView = () => {
+    _renderTextView = () => {
         let {type,noticeText} = this.props;
 
-        if (!noticeText) noticeText = this.renderSourceByType(type).noticeText;
+        if (!noticeText) noticeText = this._renderSourceByType(type).noticeText;
 
         return (
             <View style={styles.textBlock}>
@@ -53,7 +53,7 @@ export default class NoticeView extends PureComponent <Props> {
         )
     }
 
-    renderSourceByType = (type) => {
+    _renderSourceByType = (type) => {
         let text;
         let source;
 
@@ -75,8 +75,8 @@ export default class NoticeView extends PureComponent <Props> {
 
     render() {
         const { width,height,onClickRefresh } = this.props;
-        const sourceView = this.renderSourceView()
-        const textView = this.renderTextView()
+        const sourceView = this._renderSourceView()
+        const textView = this._renderTextView()
 
         return (
             <View style={[styles.panel, {
@@ -88,8 +88,6 @@ export default class NoticeView extends PureComponent <Props> {
                 <View>
                     <LinkBar
                         title="点我刷新"
-                        primary={true}
-                        rounded={true}
                         block
                         transparent
                         onPress={onClickRefresh}

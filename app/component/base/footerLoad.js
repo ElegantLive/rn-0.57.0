@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text,View,StyleSheet } from 'react-native';
 import { Spinner } from 'native-base';
 import LinkBar from './linkBar';
@@ -11,7 +11,7 @@ type Props = {
     onPress?: Function
 }
 
-export default class FooterLoad extends Component<Props> {
+export default class FooterLoad extends PureComponent <Props> {
     static defaultProps = {
         text:"loading",
         onPress:null,

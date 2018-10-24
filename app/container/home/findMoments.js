@@ -29,7 +29,7 @@ export default class Find extends Component {
     }
 
     componentDidMount () {
-        // fix for the refreshing is too fast to make refreshing up
+        // fix for the refreshing is up refreshing too fast
         setTimeout(() => {
             this.getRefreshData();
         }, 100);

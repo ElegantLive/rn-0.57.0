@@ -24,7 +24,7 @@ type Props = {
 }
 
 // 头部一般不会变动更新，所以用浅对比的purecomponent
-export default class NavBar extends PureComponent<Props> {
+export default class NavBar extends PureComponent <Props> {
     static propTypes = {
         headerTitle:PropTypes.string.isRequired,
     }
@@ -48,15 +48,13 @@ export default class NavBar extends PureComponent<Props> {
 
         const leftStyles = (props.leftStyle) ? props.leftStyle: {} ;
 
-        const defaultLeft = (<Button
+        const leftComponents = (typeof props.left === "string") ? (<Button
             transparent = {true}
             iconLeft
             style={styles.leftBtn}
         >
             {this.renderLeftIcon(props.left)}
-        </Button>);
-
-        const leftComponents = (typeof props.left === "string") ? defaultLeft: props.left;
+        </Button>): props.left;
 
         return (
             <Left style={leftStyles}>
@@ -85,7 +83,7 @@ export default class NavBar extends PureComponent<Props> {
                     return drawerIcon;
             }
         }else{
-            Promise.reject('left is not string');
+            return null;
         }
     }
 

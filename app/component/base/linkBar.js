@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { Button } from 'native-base';
+import { Button,Text } from 'native-base';
 
 type Props = {
     title : string,
@@ -14,6 +13,11 @@ type Props = {
 export default class LinkBar extends PureComponent <Props> {
     static propTypes = {
         title:PropTypes.string.isRequired,
+    }
+
+    static defaultProps = {
+        btnStyle:{},
+        titleStyle:{}
     }
 
     constructor(props) {

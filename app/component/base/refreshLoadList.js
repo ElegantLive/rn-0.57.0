@@ -1,11 +1,9 @@
-import React, { PureComponent,Component } from 'react';
-import {Button,View,Text,StyleSheet,SafeAreaView,ScrollView,FlatList,RefreshControl} from 'react-native';
+import React, { PureComponent } from 'react';
+import {FlatList,RefreshControl} from 'react-native';
 import PropTypes from 'prop-types';
 import FooterLoad from './footerLoad';
 import {refreshLoadType} from '../../redux/actionType';
 import NoticesView from '../profession/noticeView';
-
-// import { Content,Card,CardItem,Icon,Body,Left,Right,Thumbnail } from 'native-base';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
 
@@ -22,7 +20,7 @@ type Props = {
     headerComponent:Component,
     // footerContent:Component, // 因为有了自定义的footer，所以这个就不开放了
     emptyComponent:Component,
-    separatorComponent:Comment,
+    separatorComponent:Component,
 
     footerEmptyText?:string, // 数据为空时text
     footerNormalText?:string, // 正常状态底部text
@@ -31,7 +29,7 @@ type Props = {
     footerNoneText?:string, // 数据已经全部加载底部text
 }
 
-export default class RefreshLoadList extends Component <Props> {
+export default class RefreshLoadList extends PureComponent <Props> {
     static propTypes = {
         refreshData:PropTypes.func.isRequired,
         loadData:PropTypes.func.isRequired,
@@ -136,10 +134,3 @@ export default class RefreshLoadList extends Component <Props> {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-    },
-});
