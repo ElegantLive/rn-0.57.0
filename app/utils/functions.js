@@ -31,7 +31,14 @@ const dealValidate = (result, toast = true) => {
     return true;
 }
 
+const wrapText = (text) => {
+    const n = '\\n';
+
+    return text.split(n).join(`${'\n'}`)
+}
+
 export {
     sendCode,
-    dealValidate
+    dealValidate,
+    wrapText
 }

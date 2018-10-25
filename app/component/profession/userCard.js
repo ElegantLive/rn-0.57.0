@@ -63,12 +63,14 @@ export default class UserCard extends PureComponent <Props> {
 
         const descView = this._renderDesc();
 
+        const rightView = this._renderRight();
+
         return (
             <CardItem 
                 style={styles.view}
             >
                 <Left>
-                    <UserAvatar 
+                    <UserAvatar
                         source = {avatar}
                         style  = {avatarStyle}
                     />
@@ -77,7 +79,7 @@ export default class UserCard extends PureComponent <Props> {
                         {descView}
                     </Body>
                 </Left>
-                {this._renderRight()}
+                {rightView}
             </CardItem>
         )
     }
