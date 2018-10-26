@@ -9,6 +9,11 @@ function setTopLevelNavigator(navigatorRef) {
     _navigator = navigatorRef;
 }
 
+/**
+ * 路由跳转
+ * @param {string} routeName 路由的key
+ * @param {object} params 携带的参数
+ */
 function navigate(routeName, params = null) {
     _navigator.dispatch(
         NavigationActions.navigate({
@@ -18,6 +23,11 @@ function navigate(routeName, params = null) {
     );
 }
 
+/**
+ * 返回上一层路由
+ * @param {string} routeName 路由的key
+ * @param {object} params 携带的参数
+ */
 function back(routeName, params = null) {
     _navigator.dispatch(
         NavigationActions.back({
@@ -27,6 +37,9 @@ function back(routeName, params = null) {
     );
 }
 
+/**
+ * open drawer
+ */
 function drawer() {
     _navigator.dispatch(
         DrawerActions.openDrawer()

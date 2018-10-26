@@ -6,6 +6,7 @@ import LinkBar from '../../component/base/linkBar';
 import UserCard from '../../component/profession/userCard';
 import LongText from '../../component/profession/longText';
 import ImageCard from '../../component/profession/imageCard';
+import { autoSize } from '../../utils/functions';
 
 @withNavigation
 export default class New extends Component{
@@ -18,6 +19,42 @@ export default class New extends Component{
         const avatar = require('../../resouces/img/2.jpg');
         const avatar1 = require('../../resouces/img/boy.png');
         const avatar2 = require('../../resouces/img/404@1.png');
+        const imglist = [
+            // 'https://www.hnjubi.cn/piaopiao/img/hhh.jpg',
+            // 'http://qlogo2.store.qq.com/qzone/1035102465/1035102465/50',
+            // 'http://img.hb.aicdn.com/efa93a78e1aa93da062fdc586debf7aa7c902de28b116-EfyVaD_sq75',
+            // 'http://img.hb.aicdn.com/31c80c02e5d99ab669a6dc2236601a59dafbc3e32c15b-81rrMb_fw658',
+            // 'http://img.hb.aicdn.com/7d0c8fa995a8d85f0af5f93ff016bda77b75745a39edc-zGHKrC_fw658',
+            'http://img.hb.aicdn.com/6180c6fed916bab3eeb2c143e91280d0966ffbd813db7f-CmW1y3_fw658',
+        ];
+
+        const l  = autoSize(imglist);
+        console.log(l);
+
+        const list = imglist.map(async (v,k) => {
+            if (imglist.length === 1) {
+                const maxHeight = SCREEN_HEIGHT / 2;
+            
+                const maxWidth = SCREEN_WIDTH - 25;
+                let width,height;
+                const max = { width:maxWidth,height:maxHeight };
+
+                await Image.getSize(v,(w,h) => {
+                    width = (w > max.width) ? max.width: w;
+            
+                    height = (h > max.height) ? max.height: h;
+                })
+            
+                return { source: { uri:v }, style: [{ width,height },styles.image] };
+            }else{
+                const style = { height : 200, width : ((SCREEN_WIDTH-10)/2)-10};
+    
+                return {source:{uri:v},style:[style,styles.image]}
+            }
+        })
+
+        console.log(list)
+        
         return (
                 <Content>
                 <ScrollView style={styles.container}>
@@ -52,16 +89,31 @@ export default class New extends Component{
                                 购房贷款"
                             />
                         </CardItem>
-                        <CardItem cardBody>
+                        <CardItem
+                            cardBody
+                            style={{
+                                width: SCREEN_WIDTH,
+                                flexWrap: 'wrap',
+                                display:'flex',
+                                flexDirection: 'row',
+                            }}
+                        >
                             {/* <Image source={avatar} style={{height: 200, width: null, flex: 1}}/>
                             <Image source={avatar} style={{height: 200, width: null, flex: 1}}/>
                             <Image source={avatar} style={{height: 200, width: null, flex: 1}}/> */}
                             <ImageCard
-                                imageList = {[
-                                    {source:avatar},
-                                    {source:avatar1},
-                                    {source:avatar2},
-                                ]}
+                                // imageList = {[
+                                //     // {source:avatar,style:{height: 200, width: 150, flex: 1}},
+                                //     // {source:avatar1,style:{flex:1}},
+                                //     // {source:avatar2,style:{height: 200, width: 150, flex: 1}},
+                                //     // {source:{uri:"https://www.hnjubi.cn/piaopiao/img/hhh.jpg"},style:[{height: 200, width: 150},styles.image]},
+                                //     // {source:{uri:"http://img.hb.aicdn.com/efa93a78e1aa93da062fdc586debf7aa7c902de28b116-EfyVaD_sq75"},style:[{height: 200, width: 150},styles.image]},
+                                //     {source:avatar,style:[{height: 200, width: 150},styles.image]},
+                                //     // {source:{uri:"http://img.hb.aicdn.com/31c80c02e5d99ab669a6dc2236601a59dafbc3e32c15b-81rrMb_fw658"},style:[{height: 200, width: 150},styles.image]},
+                                //     // {source:{uri:"http://img.hb.aicdn.com/7d0c8fa995a8d85f0af5f93ff016bda77b75745a39edc-zGHKrC_fw658"},style:[{height: 200, width: 150},styles.image]},
+                                //     // {source:{uri:"http://img.hb.aicdn.com/6180c6fed916bab3eeb2c143e91280d0966ffbd813db7f-CmW1y3_fw658"},style:[{height: 200, width: (SCREEN_WIDTH-25)},styles.image]},
+                                // ]}
+                                imageList = {list}
                             />
                         </CardItem>
                         <CardItem>
@@ -168,4 +220,12 @@ const styles = StyleSheet.create({
     //   alignItems: 'center',
     //   justifyContent: 'center',
     },
+    image:{
+        marginHorizontal:5,
+        marginVertical:5,
+        // flex:1,
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+    }
 });

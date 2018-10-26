@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // import { View } from 'native-base';
 import CustomImage from '../base/customImage';
@@ -32,3 +32,9 @@ export default class ImageCard extends Component <Props> {
         return view;
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        // flexWrap:"wrap"
+    }
+})

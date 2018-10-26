@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import FastImage from 'react-native-fast-image';
+import { StyleSheet } from 'react-native';
+import { View } from 'native-base';
 
 type Props = {
     errorLoad?: Function,
@@ -15,7 +17,7 @@ export default class CustomImage extends PureComponent <Props> {
     }
 
     _error = () => {
-        console.error('image load wrong');
+        console.log('image load wrong');
         this.setState({
             wrong:true
         },this.props.errorLoad)
@@ -28,12 +30,22 @@ export default class CustomImage extends PureComponent <Props> {
         source = this.state.wrong ? require("../../resouces/img/wrong@1.png"): source;
 
         return (
-            <FastImage
-                {...this.props}
-                source={source}
-                style={style}
-                onError={this._error}
-            />
+            <View
+                style={[styles.view,style]}
+            >
+                <FastImage
+                    {...this.props}
+                    source={source}
+                    onError={this._error}
+                    resizeMode={FastImage.resizeMode.cover}
+                />
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    view:{
+        // flex:1
+    }
+})

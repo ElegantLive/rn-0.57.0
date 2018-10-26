@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CustomImage from '../base/customImage';
 
 type Props = {
-    type:"small" | "default" | "large",
+    type?:"small" | "default" | "large",
     style?: StyleSheet,
     source: object,
 }
@@ -12,6 +12,7 @@ type Props = {
 export default class UserAvatar extends PureComponent <Props> {
     static propTypes = {
         source:PropTypes.any.isRequired,
+        type:PropTypes.oneOf(["small" , "default" , "large"]),
     }
 
     static defaultProps = {
