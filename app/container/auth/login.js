@@ -164,13 +164,13 @@ const styles = StyleSheet.create({
         height:px2dp(80),
     },
     btnTitle:{
-        color:BaseColor.brandPrimary,
+        color:BaseColor.skayBlue,
         fontSize:FONT_SIZE(14)
     },
     loginBtn:{
         flex:1,
-        marginHorizontal:px2dp(50),
         width:px2dp(350),
+        backgroundColor:BaseColor.skayBlue,
     },
     loginTitle:{
         color:'white',

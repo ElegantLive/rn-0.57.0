@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         width:px2dp(200)
     },
     btnTitle:{
-        color:BaseColor.brandPrimary,
+        color:BaseColor.skayBlue,
         fontSize:FONT_SIZE(14)
     },
     activeTitle:{
@@ -144,8 +144,8 @@ const styles = StyleSheet.create({
     },
     submitBtn:{
         flex:1,
-        marginHorizontal:px2dp(50),
         width:px2dp(350),
+        backgroundColor:BaseColor.skayBlue,
     },
     submitTitle:{
         color:'white',

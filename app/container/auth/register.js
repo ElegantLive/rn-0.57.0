@@ -244,10 +244,10 @@ const styles = StyleSheet.create({
         height:px2dp(80),
     },
     sendBtn:{
-        width:px2dp(200)
+        width:px2dp(210)
     },
     btnTitle:{
-        color:BaseColor.brandPrimary,
+        color:BaseColor.skayBlue,
         fontSize:FONT_SIZE(14)
     },
     activeTitle:{
@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
     },
     submitBtn:{
         flex:1,
-        marginHorizontal:px2dp(50),
         width:px2dp(350),
+        backgroundColor:BaseColor.skayBlue,
     },
     submitTitle:{
         color:'white',

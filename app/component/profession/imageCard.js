@@ -11,7 +11,10 @@ type Props = {
 
 export default class ImageCard extends Component <Props> {
     static propTypes = {
-        imageList:PropTypes.array.isRequired,
+        imageList:PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.func
+        ]).isRequired,
     }
 
     constructor(props) {
