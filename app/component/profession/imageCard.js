@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 // import { View } from 'native-base';
-import CustomImage from '../base/customImage';
+import CustomImage from '../base/CustomImage';
+import { Button } from 'native-base';
+import NavigationService from '../../utils/navigation/service';
 
 type Props = {
     imageList: array,
@@ -25,11 +27,20 @@ export default class ImageCard extends Component <Props> {
         const { imageList } = this.props;
 
         const view =  imageList.map((v,k) => {
-            return <CustomImage
-                key={k}
-                source={v.source}
-                style ={v.style}
-            />
+            return (
+                <Button
+                    key={k}
+                    transparent
+                    onPress={()=> { NavigationService.navigate("PictureDetail",{source:v.source}) }}
+                    rounded
+                    style ={v.viewStyle}
+                >
+                    <CustomImage
+                        source={v.source}
+                        style ={v.style}
+                    />
+                </Button>
+            )
         });
 
         return view;

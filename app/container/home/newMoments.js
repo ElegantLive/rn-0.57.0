@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {View,StyleSheet,ScrollView,Image} from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Content,Card,CardItem,Icon,Body,Left,Right,Button,Thumbnail,Text } from 'native-base';
-import LinkBar from '../../component/base/linkBar';
-import UserCard from '../../component/profession/userCard';
-import LongText from '../../component/profession/longText';
-import ImageCard from '../../component/profession/imageCard';
+import LinkBar from '../../component/base/LinkBar';
+import UserCard from '../../component/profession/UserCard';
+import LongText from '../../component/profession/LongText';
+import ImageCard from '../../component/profession/ImageCard';
 import { autoImageOne, adjustReleaseTime } from '../../utils/functions';
 
 @withNavigation
@@ -20,13 +20,12 @@ export default class New extends Component{
         const avatar1 = require('../../resouces/img/boy.png');
         const avatar2 = require('../../resouces/img/404@1.png');
         const imglist = [
-            'https://www.hnjubi.cn/piaopiao/img/hhh.jpg',
+            // 'https://www.hnjubi.cn/piaopiao/img/hhh.jpg',
             'http://res.hnjubi.cn/hnjubi/image/20181027/6d1803589ea446d17720c34b0d1543ef_32*32.png',
-            'http://qlogo2.store.qq.com/qzone/1035102465/1035102465/50',
-            'http://img.hb.aicdn.com/efa93a78e1aa93da062fdc586debf7aa7c902de28b116-EfyVaD_sq75',
-            'http://img.hb.aicdn.com/31c80c02e5d99ab669a6dc2236601a59dafbc3e32c15b-81rrMb_fw658',
-            'http://img.hb.aicdn.com/7d0c8fa995a8d85f0af5f93ff016bda77b75745a39edc-zGHKrC_fw658',
-            'http://img.hb.aicdn.com/6180c6fed916bab3eeb2c143e91280d0966ffbd813db7f-CmW1y3_fw658',
+            'http://res.hnjubi.cn/hnjubi/image/20181028/9d6f916950eb6381419537169ce4bace_1280*1937.jpg',
+            'http://res.hnjubi.cn/hnjubi/image/20181028/eb2b38410c69ce68592004523e0bfaf4_320*484.jpg',
+            'http://res.hnjubi.cn/hnjubi/image/20181028/c2050f864e8d2aee4ee27b6aacb2951e_658*343.jpeg',
+            'http://res.hnjubi.cn/hnjubi/image/20181028/e6da413cec14490f4abe74fd7eda9a63_1937*1280.jpg',
         ];
 
         const list = imglist.map((v,k) => {
@@ -37,7 +36,7 @@ export default class New extends Component{
             } else {
                 const style = { height : 200, width : ((SCREEN_WIDTH-10)/2)-10};
     
-                return {source: {uri : v},style:[style,styles.image]};
+                return {source: {uri : v},style:[style],viewStyle:[style,styles.listView]};
             }
         })
         
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
     //   alignItems: 'center',
     //   justifyContent: 'center',
     },
-    image:{
+    listView:{
         marginHorizontal:5,
         marginVertical:5,
         // flex:1,

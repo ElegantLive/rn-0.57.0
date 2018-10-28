@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View } from 'native-base';
-import LinkBar from '../base/linkBar';
+import LinkBar from '../base/LinkBar';
 import PropTypes from 'prop-types';
 import { wrapText } from '../../utils/functions';
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as conf from '../config/config';
 import { getToken } from '../storage/token';
 import NavigationService from '../navigation/service';
-import { Loading } from "../../component/base/loading";
+import { Loading } from "../../component/base/Loading";
 import { showMessage } from "react-native-flash-message";
 
 const ECONNABORTED = 'ECONNABORTED'; // 请求超时错误码

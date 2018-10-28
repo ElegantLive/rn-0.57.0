@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Text,View,StyleSheet } from 'react-native';
 import { Spinner } from 'native-base';
-import LinkBar from './linkBar';
+import LinkBar from './LinkBar';
 
 type Props = {
     spinner ?: 'default' | Spinner, // 设置为null来隐藏/使用default来使用默认/使用spinner自定义

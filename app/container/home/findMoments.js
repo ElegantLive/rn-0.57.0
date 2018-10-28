@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Button,View,Text,StyleSheet,SafeAreaView,ScrollView,FlatList,RefreshControl} from 'react-native';
 // import { Content,Card,CardItem,Icon,Body,Left,Right,Thumbnail } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import RefreshLoadList from '../../component/base/refreshLoadList';
+import RefreshLoadList from '../../component/base/RefreshLoadList';
 import { forbidRefreshLoadType,refreshLoadType } from '../../redux/actionType';
-import NoticeView from '../../component/profession/noticeView';
+import NoticeView from '../../component/profession/NoticeView';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
 

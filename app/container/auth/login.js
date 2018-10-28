@@ -7,8 +7,8 @@ import {
 import { Content,Container,Form,Label,Input,Item} from 'native-base';
 import {connect} from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
-import NavBar from '../../component/base/navBar';
-import LinkBar from "../../component/base/linkBar";
+import NavBar from '../../component/base/NavBar';
+import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
 import validate from 'validate.js';
 import {mobileConstraint,passwordConstraint} from '../../utils/validate/constraints';

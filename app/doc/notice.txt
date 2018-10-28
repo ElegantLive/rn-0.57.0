@@ -1,0 +1,1 @@
+关于fast-image在UIma里面找不到-可以回退到init下重新构建

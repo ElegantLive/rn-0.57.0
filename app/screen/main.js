@@ -1,10 +1,10 @@
 // 用户进入的首页路由配置
 import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import User from '../container/user';
-import Home from '../container/home';
-import Shop from '../container/shop';
-import Message from '../container/message';
+import User from '../container/User';
+import Home from '../container/Home';
+import Shop from '../container/Shop';
+import Message from '../container/Message';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const MainRoute = createMaterialBottomTabNavigator({

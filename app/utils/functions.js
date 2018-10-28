@@ -37,6 +37,23 @@ const wrapText = (text) => {
     return text.split(n).join(`${'\n'}`)
 }
 
+const autoImageForFullScreen = (source) => {
+    const { width, height } = getWHfromSourceUri(source);
+
+    const imageScale = width / height;
+
+    const screenScale = SCREEN_WIDTH / SCREEN_HEIGHT;
+
+    // 比例相同
+    if (screenScale === imageScale) return (width > SCREEN_WIDTH) ? { width:SCREEN_WIDTH,height:SCREEN_HEIGHT}: {width,height,backgroundColor:"#333"}; 
+
+    // 宽度++
+    if (imageScale > screenScale) return (width > SCREEN_WIDTH) ? {width:SCREEN_WIDTH,height:(SCREEN_WIDTH / imageScale)}: {width,height,backgroundColor:"#666"}; 
+
+    // 高度++
+    if (imageScale < screenScale) return (height > SCREEN_HEIGHT) ? {height:SCREEN_HEIGHT,width:(SCREEN_HEIGHT * imageScale)}: {height,width,backgroundColor:"#999"}; 
+}
+
 /**
  * 单个图片自适应
  * @param {string} uri image source uri
@@ -48,17 +65,27 @@ const autoImageOne = (uri) => {
 
     const max = { width:maxWidth,height:maxHeight };
 
+    const wh = getWHfromSourceUri(uri);
+
+    width = (wh.width > max.width) ? max.width: w;
+
+    height = (wh.height > max.height) ? max.height: h;
+
+    return { width,height };
+}
+
+/**
+ * 从source获取宽高
+ * @param {object} param0 包含uri的source对象
+ */
+const getWHfromSourceUri = ({ uri }) => {
     const wh = uri.split('_')[1].split('.')[0].split('*');
 
-    const w = Number(wh[0]);
+    const width = Number(wh[0]);
     
-    const h = Number(wh[1]);
+    const height = Number(wh[1]);
 
-    width = (w > max.width) ? max.width: w;
-
-    height = (h > max.height) ? max.height: h;
-
-    return {width,height}
+    return { width,height };
 }
 
 /**
@@ -100,4 +127,6 @@ export {
     wrapText,
     autoImageOne,
     adjustReleaseTime,
+    getWHfromSourceUri,
+    autoImageForFullScreen,
 }

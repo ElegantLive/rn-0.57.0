@@ -4,7 +4,7 @@ import { logout } from '../redux/token';
 import { info } from '../redux/user';
 import {Button,View,Text,StyleSheet,ScrollView} from 'react-native';
 import { Container } from 'native-base';
-import NavBar from '../component/base/navBar';
+import NavBar from '../component/base/NavBar';
 
 @connect(
     state => state.user,

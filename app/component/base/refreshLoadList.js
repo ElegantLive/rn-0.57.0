@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import {FlatList,RefreshControl} from 'react-native';
 import PropTypes from 'prop-types';
-import FooterLoad from './footerLoad';
+import FooterLoad from './FooterLoad';
 import {refreshLoadType} from '../../redux/actionType';
-import NoticesView from '../profession/noticeView';
+import NoticesView from '../profession/NoticeView';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
 

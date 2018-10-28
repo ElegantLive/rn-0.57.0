@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import { Content,Container,Form,Label,Input,Item } from 'native-base';
 import validate from 'validate.js';
-import NavBar from '../../component/base/navBar';
-import LinkBar from "../../component/base/linkBar";
+import NavBar from '../../component/base/NavBar';
+import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
 import {
     mobileConstraint,

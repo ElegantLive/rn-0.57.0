@@ -1,13 +1,14 @@
 // 顶级路由配置
 import { createStackNavigator,createDrawerNavigator } from 'react-navigation';
-import Detail from '../container/detail';
+import Detail from '../container/Detail';
 import MainRoute from './main';
-import Login from '../container/auth/login';
-import Register from '../container/auth/register';
-import FindPwd from '../container/auth/findPwd';
-import UpdatePwd from '../container/auth/updatePwd';
-import Test from '../container/test';
-import Drawer from '../container/drawer';
+import Login from '../container/auth/Login';
+import Register from '../container/auth/Register';
+import FindPwd from '../container/auth/FindPwd';
+import UpdatePwd from '../container/auth/UpdatePwd';
+import Test from '../container/Test';
+import Drawer from '../container/Drawer';
+import PictureDetail from '../container/PictureDetail';
 
 const DrawerRouter = createDrawerNavigator({
     MainRoute:MainRoute
@@ -27,7 +28,10 @@ export default AppRouter = createStackNavigator({
     Register:Register,
     Test:Test,
     FindPwd:FindPwd,
-    UpdatePwd:UpdatePwd
+    UpdatePwd:UpdatePwd,
+    PictureDetail:{
+        screen:PictureDetail,
+    },
 },{
     initialRouteName:"DrawerRouter",
     navigationOptions:{

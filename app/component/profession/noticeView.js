@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View,Image,Text,StyleSheet } from 'react-native';
-import LinkBar from '../base/linkBar';
+import LinkBar from '../base/LinkBar';
 
 type Props = {
     btnStyle?: any,

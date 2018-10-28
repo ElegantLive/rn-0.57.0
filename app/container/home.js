@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Container } from 'native-base';
-import NavBar from '../component/base/navBar';
+import NavBar from '../component/base/NavBar';
 import {initName,reName} from '../redux/user';
 import defaultUpdate from '../utils/diyShouldComponentDidUpdate';
-import TopTab from '../component/base/topTab';
-import New from './home/newMoments';
-import Find from './home/findMoments';
+import TopTab from '../component/base/TopTab';
+import New from './home/NewMoments';
+import Find from './home/FindMoments';
 
 @connect(
     state => state.user,

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import CustomImage from '../base/customImage';
+import CustomImage from '../base/CustomImage';
 
 type Props = {
     type?:"small" | "default" | "large",

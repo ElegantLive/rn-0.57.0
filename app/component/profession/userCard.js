@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import { Left,Text,CardItem,Body, Right } from 'native-base';
 import PropTypes from 'prop-types';
-import UserAvatar from './userAvatar';
-import LinkBar from '../base/linkBar';
+import UserAvatar from './UserAvatar';
+import LinkBar from '../base/LinkBar';
 // import { navigate } from '../../utils/navigation/service';
 
 type Props = {
