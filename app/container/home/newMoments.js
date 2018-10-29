@@ -86,7 +86,7 @@ export default class New extends Component{
                             }}
                         >
                             <ImageCard
-                                imageList = {list}
+                                images = {list}
                             />
                         </CardItem>
                         <CardItem>

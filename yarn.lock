@@ -4401,6 +4401,16 @@ react-native-flash-message@^0.1.10:
   dependencies:
     prop-types "^15.6.2"
 
+react-native-image-pan-zoom@^2.1.11, react-native-image-pan-zoom@^2.1.9:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
+
+react-native-image-zoom-viewer@^2.2.23:
+  version "2.2.23"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.23.tgz#364f65792edacd7354b48982843dbfc9db5d438e"
+  dependencies:
+    react-native-image-pan-zoom "^2.1.9"
+
 react-native-iphone-x-helper@^1.0.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"

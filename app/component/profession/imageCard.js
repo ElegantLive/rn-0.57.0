@@ -7,16 +7,22 @@ import { Button } from 'native-base';
 import NavigationService from '../../utils/navigation/service';
 
 type Props = {
-    imageList: array,
+    images: array,
     itemStyle?: any
 }
 
 export default class ImageCard extends Component <Props> {
     static propTypes = {
-        imageList:PropTypes.oneOfType([
+        images:PropTypes.oneOfType([
             PropTypes.array,
             PropTypes.func
         ]).isRequired,
+    }
+
+    _goDetail = (list,index) => {
+        const images = list.map((v,k) => { return {url:v.source.uri} });
+
+        NavigationService.navigate("PictureDetail",{ images,index });
     }
 
     constructor(props) {
@@ -24,14 +30,14 @@ export default class ImageCard extends Component <Props> {
     }
 
     render () {
-        const { imageList } = this.props;
+        const { images } = this.props;
 
-        const view =  imageList.map((v,k) => {
+        const view =  images.map((v,k) => {
             return (
                 <Button
                     key={k}
                     transparent
-                    onPress={()=> { NavigationService.navigate("PictureDetail",{source:v.source}) }}
+                    onPress={this._goDetail(images,k)}
                     rounded
                     style ={v.viewStyle}
                 >

@@ -29,9 +29,7 @@ export default AppRouter = createStackNavigator({
     Test:Test,
     FindPwd:FindPwd,
     UpdatePwd:UpdatePwd,
-    PictureDetail:{
-        screen:PictureDetail,
-    },
+    PictureDetail:PictureDetail,
 },{
     initialRouteName:"DrawerRouter",
     navigationOptions:{
