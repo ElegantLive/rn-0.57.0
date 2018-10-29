@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-// import { View } from 'native-base';
 import CustomImage from '../base/CustomImage';
 import { Button } from 'native-base';
 import NavigationService from '../../utils/navigation/service';
@@ -20,9 +19,9 @@ export default class ImageCard extends Component <Props> {
     }
 
     _goDetail = (list,index) => {
-        const images = list.map((v,k) => { return {url:v.source.uri} });
+        const images = list.map((v, k) => { return { url: v.source.uri } });
 
-        NavigationService.navigate("PictureDetail",{ images,index });
+        NavigationService.navigate("PictureDetail",{ images, index });
     }
 
     constructor(props) {
@@ -37,7 +36,7 @@ export default class ImageCard extends Component <Props> {
                 <Button
                     key={k}
                     transparent
-                    onPress={this._goDetail(images,k)}
+                    onPress={() => this._goDetail(images,k)}
                     rounded
                     style ={v.viewStyle}
                 >
