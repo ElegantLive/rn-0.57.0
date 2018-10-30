@@ -42,21 +42,19 @@ axios.defaults.onTimeout = (request) => {
 // }
 
 /** see https://github.com/axios/axios/issues/754 */
-axios.interceptors.request.use((request) => {
+axios.interceptors.request.use(async (request) => {
     if (request.loading) Loading.show();
 
-    return getToken()
-    .then((token) => {
-        if (token) request.headers['token'] = token;
+    const token = await getToken();
 
-        /** 使用axios内置的转换器 */
-        // if (request.method === 'post' || request.method === 'put') {
-        //     request.data = handleRequestData(request.headers['Content-Type'],request.data);
-        // }
-        
-        console.log(request);
-        return request;
-    });
+    if (token) request.headers['token'] = token;
+
+    /** 使用axios内置的转换器 */
+    // if (request.method === 'post' || request.method === 'put') {
+    //     request.data = handleRequestData(request.headers['Content-Type'],request.data);
+    // }
+    console.log(request);
+    return request;
 },(error) => {
     console.log(error);
     return Promise.reject(error);

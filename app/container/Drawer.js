@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, TextInput, StyleSheet, Button, ScrollView, SafeAreaView } from 'react-native';
-import { Drawer as DraserBase } from 'native-base';
 
 export default class Drawer extends Component {
 	constructor(props) {

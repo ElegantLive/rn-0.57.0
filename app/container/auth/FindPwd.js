@@ -15,8 +15,9 @@ import {
     confirmPwdConstraint
 } from '../../utils/validate/constraints';
 import axios from 'axios';
-import {sendCode,dealValidate} from '../../utils/functions';
+import { dealValidate } from '../../utils/functions';
 import {showMessage} from 'react-native-flash-message';
+import { sendCode } from '../../utils/request/functions';
 
 const initState = {
     mobile:'',

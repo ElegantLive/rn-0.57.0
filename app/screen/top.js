@@ -9,6 +9,7 @@ import UpdatePwd from '../container/auth/UpdatePwd';
 import Test from '../container/Test';
 import Drawer from '../container/Drawer';
 import PictureDetail from '../container/PictureDetail';
+import { forHorizontalLeft } from '../utils/animate';
 
 const DrawerRouter = createDrawerNavigator({
     MainRoute:MainRoute
@@ -34,5 +35,6 @@ export default AppRouter = createStackNavigator({
     initialRouteName:"DrawerRouter",
     navigationOptions:{
         header:null,
-    }
+    },
+    transitionConfig:forHorizontalLeft
 });

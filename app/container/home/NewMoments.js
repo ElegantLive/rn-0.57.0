@@ -21,7 +21,7 @@ export default class New extends Component{
         const avatar2 = require('../../resouces/img/404@1.png');
         const imglist = [
             // 'https://www.hnjubi.cn/piaopiao/img/hhh.jpg',
-            'http://res.hnjubi.cn/hnjubi/image/20181027/6d1803589ea446d17720c34b0d1543ef_32*32.png',
+            // 'http://res.hnjubi.cn/hnjubi/image/20181027/6d1803589ea446d17720c34b0d1543ef_32*32.png',
             'http://res.hnjubi.cn/hnjubi/image/20181028/9d6f916950eb6381419537169ce4bace_1280*1937.jpg',
             'http://res.hnjubi.cn/hnjubi/image/20181028/eb2b38410c69ce68592004523e0bfaf4_320*484.jpg',
             'http://res.hnjubi.cn/hnjubi/image/20181028/c2050f864e8d2aee4ee27b6aacb2951e_658*343.jpeg',

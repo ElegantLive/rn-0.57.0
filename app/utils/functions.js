@@ -1,19 +1,4 @@
-import axios from 'axios';
-import { baseUrl } from './config/config';
 import { showMessage } from "react-native-flash-message";
-
-const sendCode = async (mobile) => {
-    const res = await axios.get('send_code',{
-        params:{mobile},
-        baseURL:baseUrl
-    })
-
-    if (res.error_code === 0) showMessage({
-        message:"短信验证码已发出",
-        type:"success",
-        icon:"success"
-    })
-}
 
 const dealValidate = (result, toast = true) => {
     if (result) {
@@ -45,13 +30,13 @@ const autoImageForFullScreen = (source) => {
     const screenScale = SCREEN_WIDTH / SCREEN_HEIGHT;
 
     // 比例相同
-    if (screenScale === imageScale) return (width > SCREEN_WIDTH) ? { width:SCREEN_WIDTH,height:SCREEN_HEIGHT}: {width,height,backgroundColor:"#333"}; 
+    if (screenScale === imageScale) return (width > SCREEN_WIDTH) ? { width:SCREEN_WIDTH,height:SCREEN_HEIGHT}: {width,height};
 
     // 宽度++
-    if (imageScale > screenScale) return (width > SCREEN_WIDTH) ? {width:SCREEN_WIDTH,height:(SCREEN_WIDTH / imageScale)}: {width,height,backgroundColor:"#666"}; 
+    if (imageScale > screenScale) return (width > SCREEN_WIDTH) ? {width:SCREEN_WIDTH,height:(SCREEN_WIDTH / imageScale)}: {width,height};
 
     // 高度++
-    if (imageScale < screenScale) return (height > SCREEN_HEIGHT) ? {height:SCREEN_HEIGHT,width:(SCREEN_HEIGHT * imageScale)}: {height,width,backgroundColor:"#999"}; 
+    if (imageScale < screenScale) return (height > SCREEN_HEIGHT) ? {height:SCREEN_HEIGHT,width:(SCREEN_HEIGHT * imageScale)}: {height,width};
 }
 
 /**
@@ -122,7 +107,6 @@ const adjustReleaseTime = (time) => {
 }
 
 export {
-    sendCode,
     dealValidate,
     wrapText,
     autoImageOne,

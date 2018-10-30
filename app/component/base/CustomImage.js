@@ -47,5 +47,6 @@ export default class CustomImage extends PureComponent <Props> {
 const styles = StyleSheet.create({
     view:{
         // flex:1
+        borderRadius:5
     }
 })
