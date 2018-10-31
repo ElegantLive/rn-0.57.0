@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View,Image,Text,StyleSheet } from 'react-native';
 import LinkBar from '../base/LinkBar';
+import CustomImage from '../base/CustomImage';
 
 type Props = {
     btnStyle?: any,
@@ -32,7 +33,7 @@ export default class NoticeView extends PureComponent <Props> {
 
         if (!source) source = this._renderSourceByType(type).source;
         
-        const noticeImage = <Image source={source} style={styles.pic}/>;
+        const noticeImage = <CustomImage source={source} style={styles.pic}/>;
 
         return (
             <View style={styles.picBlock}>

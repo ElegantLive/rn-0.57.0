@@ -86,24 +86,27 @@ const adjustReleaseTime = (time) => {
     n.hours = now.getHours();
     n.minutes = now.getMinutes();
 
-    dateA = time.split(' ');
-    dateS = dateA[0].split('-');
-    dateT = dateA[1].split(':');
+    const midIndent = ' ';
+    const firstIndent = '-';
+    const secondIndent = ':';
+    dateA = time.split(midIndent);
+    dateS = dateA[0].split(firstIndent);
+    dateT = dateA[1].split(secondIndent);
     r.year = Number(dateS[0]);
     r.month = Number(dateS[1]);
     r.date = Number(dateS[2]);
     r.hours = Number(dateT[0]);
     r.minutes = Number(dateT[1]);
 
-    if (r.year < n.year) return dateA[0] + ' ' + r.hours + ":" + r.minutes;
+    if (r.year < n.year) return dateA[0] + midIndent + r.hours + secondIndent + r.minutes;
 
-    if (r.month === n.month && r.date === n.date) return r.hours + ":" + r.minutes;
+    if (r.month === n.month && r.date === n.date) return r.hours + secondIndent + r.minutes;
 
-    if (r.month === n.month && (r.date + 1) === n.date) return res = '昨天' + r.hours + ":" + r.minutes;
+    if (r.month === n.month && (r.date + 1) === n.date) return '昨天' + r.hours + secondIndent + r.minutes;
 
-    if (r.month === n.month && (r.date + 2) === n.date) return '前天' + r.hours + ":" + r.minutes;
+    if (r.month === n.month && (r.date + 2) === n.date) return '前天' + r.hours + secondIndent + r.minutes;
 
-    return r.month + "-" + r.date  + " " + r.hours + ":" + r.minutes;
+    return r.month + firstIndent + r.date  + midIndent + r.hours + secondIndent + r.minutes;
 }
 
 export {
