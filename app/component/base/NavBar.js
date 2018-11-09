@@ -33,13 +33,9 @@ export default class NavBar extends PureComponent <Props> {
         super(props)
     }
 
-    goBack = () => {
-        NavigationService.back()
-    }
+    goBack = () => NavigationService.back();
 
-    goDrawer= () => {
-        NavigationService.drawer()
-    }
+    goDrawer= () => NavigationService.drawer();
 
     renderLeft() {
         const props = this.props;

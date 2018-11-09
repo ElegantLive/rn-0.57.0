@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent,Component } from 'react';
 import {FlatList,RefreshControl} from 'react-native';
 import PropTypes from 'prop-types';
 import FooterLoad from './FooterLoad';
@@ -116,13 +116,14 @@ export default class RefreshLoadList extends PureComponent <Props> {
     render(){
         const {
             data,
-            loadData
+            loadData,
+            listComponent,
         } = this.props;
 
         return (
             <FlatList
                 data={data}
-                renderItem={this.props.listComponent}
+                renderItem={listComponent}
                 refreshControl={this._renderRefresh()}
                 ListEmptyComponent={this._renderEmpty()}
                 ListFooterComponent={this._renderFooter()}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {View,StyleSheet,ScrollView,Image} from 'react-native';
 import { Content,Card,CardItem,Icon,Body,Left,Right,Button,Thumbnail,Text, Badge } from 'native-base';
 import UserCard from '../../component/profession/UserCard';
@@ -9,17 +9,18 @@ import IconNumsCard from '../../component/profession/IconNumsCard';
 import RefreshLoadList from '../../component/base/RefreshLoadList';
 import { forbidRefreshLoadType,refreshLoadType } from '../../redux/actionType';
 import NoticeView from '../../component/profession/NoticeView';
+import { showMessage } from 'react-native-flash-message';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
 
-export default class New extends Component{
+export default class New extends PureComponent {
     constructor(props) {
         super(props);
         this.state= {
             data:[
             ],
             resreshing:false,
-            loaddata:NORMAL
+            loadType:NORMAL
         }
     }
 
@@ -30,57 +31,96 @@ export default class New extends Component{
         }, 100);
     }
 
-    getLoadData = () => {
-        if (this.state.loaddata in forbidRefreshLoadType) return false;
+    getData = (page) => {
+        // return {error_code:12389,msg:'出错了',data:[]};
+        const rend = Math.random();
+        // 模拟出错的情况
+        if (rend < 0.25) return {error_code:14520,msg:'#%￥%@DGAFDGfd',data:[]};
 
-        this.setState({
-            loaddata:LOADING
-        },()=>setTimeout(() => {
-            const nextData = [
-                {key: `Devin${Math.random()}`},
-                {key: `ackson1${Math.random()}`},
-                {key: `James1${Math.random()}`},
-                {key: `Joel1${Math.random()}`},
-                {key: `John1${Math.random()}`},
-                {key: `Jillian1${Math.random()}`},
-                {key: `Juli1e1${Math.random()}`},
-                {key: `Jimmy1${Math.random()}`}
-            ];
+        // 模拟为空的情况
+        if (rend < 0.5 && rend > 0.25) return {page,hasMore:false,data:[]};
 
-            this.setState({
-                data:[...this.state.data,...nextData],
-                loaddata:NORMAL
+        const data = [
+            {key: `Devin1${Math.random()}`},
+            {key: `ackson1${Math.random()}`},
+            {key: `James1${Math.random()}`},
+            {key: `Joel1${Math.random()}`},
+            {key: `John1${Math.random()}`},
+            {key: `Jillian1${Math.random()}`},
+            {key: `Juli1e1${Math.random()}`},
+            {key: `Jimmy1${Math.random()}`},
+        ];
+        // 模拟加载完的情况
+        if (rend < 0.75 && rend > 0.25) return {page,hasMore:false,data};
+        // 模拟正常情况
+        if (rend >= 0.75) return { page, hasMore:true, data };
+    };
+
+    dealDataType = (res,type) => {
+        // 出错
+        if (!res) {
+            if (type === 'load') return {loadType:FAILURE};
+
+            showMessage({
+                message:"刷新出错了",
+                description:"检查网络稍后试试吧",
+                type:"danger",
+                icon:"danger"
             })
-        }, 3000))
+            return {loadType:NORMAL};
+        }
+
+        const { hasMore, data } = res;
+        // 正常
+        if (hasMore) return NORMAL;
+        // 加载完毕
+        if (data) return NONE;
+        // 为空
+        return EMPTY;
     }
 
     getRefreshData = () => {
-        if (this.state.refreshing === true) return false;
+        if (this.state.refreshing) return false;
 
         this.setState({
             refreshing:true,
-        },() => setTimeout(() => {
-                const nextData = [
-                    {key: `Devin${Math.random()}`},
-                    {key: `ackson1${Math.random()}`},
-                    {key: `James1${Math.random()}`},
-                    {key: `Joel1${Math.random()}`},
-                    {key: `John1${Math.random()}`},
-                    {key: `Jillian1${Math.random()}`},
-                    {key: `Juli1e1${Math.random()}`},
-                    {key: `Jimmy1${Math.random()}`},
-                ];
+        },  () => setTimeout(() => {
+                const res = this.getData(1);
+
+                console.log(res);
+
+                const loadType = this.dealDataType(res,'refresh');
 
                 this.setState({
-                    data:nextData,
-                    refreshing:false
+                    data:res.data,
+                    refreshing:false,
+                    loadType
                 })
-            }, 3000)
+            }, 2000)
+        )
+    }
+
+    getLoadData = () => {
+        if (this.state.loadType in forbidRefreshLoadType) return false;
+
+        this.setState({
+            loadType:LOADING
+        },  () => setTimeout(() => {
+                const res = this.getData(1);
+
+                const loadType = this.dealDataType(res,'load');
+
+                const data = [...this.state.data,...res.data];
+                this.setState({
+                    data,
+                    loadType
+                })
+            }, 300)
         )
     }
 
     render(){
-        const {data,refreshing,loaddata} = this.state;
+        const {data,refreshing,loadType} = this.state;
 
         const avatar = require('../../resouces/img/2.jpg');
         const avatar1 = require('../../resouces/img/boy.png');
@@ -166,13 +206,13 @@ export default class New extends Component{
             <RefreshLoadList 
                 loadData={this.getLoadData}
                 refreshData={this.getRefreshData}
-                loadType={loaddata}
+                loadType={loadType}
                 refreshing={refreshing}
                 data={data}
                 listComponent={({item}) => {
                     return content
                 }}
-                emptyComponent={<NoticeView onClickRefresh={this.getRefreshData}/>}
+                emptyComponent={<NoticeView onClickRefresh={null}/>}
             />
         )
     }

@@ -124,7 +124,7 @@ export default class FindPwd extends Component{
                             <Input
                                 maxLength = {11}
                                 keyboardType = "number-pad"
-                                autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
+                                // autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
                                 clearButtonMode= "always" // 清除按钮-总是出现
                                 onChangeText = {v => this.props._handleChange('mobile',v)} 
                             />

@@ -16,8 +16,8 @@ export default class Home extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name:this.props.name || "",
-            root:this.props.root || false,
+            name:props.name || "",
+            root:props.root || false,
         }
     }
 
