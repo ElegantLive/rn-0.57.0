@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Button, View, Text, StyleSheet} from 'react-native';
 
-export default class Detail extends Component{
-	render(){
+export default class Detail extends Component {
+	render() {
 		return (
 			<View style={styles.container}>
 				<Text>Detail screen</Text>

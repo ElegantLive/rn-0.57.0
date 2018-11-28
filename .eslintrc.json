@@ -1,0 +1,58 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+		"react-native"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single",
+			{ "allowTemplateLiterals": true }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "semi-spacing": 2,
+        "block-spacing": [2, "always"],
+		"space-before-blocks": 2,
+		"space-infix-ops": 2,
+        "space-unary-ops": 2,
+		"arrow-spacing": [
+			"error",
+			{ "before": true, "after": true }
+		],
+		"key-spacing":[
+			"error",
+			{ "beforeColon": false }
+		],
+		"no-mixed-spaces-and-tabs": 0,
+		"comma-spacing": [
+			"error",
+			{ "after": true }
+		],
+		"no-const-assign": "error",
+		"prefer-const": "error"
+    }
+}

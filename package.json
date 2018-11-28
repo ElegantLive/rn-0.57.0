@@ -35,6 +35,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.0",
     "babel-jest": "23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-native": "^3.5.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.45.5",
     "react-test-renderer": "16.5.0"

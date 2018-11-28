@@ -3,8 +3,8 @@ import {Button, View, Text, StyleSheet} from 'react-native';
 import { Container } from 'native-base';
 import NavBar from '../component/base/NavBar';
 
-export default class Message extends Component{
-	render(){
+export default class Message extends Component {
+	render() {
 		return (
 			<Container>
 				<NavBar 

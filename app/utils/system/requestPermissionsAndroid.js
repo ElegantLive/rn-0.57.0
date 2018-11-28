@@ -1,5 +1,5 @@
 import { PermissionsAndroid } from 'react-native';
-import { showMessage } from "react-native-flash-message";
+import { showMessage } from 'react-native-flash-message';
 
 // all permissions for android
 // | "android.permission.READ_CALENDAR"
@@ -27,37 +27,37 @@ import { showMessage } from "react-native-flash-message";
 // | "android.permission.READ_EXTERNAL_STORAGE"
 // | "android.permission.WRITE_EXTERNAL_STORAGE";
 const message = {
-    [PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] : "存储权限",
-    [PermissionsAndroid.PERMISSIONS.CAMERA] : "相机权限",
-}
+	[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE]: '存储权限',
+	[PermissionsAndroid.PERMISSIONS.CAMERA]: '相机权限',
+};
 
 const defaultOptions = {
-    errorNotice:true,
-    message:"操作失败",
-    description:"请确保您允许飘飘访问",
-}
+	errorNotice: true,
+	message: '操作失败',
+	description: '请确保您允许飘飘访问',
+};
 
-const requestPermission = async (key,options = defaultOptions) => {
-    const writeAuth = await PermissionsAndroid.request(key);
+const requestPermission = async (key, options = defaultOptions) => {
+	const writeAuth = await PermissionsAndroid.request(key);
 
-    if (true !== options.errorNotice) return writeAuth;
+	if (true !== options.errorNotice) return writeAuth;
 
-    if ('granted' !== writeAuth) {
-        showMessage({
-            message:options.message,
-            description:options.description + message[key],
-            type:"danger",
-            icon:"danger"
-        });
-        return false;
-    }
-}
+	if ('granted' !== writeAuth) {
+		showMessage({
+			message: options.message,
+			description: options.description + message[key],
+			type: 'danger',
+			icon: 'danger'
+		});
+		return false;
+	}
+};
 
 const checkPermission = async (key) => {
-    return await PermissionsAndroid.check(key);
-}
+	return await PermissionsAndroid.check(key);
+};
 
 export {
-    requestPermission,
-    checkPermission,
-}
+	requestPermission,
+	checkPermission,
+};

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,ActivityIndicator,StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default class Init extends Component {
 	componentDidMount() {
@@ -16,10 +16,10 @@ export default class Init extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
+	container: {
 		flex: 1,
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
-    },
+	},
 });

@@ -1,4 +1,4 @@
-import {applyMiddleware, createStore,compose} from 'redux';
+import {applyMiddleware, createStore, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 import {AsyncStorage} from 'react-native';
@@ -16,24 +16,24 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 // }
 
 const persistConfig = {
-    key : 'root',
-    storage:AsyncStorage
-}
+	key: 'root',
+	storage: AsyncStorage
+};
 
-const perisistedReducer = persistReducer(persistConfig,reducers);
+const perisistedReducer = persistReducer(persistConfig, reducers);
 
 const logger = createLogger();
 
 const middlewares = [
-    logger,
-    thunk
+	logger,
+	thunk
 ];
 
 // export default store = createStore(reducers, compose(applyMiddleware(...middlewares)))
 export const store = createStore(
-    perisistedReducer,
-    undefined,
-    composeWithDevTools(applyMiddleware(...middlewares))
-)
+	perisistedReducer,
+	undefined,
+	composeWithDevTools(applyMiddleware(...middlewares))
+);
 
 export const persistor = persistStore(store);

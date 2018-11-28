@@ -1,12 +1,12 @@
 import {
-    NavigationActions,
-    DrawerActions
+	NavigationActions,
+	DrawerActions
 } from 'react-navigation';
 
 let _navigator;
 
 function setTopLevelNavigator(navigatorRef) {
-    _navigator = navigatorRef;
+	_navigator = navigatorRef;
 }
 
 /**
@@ -15,12 +15,12 @@ function setTopLevelNavigator(navigatorRef) {
  * @param {object} params 携带的参数
  */
 function navigate(routeName, params = null) {
-    _navigator.dispatch(
-        NavigationActions.navigate({
-            routeName,
-            params,
-        })
-    );
+	_navigator.dispatch(
+		NavigationActions.navigate({
+			routeName,
+			params,
+		})
+	);
 }
 
 /**
@@ -29,26 +29,26 @@ function navigate(routeName, params = null) {
  * @param {object} params 携带的参数
  */
 function back(routeName, params = null) {
-    _navigator.dispatch(
-        NavigationActions.back({
-            routeName,
-            params,
-        })
-    );
+	_navigator.dispatch(
+		NavigationActions.back({
+			routeName,
+			params,
+		})
+	);
 }
 
 /**
  * open drawer
  */
 function drawer() {
-    _navigator.dispatch(
-        DrawerActions.openDrawer()
-    );
+	_navigator.dispatch(
+		DrawerActions.openDrawer()
+	);
 }
 
 export default {
-    setTopLevelNavigator,
-    navigate,
-    back,
-    drawer
+	setTopLevelNavigator,
+	navigate,
+	back,
+	drawer
 };

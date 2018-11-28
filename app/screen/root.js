@@ -4,8 +4,8 @@ import Init from '../container/Init';
 import AppRouter from './top';
 
 export default RootRouter = createSwitchNavigator({
-    Init:Init,
-    AppRouter:AppRouter,
-},{
-    initialRouteName:"Init"
+	Init: Init,
+	AppRouter: AppRouter,
+}, {
+	initialRouteName: 'Init'
 });

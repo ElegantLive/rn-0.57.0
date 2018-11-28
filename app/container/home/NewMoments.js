@@ -51,7 +51,7 @@ export default class New extends PureComponent {
             {key: `Jimmy1${Math.random()}`},
         ];
         // 模拟加载完的情况
-        if (rend < 0.75 && rend > 0.25) return {page,hasMore:false,data};
+        if (rend < 0.75 && rend >= 0.5) return {page,hasMore:false,data};
         // 模拟正常情况
         if (rend >= 0.75) return { page, hasMore:true, data };
     };
@@ -59,7 +59,7 @@ export default class New extends PureComponent {
     dealDataType = (res,type) => {
         // 出错
         if (!res) {
-            if (type === 'load') return {loadType:FAILURE};
+            if (type === 'load') return FAILURE;
 
             showMessage({
                 message:"刷新出错了",
@@ -67,16 +67,18 @@ export default class New extends PureComponent {
                 type:"danger",
                 icon:"danger"
             })
-            return {loadType:NORMAL};
+            return NORMAL;
         }
 
+        if (res.error_code) return FAILURE;
+
         const { hasMore, data } = res;
-        // 正常
-        if (hasMore) return NORMAL;
-        // 加载完毕
-        if (data) return NONE;
         // 为空
-        return EMPTY;
+        if (data.length === 0) return EMPTY;
+        // 正常
+        if (true === hasMore) return NORMAL;
+        // 加载完毕
+        return NONE;
     }
 
     getRefreshData = () => {
@@ -90,6 +92,8 @@ export default class New extends PureComponent {
                 console.log(res);
 
                 const loadType = this.dealDataType(res,'refresh');
+
+                console.log(loadType);
 
                 this.setState({
                     data:res.data,
@@ -108,7 +112,11 @@ export default class New extends PureComponent {
         },  () => setTimeout(() => {
                 const res = this.getData(1);
 
+                console.log(res);
+
                 const loadType = this.dealDataType(res,'load');
+
+                console.log(loadType);
 
                 const data = [...this.state.data,...res.data];
                 this.setState({

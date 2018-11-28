@@ -3,19 +3,19 @@ import { set, get, remove } from './storage';
 const key = 'token';
 
 const getToken = () => {
-    return get(key);
-}
+	return get(key);
+};
 
 const clearToken = () => {
-    remove(key);
-}
+	remove(key);
+};
 
 const setToken = (value) => {
-    set(key,value);
-}
+	set(key, value);
+};
 
 export {
-    setToken,
-    clearToken,
-    getToken
-}
+	setToken,
+	clearToken,
+	getToken
+};

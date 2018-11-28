@@ -1,5 +1,5 @@
 // 顶级路由配置
-import { createStackNavigator,createDrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import Detail from '../container/Detail';
 import MainRoute from './main';
 import Login from '../container/auth/Login';
@@ -12,29 +12,29 @@ import PictureDetail from '../container/PictureDetail';
 import { forHorizontalLeft } from '../utils/animate';
 
 const DrawerRouter = createDrawerNavigator({
-    MainRoute:MainRoute
-},{
-    initialRouteName: 'MainRoute',
-    drawerPosition: 'left',
-    contentComponent: Drawer,
-    navigationOptions:{
-        header:null
-    }
-})
+	MainRoute: MainRoute
+}, {
+	initialRouteName: 'MainRoute',
+	drawerPosition: 'left',
+	contentComponent: Drawer,
+	navigationOptions: {
+		header: null
+	}
+});
 
 export default AppRouter = createStackNavigator({
-    DrawerRouter:DrawerRouter,
-    Detail:Detail,
-    Login:Login,
-    Register:Register,
-    Test:Test,
-    FindPwd:FindPwd,
-    UpdatePwd:UpdatePwd,
-    PictureDetail:PictureDetail,
-},{
-    initialRouteName:"DrawerRouter",
-    navigationOptions:{
-        header:null,
-    },
-    transitionConfig:forHorizontalLeft
+	DrawerRouter: DrawerRouter,
+	Detail: Detail,
+	Login: Login,
+	Register: Register,
+	Test: Test,
+	FindPwd: FindPwd,
+	UpdatePwd: UpdatePwd,
+	PictureDetail: PictureDetail,
+}, {
+	initialRouteName: 'DrawerRouter',
+	navigationOptions: {
+		header: null,
+	},
+	transitionConfig: forHorizontalLeft
 });
