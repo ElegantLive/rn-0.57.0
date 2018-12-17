@@ -5,11 +5,6 @@ import CustomImage from '../base/CustomImage';
 import { Button } from 'native-base';
 import NavigationService from '../../utils/navigation/service';
 
-type Props = {
-    images: array,
-    itemStyle?: any
-}
-
 export default class ImageCard extends Component <Props> {
     static propTypes = {
         images:PropTypes.oneOfType([

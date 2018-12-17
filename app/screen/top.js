@@ -33,7 +33,8 @@ export default AppRouter = createStackNavigator({
 	PictureDetail: PictureDetail,
 }, {
 	initialRouteName: 'DrawerRouter',
-	navigationOptions: {
+	// in react-navigation v3, use `defaultNavigationOptions` to replace `navigationOptions`
+	defaultNavigationOptions: {
 		header: null,
 	},
 	transitionConfig: forHorizontalLeft

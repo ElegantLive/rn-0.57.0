@@ -16,7 +16,7 @@ export default function form(initState = {}) {
 			}
     
 			render() {
-				return <Comp 
+				return <Comp
 					_handleChange={this._handleChange}
 					state={this.state}
 					{...this.props}

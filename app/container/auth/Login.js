@@ -31,8 +31,8 @@ export default class Login extends Component {
         super(props);
     }
 
-    componentWillReceiveProps(){
-        if (this.props.auth) this.props.navigation.navigate('User');
+    componentWillReceiveProps() {
+        if (true === this.props.auth) this.props.navigation.navigate('User');
     }
     
     login = () => {
