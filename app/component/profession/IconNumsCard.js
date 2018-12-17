@@ -3,16 +3,11 @@ import { StyleSheet } from 'react-native';
 import { CardItem, Left, Button, Icon, Text, Body } from 'native-base';
 import PropTypes from 'prop-types';
 
-type Props = {
-	item:Array,
-	indent?:Number,
-	cardStyle?:any
-}
-
-export default class IconNumsCard extends PureComponent <Props> {
+export default class IconNumsCard extends PureComponent {
     static propTypes = {
         item:PropTypes.array.isRequired,
-        indent:PropTypes.number,
+		indent:PropTypes.number,
+		cardStyle:PropTypes.any,
 	}
 	
 	static defaultProps = {

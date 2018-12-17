@@ -17,6 +17,9 @@ import com.android.build.OutputFile
  *
  *   // the entry file for bundle generation
  *   entryFile: "index.android.js",
+ new RNFetchBlobPackage(),
+ new FastImageViewPackage(),
+ new VectorIconsPackage()
  *
  *   // whether to bundle JS and assets in debug mode
  *   bundleInDebug: false,

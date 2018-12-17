@@ -97,7 +97,10 @@ export default class Find extends Component {
                 listComponent={({item}) => {
                     return <View style={{height:300}}><Text>{item.key}</Text></View>
                 }}
-                emptyComponent={<NoticeView onClickRefresh={this.getRefreshData}/>}
+                emptyComponent={<NoticeView
+                    onClickRefresh={this.getRefreshData}
+                    type={loaddata == FAILURE ? 'noNetwork': 'dataEmpty'}
+                />}
             />
         )
     }

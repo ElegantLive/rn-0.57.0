@@ -38,7 +38,7 @@ export default class Home extends Component{
     }
 
     componentWillUpdate(){
-        console.log('updating')
+        console.log('will update')
     }
     
     initName = () => {

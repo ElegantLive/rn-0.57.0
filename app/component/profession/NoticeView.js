@@ -92,18 +92,24 @@ export default class NoticeView extends PureComponent <Props> {
         const { width,height,onClickRefresh } = this.props;
         const sourceView = this._renderSourceView();
         const textView = this._renderTextView();
-        const btnView = (onClickRefresh) ? (
-            <View>
-                <LinkBar
-                    title="点我刷新"
-                    block
-                    transparent
-                    onPress={onClickRefresh}
-                    btnStyle={styles.button}
-                    titleStyle={styles.buttonText}
-                />
-            </View>
-        ): null;
+        let btnView = null;
+        if (onClickRefresh) {
+            // i think this is a simple resolvetion
+            // const onPressRefresh = () => {
+            //     setTimeout(() => {
+            //         onClickRefresh()
+            //     }, 200);
+            // };
+
+            btnView = <LinkBar
+                title="点我刷新"
+                block
+                transparent
+                onPress={onClickRefresh}
+                btnStyle={styles.button}
+                titleStyle={styles.buttonText}
+            />;
+        }
 
         return (
             <View style={[styles.panel, {
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
         textAlign:"center"
     },
     button:{
-        height:40
+        height:40,
     },
     buttonText:{
         color:BaseColor.skayBlue

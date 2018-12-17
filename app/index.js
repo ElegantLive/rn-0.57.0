@@ -9,6 +9,11 @@ import './utils/request/axios';
 import './utils/validate/validate';
 
 export default class App extends Component {
+	constructor(props) {
+		super(props);
+		this.navigationPersistenceKey = __DEV__ ? 'NavigationStateDEV' : null;
+	}
+	
 	render () {
 		return (
 			<Provider store={store}>
@@ -17,6 +22,7 @@ export default class App extends Component {
 						ref = {navigationRef => {
 							NavigationService.setTopLevelNavigator(navigationRef);
 						}}
+						persistenceKey={this.navigationPersistenceKey}
 					/>
 					<FlashMessage position="top" />
 				</PersistGate>

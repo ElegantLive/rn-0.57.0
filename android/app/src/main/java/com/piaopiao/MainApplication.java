@@ -33,10 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new VectorIconsPackage(),
             new FastImageViewPackage(),
-            new RNGestureHandlerPackage(),
-            new RNFetchBlobPackage(),
-            new FastImageViewPackage(),
-            new VectorIconsPackage()
+            new RNGestureHandlerPackage()
       );
     }
 

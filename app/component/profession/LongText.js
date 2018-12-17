@@ -5,17 +5,12 @@ import LinkBar from '../base/LinkBar';
 import PropTypes from 'prop-types';
 import { wrapText } from '../../utils/functions';
 
-type Props = {
-    text: string,
-    style?: any,
-    readMore?: boolean,
-    shouLine?: number,
-}
-
-export default class LongText extends PureComponent <Props> {
+export default class LongText extends PureComponent {
     static propTypes = {
         readMore:PropTypes.bool,
         shouLine:PropTypes.number,
+        text: PropTypes.string,
+        style: PropTypes.any
     }
 
     static defaultProps = {

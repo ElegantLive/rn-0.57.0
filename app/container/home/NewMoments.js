@@ -220,7 +220,10 @@ export default class New extends PureComponent {
                 listComponent={({item}) => {
                     return content
                 }}
-                emptyComponent={<NoticeView onClickRefresh={null}/>}
+                emptyComponent={<NoticeView
+                    onClickRefresh={this.getRefreshData}
+                    type={loadType == FAILURE ? 'noNetwork': 'dataEmpty'}
+                />}
             />
         )
     }

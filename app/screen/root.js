@@ -1,5 +1,6 @@
 // 入口路由配置
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
+import { createAppContainer } from '@react-navigation/native';
 import Init from '../container/Init';
 import AppRouter from './top';
 

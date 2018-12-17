@@ -33,6 +33,8 @@ export default class RefreshLoadList extends PureComponent <Props> {
     static propTypes = {
         refreshData:PropTypes.func.isRequired,
         loadData:PropTypes.func.isRequired,
+        data:PropTypes.array,
+        refreshing:PropTypes.bool,
     }
 
     static defaultProps = {

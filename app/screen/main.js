@@ -1,13 +1,15 @@
 // 用户进入的首页路由配置
 import React from 'react';
+import { BackHandler } from 'react-native';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import User from '../container/User';
 import Home from '../container/home';
 import Shop from '../container/Shop';
 import Message from '../container/Message';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { showMessage } from 'react-native-flash-message';
 
-const MainRoute = createMaterialBottomTabNavigator({
+const Main = createMaterialBottomTabNavigator({
 	Home: {
 		screen: Home,
 		navigationOptions: {
@@ -75,4 +77,36 @@ const MainRoute = createMaterialBottomTabNavigator({
 	barStyle: { backgroundColor: BaseColor.diytabDefaultBg },
 });
 
-export default MainRoute;
+export default class MainRoute extends React.Component {
+	constructor(props) {
+		super(props);
+		this.onBackButtonPressAndroid = this.onBackButtonPressAndroid.bind(this);
+		BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid);
+	}
+	
+	onBackButtonPressAndroid() {
+		const parent = this.props.navigation.dangerouslyGetParent();
+		// if the drawer is opened, do nothing
+		if (parent.state.isDrawerOpen) return false;
+
+		// if user press again in next 2's, the application will quit
+		if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) return false;
+
+		this.lastBackPressed = Date.now();
+		showMessage({
+			message: 'press again the application will quit',
+			type: 'info',
+			floating: true,
+			position: 'bottom'
+		});
+		return true;
+	}
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid);
+	}
+
+	render () {
+		return <Main />;
+	}
+}

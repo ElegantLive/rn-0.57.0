@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    Keyboard
 } from 'react-native';
 import { Content,Container,Form,Label,Input,Item} from 'native-base';
 import {connect} from 'react-redux';
@@ -41,9 +40,10 @@ export default class Login extends Component {
         const result = dealValidate(res);
 
         if(true !== result) return false;
-        
-        const user = this.props.state;
-        this.props.LoginAction(user);
+
+        const { LoginAction, state } = this.props;
+
+        LoginAction(state);
     }
 
     goRegister = () => {
