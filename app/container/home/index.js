@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container } from 'native-base';
+import { Container, View } from 'native-base';
 import NavBar from '../../component/base/NavBar';
 import {initName,reName} from '../../redux/user';
 import defaultUpdate from '../../utils/system/diyShouldComponentDidUpdate';
 import TopTab from '../../component/base/TopTab';
 import New from './NewMoments';
 import Find from './FindMoments';
+import backHandler from '../../component/higher/backHandler';
 
 @connect(
     state => state.user,
     { initName,reName }
 )
+
+@backHandler
 export default class Home extends Component{
     constructor(props){
         super(props);
         this.state = {
-            name:props.name || "",
-            root:props.root || false,
+            name:props.name,
+            root:props.root,
         }
     }
 

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">piaopiao</string>
+    // here is your appName,i named it as `rn-0.57.0`
+    <string name="app_name">rn-0.57.0</string>
 </resources>

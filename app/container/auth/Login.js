@@ -17,7 +17,7 @@ const initState = {
     mobile:'',
     password:'',
     disable:true
-}
+};
 
 @connect(
     state => state.token,
@@ -44,25 +44,23 @@ export default class Login extends Component {
         const { LoginAction, state } = this.props;
 
         LoginAction(state);
-    }
+    };
 
     goRegister = () => {
         this.props.navigation.navigate('Register');
-    } 
+    };
 
     goFindPwd = () => {
         this.props.navigation.navigate('FindPwd');
-    }
+    };
 
     check = () => {
         const constraints = {mobile:mobileConstraint,password:passwordConstraint};
 
         const user = this.props.state;
 
-        const res = validate(user,constraints);
-
-        return res;
-    }
+        return validate(user,constraints);
+    };
 
     handleMobile = async (v) => {
         await this.props._handleChange('mobile',v);
@@ -73,7 +71,7 @@ export default class Login extends Component {
 
         const res = validate(data,constraints);
 
-        const disable = (res) ? true: false;
+        const disable = !!res;
 
         this.props._handleChange('disable',disable);
     }

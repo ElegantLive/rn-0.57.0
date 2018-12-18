@@ -9,6 +9,10 @@ function setTopLevelNavigator(navigatorRef) {
 	_navigator = navigatorRef;
 }
 
+function getTopLevelNavigator() {
+	return _navigator | null;
+}
+
 /**
  * 路由跳转
  * @param {string} routeName 路由的key
@@ -48,6 +52,7 @@ function drawer() {
 
 export default {
 	setTopLevelNavigator,
+	getTopLevelNavigator,
 	navigate,
 	back,
 	drawer

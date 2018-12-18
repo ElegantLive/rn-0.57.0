@@ -5,12 +5,14 @@ import { info } from '../redux/user';
 import {Button,View,Text,StyleSheet,ScrollView} from 'react-native';
 import { Container } from 'native-base';
 import NavBar from '../component/base/NavBar';
+import backHandler from '../component/higher/backHandler';
 
 @connect(
     state => state.user,
     { logout,info }
 )
 
+@backHandler
 export default class User extends Component{
     login = () => {
         this.props.navigation.navigate('Login');

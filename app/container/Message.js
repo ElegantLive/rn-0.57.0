@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {Button, View, Text, StyleSheet} from 'react-native';
 import { Container } from 'native-base';
 import NavBar from '../component/base/NavBar';
+import backHandler from '../component/higher/backHandler';
 
+@backHandler
 export default class Message extends Component {
 	render() {
 		return (
