@@ -4,12 +4,12 @@ import { createSwitchNavigator } from 'react-navigation';
 import { createAppContainer } from '@react-navigation/native';
 import NavigationService from '../utils/navigation/service';
 import Init from '../container/Init';
-import AppRouter from './top';
+import AppRoute from './top';
 
 const Root = createAppContainer(
 	createSwitchNavigator({
 		Init: Init,
-		AppRouter: AppRouter,
+		AppRoute: AppRoute,
 	}, {
 		initialRouteName: 'Init'
 	}),

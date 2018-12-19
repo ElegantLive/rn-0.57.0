@@ -4836,6 +4836,13 @@ react-native-keyboard-aware-scroll-view@0.5.0:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
 
+react-native-motion@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-motion/-/react-native-motion-0.2.0.tgz#2a3920a52926f80ce19b9ba77a43efaf930c2fd4"
+  integrity sha1-KjkgpSkm+Azhm5unekPvr5MML9Q=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-paper@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-2.0.1.tgz#0221ead52e35811ca6d2ce41cf069d424fe92bcf"

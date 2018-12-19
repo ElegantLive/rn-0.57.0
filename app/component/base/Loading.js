@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import RootSiblings from 'react-native-root-siblings';
 import { Spinner } from 'native-base';
 

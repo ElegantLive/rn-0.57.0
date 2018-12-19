@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     View,
     StyleSheet,
     Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item } from 'native-base';
+import { Content, Container, Form, Label, Input, Item } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
@@ -14,13 +14,13 @@ import {
     confirmPwdConstraint
 } from '../../utils/validate/constraints';
 import axios from 'axios';
-import {dealValidate} from '../../utils/functions';
-import {showMessage} from 'react-native-flash-message';
+import { dealValidate } from '../../utils/functions';
+import { showMessage } from 'react-native-flash-message';
 
 const initState = {
     password:'',
     confirmPwd:'',
-}
+};
 
 const constraints = {
     password:passwordConstraint,
@@ -28,8 +28,13 @@ const constraints = {
 }; // 定义验证约束集合
 
 @form(initState)
-export default class UpdatePwd extends Component{
-    updatePwd = async () => {
+export default class UpdatePwd extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.updatePwd = this.updatePwd.bind(this);
+    }
+
+    async updatePwd() {
         const data = this.props.state;
 
         const response = validate(data,constraints);

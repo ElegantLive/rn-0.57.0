@@ -26,7 +26,7 @@ const initState = {
     confirmPwd:'',
     sendSeconds: 0,
     sendBtn:true
-}
+};
 
 const constraints = {
     mobile:mobileConstraint,
@@ -36,8 +36,17 @@ const constraints = {
 }; // 定义验证约束集合
 
 @form(initState)
-export default class FindPwd extends Component{
-    findPwd = async () => {
+export default class FindPwd extends Component {
+    constructor(props) {
+        super(props);
+        this.findPwd = this.findPwd.bind(this);
+        this.getCode = this.getCode.bind(this);
+        this.goLogin = this.goLogin.bind(this);
+        this.goRegister = this.goRegister.bind(this);
+        this.checkItem = this.checkItem.bind(this);
+    }
+
+    async findPwd() {
         const {mobile,code,password,confirmPwd} = this.props.state;
         const data = {mobile,code,password,confirmPwd};
 
@@ -57,10 +66,9 @@ export default class FindPwd extends Component{
                 icon:"success"
             })
         }
-    }
-    
+    };
 
-    getCode = async () => {
+    async getCode() {
         const res = this.checkItem('mobile');
 
         if (res) {
@@ -70,14 +78,14 @@ export default class FindPwd extends Component{
                 message:error,
                 type:"danger",
                 icon:"danger"
-            })
+            });
             return false;
         }
 
         await sendCode(this.props.state.mobile);
         
-        this.props._handleChange('sendSeconds',60);
-        this.props._handleChange('sendBtn',false);
+        this.props._handleChange('sendSeconds', 60);
+        this.props._handleChange('sendBtn', false);
         this.timers = setInterval(() => {
             let sendSeconds = this.props.state.sendSeconds - 1;
             this.props._handleChange('sendSeconds',sendSeconds);
@@ -85,32 +93,30 @@ export default class FindPwd extends Component{
                 this.props._handleChange('sendBtn',true);
                 clearInterval(this.timers)
             }
-        },1000)
-    }
+        }, 1000)
+    };
 
-    goLogin = () => {
+    goLogin() {
         this.props.navigation.navigate('Login');
-    }
+    };
 
-    goRegister = () => {
+    goRegister() {
         this.props.navigation.navigate('Register');
-    }
+    };
 
-    checkItem = (key) => {
+    checkItem(key) {
         const data = {
             [key]:this.props.state[key]
-        }
+        };
 
         const item = {
             [key]:constraints[key]
-        }
+        };
 
-        const res = validate(data,item);
-        
-        return res;
-    }
+        return validate(data,item);
+    };
     
-    render(){
+    render() {
         return (
             <Container>
                 <NavBar 

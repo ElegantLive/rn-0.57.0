@@ -8,14 +8,19 @@ export default class IconNumsCard extends PureComponent {
         item:PropTypes.array.isRequired,
 		indent:PropTypes.number,
 		cardStyle:PropTypes.any,
-	}
+	};
 	
 	static defaultProps = {
 		indent:0,
 		cardStyle:{}
+	};
+
+	constructor(props) {
+		super(props);
+		this._renderItem = this._renderItem.bind(this);
 	}
 
-	_renderItem = (item,k) => {
+	_renderItem(item,k) {
 		return (
 			<Button 
 				transparent
@@ -36,7 +41,7 @@ export default class IconNumsCard extends PureComponent {
 				</Text>
 			</Button>
 		)
-	}
+	};
 
 	render() {
 		const { indent,item,cardStyle }  = this.props;

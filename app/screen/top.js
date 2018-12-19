@@ -9,9 +9,9 @@ import UpdatePwd from '../container/auth/UpdatePwd';
 import Test from '../container/Test';
 import Drawer from '../container/Drawer';
 import PictureDetail from '../container/PictureDetail';
-import { forHorizontalLeft } from '../utils/animate';
+import { screenTranslate } from '../utils/animate';
 
-const DrawerRouter = createDrawerNavigator({
+const DrawerRoute = createDrawerNavigator({
 	MainRoute: MainRoute
 }, {
 	initialRouteName: 'MainRoute',
@@ -22,8 +22,8 @@ const DrawerRouter = createDrawerNavigator({
 	}
 });
 
-export default AppRouter = createStackNavigator({
-	DrawerRouter: DrawerRouter,
+export default AppRoute = createStackNavigator({
+	DrawerRoute: DrawerRoute,
 	Detail: Detail,
 	Login: Login,
 	Register: Register,
@@ -32,10 +32,10 @@ export default AppRouter = createStackNavigator({
 	UpdatePwd: UpdatePwd,
 	PictureDetail: PictureDetail,
 }, {
-	initialRouteName: 'DrawerRouter',
+	initialRouteName: 'DrawerRoute',
 	// in react-navigation v3, use `defaultNavigationOptions` to replace `navigationOptions`
 	defaultNavigationOptions: {
 		header: null,
 	},
-	transitionConfig: forHorizontalLeft
+	transitionConfig: screenTranslate
 });

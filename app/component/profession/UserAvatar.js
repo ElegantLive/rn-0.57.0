@@ -3,21 +3,16 @@ import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import CustomImage from '../base/CustomImage';
 
-type Props = {
-    type?:"small" | "default" | "large",
-    style?: StyleSheet,
-    source: object,
-}
-
-export default class UserAvatar extends PureComponent <Props> {
+export default class UserAvatar extends PureComponent {
     static propTypes = {
-        source:PropTypes.any.isRequired,
-        type:PropTypes.oneOf(["small" , "default" , "large"]),
-    }
+        source: PropTypes.any.isRequired,
+        type: PropTypes.oneOf(["small" , "default" , "large"]),
+        style: PropTypes.any,
+    };
 
     static defaultProps = {
         type:"default"
-    }
+    };
 
     constructor(props) {
         super(props)
@@ -49,4 +44,4 @@ const styles = StyleSheet.create({
         height: 36,
         borderRadius: 18,
     }
-})
+});

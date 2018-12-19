@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button,Text } from 'native-base';
+import { Button, Text } from 'native-base';
 
 type Props = {
     title : string,
@@ -9,20 +9,16 @@ type Props = {
     ...Button.propTypes,
 }
 
-// 浅对比
+// use 'PureComponent'
 export default class LinkBar extends PureComponent <Props> {
     static propTypes = {
         title:PropTypes.string.isRequired,
-    }
+    };
 
     static defaultProps = {
         btnStyle:{},
         titleStyle:{}
-    }
-
-    constructor(props) {
-        super(props)
-    }
+    };
 
     render(){
         const {title,btnStyle,titleStyle,...props} = this.props;

@@ -17,11 +17,14 @@ export default class New extends PureComponent {
     constructor(props) {
         super(props);
         this.state= {
-            data:[
-            ],
-            resreshing:false,
-            loadType:NORMAL
-        }
+            data: [],
+            resreshing: false,
+            loadType: NORMAL
+        };
+        this.dealDataType = this.dealDataType.bind(this);
+        this.getData = this.getData.bind(this);
+        this.getRefreshData = this.getRefreshData.bind(this);
+        this.getLoadData = this.getLoadData.bind(this);
     }
 
     componentDidMount () {
@@ -31,7 +34,7 @@ export default class New extends PureComponent {
         }, 100);
     }
 
-    getData = (page) => {
+    getData(page) {
         // return {error_code:12389,msg:'出错了',data:[]};
         const rend = Math.random();
         // 模拟出错的情况
@@ -56,7 +59,7 @@ export default class New extends PureComponent {
         if (rend >= 0.75) return { page, hasMore:true, data };
     };
 
-    dealDataType = (res,type) => {
+    dealDataType(res,type) {
         // 出错
         if (!res) {
             if (type === 'load') return FAILURE;
@@ -81,7 +84,7 @@ export default class New extends PureComponent {
         return NONE;
     }
 
-    getRefreshData = () => {
+    getRefreshData() {
         if (this.state.refreshing) return false;
 
         this.setState({
@@ -104,7 +107,7 @@ export default class New extends PureComponent {
         )
     }
 
-    getLoadData = () => {
+    getLoadData() {
         if (this.state.loadType in forbidRefreshLoadType) return false;
 
         this.setState({
@@ -156,7 +159,7 @@ export default class New extends PureComponent {
     
                 return {source: {uri},style:[style],viewStyle:[style,styles.listView]};
             }
-        })
+        });
 
         const content = (
             <Card>
@@ -208,7 +211,7 @@ export default class New extends PureComponent {
                     ]}
                 />
             </Card>
-        )
+        );
         
         return (
             <RefreshLoadList 

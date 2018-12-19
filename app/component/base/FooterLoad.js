@@ -16,13 +16,15 @@ export default class FooterLoad extends PureComponent <Props> {
         text:"loading",
         onPress:null,
         spinner:null
-    }
+    };
 
     constructor(props) {
         super(props);
+        this.renderSpinner = this.renderSpinner.bind(this);
+        this.renderText = this.renderText.bind(this);
     }
 
-    renderSpinner = () => {
+    renderSpinner() {
         const { spinner } = this.props;
 
         return (spinner === 'default') ? <Spinner 
@@ -32,7 +34,7 @@ export default class FooterLoad extends PureComponent <Props> {
         /> : spinner;
     }
 
-    renderText = () => {
+    renderText() {
         const { onPress,textStyle,text } = this.props;
 
         return (onPress) ?
@@ -70,4 +72,4 @@ const styles = StyleSheet.create({
     height:{
         height:35
     }
-})
+});

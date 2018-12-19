@@ -27,21 +27,24 @@ export default class NoticeView extends PureComponent <Props> {
             PropTypes.string,
             PropTypes.element
         ]),
-    }
+    };
 
     static defaultProps = {
         type:"dataEmpty",
         onClickRefresh: () => {
             console.log('onclick')
         }
-    }
+    };
 
     constructor(props) {
         super(props);
+        this._renderSourceByType = this._renderSourceByType.bind(this);
+        this._renderSourceView = this._renderSourceView.bind(this);
+        this._renderTextView = this._renderTextView.bind(this);
     }
 
-    _renderSourceView = () => {
-        let {type,source} = this.props;
+    _renderSourceView() {
+        let { type, source } = this.props;
 
         if (!source) source = this._renderSourceByType(type).source;
         
@@ -52,9 +55,9 @@ export default class NoticeView extends PureComponent <Props> {
                 {noticeImage}
             </View>
         )
-    }
+    };
 
-    _renderTextView = () => {
+    _renderTextView() {
         let {type,noticeText} = this.props;
 
         if (!noticeText) noticeText = this._renderSourceByType(type).noticeText;
@@ -66,9 +69,9 @@ export default class NoticeView extends PureComponent <Props> {
                 {noticeText}
             </View>
         )
-    }
+    };
 
-    _renderSourceByType = (type) => {
+    _renderSourceByType(type) {
         let text;
         let source;
 

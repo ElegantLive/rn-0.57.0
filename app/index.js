@@ -5,6 +5,7 @@ import RootRoute from './screen/root';
 import { PersistGate } from 'redux-persist/integration/react';
 import FlashMessage from 'react-native-flash-message';
 import SplashScreen from 'react-native-splash-screen';
+import { SharedElementRenderer } from 'react-native-motion';
 import './utils/request/axios';
 import './utils/validate/validate';
 
@@ -22,14 +23,16 @@ export default class App extends Component {
 		return (
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
-					<RootRoute
-						persistenceKey={this.navigationPersistenceKey}
-					/>
-					<FlashMessage
-						position="top"
-						floating={true}
-						autoHide={true}
-					/>
+					<SharedElementRenderer>
+						<RootRoute
+							persistenceKey={this.navigationPersistenceKey}
+						/>
+						<FlashMessage
+							position="top"
+							floating={true}
+							autoHide={true}
+						/>
+					</SharedElementRenderer>
 				</PersistGate>
 			</Provider>
 		);

@@ -34,25 +34,28 @@ export default class UserCard extends PureComponent <Props> {
             PropTypes.func,
         ]),
         rightPress:PropTypes.func,
-    }
+    };
 
     static defaultProps = {
         cardPress:null,
-    }
+    };
 
     constructor(props) {
-        super(props)
+        super(props);
+        this._renderName = this._renderName.bind(this);
+        this._renderDesc = this._renderDesc.bind(this);
+        this._renderRight = this._renderRight.bind(this);
     }
 
-    _renderName = (name) => {
+    _renderName(name) {
         if (name instanceof Text) return name;
 
         if (typeof name === 'string') return <Text>{name}</Text>;
 
         console.error('name',name,'was wrong');
-    }
+    };
 
-    _renderDesc = () => {
+    _renderDesc() {
         const { description } = this.props;
 
         if (!description) return null;
@@ -62,9 +65,9 @@ export default class UserCard extends PureComponent <Props> {
         if (typeof description === 'string') return <Text note>{description}</Text>;
 
         console.error('description',description,'was wrong');
-    }
+    };
 
-    _renderRight = () => {
+    _renderRight() {
         const { right } = this.props;
 
         if (typeof right === 'string') {
@@ -90,7 +93,7 @@ export default class UserCard extends PureComponent <Props> {
         }
 
         return (right) ? <Right>{right}</Right>: <Right />;
-    }
+    };
 
     render() {
         const { avatar, name, avatarStyle, cardPress } = this.props;
@@ -139,4 +142,4 @@ const styles = StyleSheet.create({
     disfollowTitle: {
         color:BaseColor.GrayBG
     }
-})
+});

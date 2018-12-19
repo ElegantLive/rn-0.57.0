@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     View,
     StyleSheet,
 } from 'react-native';
 import { Content,Container,Form,Label,Input,Item} from 'native-base';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { login as LoginAction } from '../../redux/token';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
 import validate from 'validate.js';
-import {mobileConstraint,passwordConstraint} from '../../utils/validate/constraints';
-import {dealValidate} from '../../utils/functions';
+import { mobileConstraint, passwordConstraint } from '../../utils/validate/constraints';
+import { dealValidate } from '../../utils/functions';
 
 const initState = {
     mobile:'',
@@ -25,16 +25,21 @@ const initState = {
 )
 
 @form(initState)
-export default class Login extends Component {
+export default class Login extends PureComponent {
     constructor(props){
         super(props);
+        this.login = this.login.bind(this);
+        this.goRegister = this.goRegister.bind(this);
+        this.goFindPwd = this.goFindPwd.bind(this);
+        this.check = this.check.bind(this);
+        this.handleMobile = this.handleMobile.bind(this);
     }
 
     componentWillReceiveProps() {
         if (true === this.props.auth) this.props.navigation.navigate('User');
     }
     
-    login = () => {
+    login() {
         const res = this.check();
 
         const result = dealValidate(res);
@@ -46,15 +51,15 @@ export default class Login extends Component {
         LoginAction(state);
     };
 
-    goRegister = () => {
+    goRegister() {
         this.props.navigation.navigate('Register');
     };
 
-    goFindPwd = () => {
+    goFindPwd() {
         this.props.navigation.navigate('FindPwd');
     };
 
-    check = () => {
+    check() {
         const constraints = {mobile:mobileConstraint,password:passwordConstraint};
 
         const user = this.props.state;
@@ -62,7 +67,7 @@ export default class Login extends Component {
         return validate(user,constraints);
     };
 
-    handleMobile = async (v) => {
+    async handleMobile(v) {
         await this.props._handleChange('mobile',v);
 
         const constraints = {mobile:mobileConstraint};
@@ -76,7 +81,7 @@ export default class Login extends Component {
         this.props._handleChange('disable',disable);
     }
 
-    render(){
+    render() {
         return (
             <Container>
                 <NavBar 

@@ -1,8 +1,8 @@
 import React, { PureComponent,Component } from 'react';
-import {FlatList,RefreshControl} from 'react-native';
+import { FlatList,RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import FooterLoad from './FooterLoad';
-import {refreshLoadType} from '../../redux/actionType';
+import { refreshLoadType } from '../../redux/actionType';
 import NoticesView from '../profession/NoticeView';
 
 const {FAILURE,NORMAL,LOADING,EMPTY,NONE} = refreshLoadType;
@@ -35,7 +35,7 @@ export default class RefreshLoadList extends PureComponent <Props> {
         loadData:PropTypes.func.isRequired,
         data:PropTypes.array,
         refreshing:PropTypes.bool,
-    }
+    };
 
     static defaultProps = {
         footerEmptyText:'空空如也O__O "…',
@@ -43,13 +43,18 @@ export default class RefreshLoadList extends PureComponent <Props> {
         footerFailureText:'居然加载失败了╭(╯^╰)╮',
         footerLoadingText:'正在加载...',
         footerNoneText:'已经加载完了哦！'
-    }
+    };
 
     constructor(props) {
         super(props);
+        this._renderFooter = this._renderFooter.bind(this);
+        this._renderRefresh = this._renderRefresh.bind(this);
+        this._renderEmpty = this._renderEmpty.bind(this);
+        this._renderHeader = this._renderHeader.bind(this);
+        this._renderSeparator = this._renderSeparator.bind(this);
     }
 
-    _renderFooter = () => {
+    _renderFooter() {
         const {
             footerNormalText,
             footerFailureText,
@@ -84,7 +89,7 @@ export default class RefreshLoadList extends PureComponent <Props> {
         }
     }
 
-    _renderRefresh = () => {
+    _renderRefresh() {
         const {refreshing,refreshData} = this.props;
 
         return <RefreshControl
@@ -103,15 +108,15 @@ export default class RefreshLoadList extends PureComponent <Props> {
         />
     }
 
-    _renderEmpty = () => {
+    _renderEmpty() {
         return (this.props.emptyComponent) ? this.props.emptyComponent: <NoticesView />;
     }
 
-    _renderHeader = () => {
+    _renderHeader() {
         return (this.props.headerComponent) ? this.props.headerComponent:null;
     }
 
-    _renderSeparator = () => {
+    _renderSeparator() {
         return (this.props.separatorComponent) ? this.props.separatorComponent:null;
     }
 

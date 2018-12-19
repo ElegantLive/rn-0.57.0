@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import CustomImage from '../base/CustomImage';
 import { Button } from 'native-base';
@@ -11,22 +10,23 @@ export default class ImageCard extends Component <Props> {
             PropTypes.array,
             PropTypes.func
         ]).isRequired,
+    };
+
+    constructor(props) {
+        super(props);
+        this._goDetail = this._goDetail.bind(this);
     }
 
-    _goDetail = (list,index) => {
+    _goDetail(list,index) {
         const images = list.map((v, k) => { return { url: v.source.uri } });
 
         NavigationService.navigate("PictureDetail",{ images, index });
     }
 
-    constructor(props) {
-        super(props);
-    }
-
     render () {
         const { images } = this.props;
 
-        const view =  images.map((v,k) => {
+        return images.map((v,k) => {
             return (
                 <Button
                     key={k}
@@ -42,13 +42,5 @@ export default class ImageCard extends Component <Props> {
                 </Button>
             )
         });
-
-        return view;
     }
 }
-
-const styles = StyleSheet.create({
-    container:{
-        // flexWrap:"wrap"
-    }
-})

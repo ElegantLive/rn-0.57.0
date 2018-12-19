@@ -36,7 +36,7 @@ export default function backHandler(Comp) {
 			this.lastBackPressed = Date.now();
 			showMessage({
 				message: 'press again the application will quit',
-				type: 'info',
+				type: 'none',
 				position: 'bottom'
 			});
 			return true;
@@ -45,5 +45,5 @@ export default function backHandler(Comp) {
 		render () {
 			return <Comp {...this.props} />;
 		}
-	};
+	}
 }

@@ -23,24 +23,33 @@ type Props = {
     onRightPress?: Function,// 右边触摸事件
 }
 
-// 头部一般不会变动更新，所以用浅对比的'purecomponent'
+// use 'purecomponent'
 export default class NavBar extends PureComponent <Props> {
     static propTypes = {
         headerTitle:PropTypes.string.isRequired,
     };
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.goBack = this.goBack.bind(this);
+        this.goDrawer = this.goDrawer.bind(this);
+        this.renderLeft = this.renderLeft.bind(this);
+        this.renderLeftIcon = this.renderLeftIcon.bind(this);
+        this.renderRight = this.renderRight.bind(this);
     }
 
-    goBack = () => NavigationService.back();
+    goBack () {
+        NavigationService.back();
+    }
 
-    goDrawer= () => NavigationService.drawer();
+    goDrawer() {
+        NavigationService.drawer();
+    }
 
     renderLeft() {
         let { left, leftStyle } = this.props;
 
-        if (!left) return <Left />
+        if (!left) return <Left />;
 
         const leftComponents = (typeof left === "string") ? (<Button
             transparent = {true}
@@ -127,4 +136,4 @@ const styles = StyleSheet.create({
     header:{
         backgroundColor:BaseColor.skayBlue,
     }
-})
+});

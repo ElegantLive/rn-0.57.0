@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet,Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { TabView, SceneMap,TabBar } from 'react-native-tab-view';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 // import { Badge,Icon } from 'native-base';
 
 type Props = {
@@ -10,28 +10,30 @@ type Props = {
     // ...TabView.PropTypes
 }
 
-// 用浅对比
+// use `PureComponent`
 export default class TopTab extends PureComponent <Props> {
     static propTypes = {
         routes:PropTypes.object,
         titles:PropTypes.object,
-    }
+    };
 
     constructor(props) {
         super(props);
-        this.state = props.titles
+        this.state = props.titles;
+        this._renderLabel = this._renderLabel.bind(this);
+        this._renderTabBar = this._renderTabBar.bind(this);
     }
 
-    _renderLabel = (scene) => {
+    _renderLabel(scene) {
         const focused = this.state.routes.indexOf(scene.route) === this.state.index;
         return <Text 
             style={[(focused ? styles.activeLabel:null),styles.Text]}
         >
             {scene.route.title}
         </Text>
-    }
+    };
 
-    _renderTabBar = (props) => {
+    _renderTabBar(props) {
         return <TabBar 
             {...props}
             indicatorStyle={styles.indicator}  // 选中的选项卡

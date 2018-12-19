@@ -1,10 +1,10 @@
-import {applyMiddleware, createStore, compose} from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore, persistReducer} from 'redux-persist';
-import {AsyncStorage} from 'react-native';
+import { persistStore, persistReducer } from 'redux-persist';
+import { AsyncStorage } from 'react-native';
 import reducers from './reduces';
-import {createLogger} from 'redux-logger';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 /** 自定义logger中间件 */
 // const logger = store => next => action => {

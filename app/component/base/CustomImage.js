@@ -13,10 +13,11 @@ export default class CustomImage extends PureComponent <Props> {
         super(props);
         this.state = {
             wrong:false
-        }
+        };
+        this._error = this._error.bind(this);
     }
 
-    _error = () => {
+    _error() {
         console.log('image load wrong');
         this.setState({
             wrong:true

@@ -1,16 +1,29 @@
 import React, { PureComponent } from 'react';
-import { View,StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import ActionSheet from 'react-native-actionsheet';
 import { savePhoto } from '../utils/request/functions';
 
 export default class PoctureDetail extends PureComponent {
-	_goBack = () => this.props.navigation.goBack();
+	constructor(props) {
+		super(props);
+		this._goBack = this._goBack.bind(this);
+		this._showMenu = this._showMenu.bind(this);
+		this._save = this._save.bind(this);
+	}
 
-	_showMenu = () => this.ActionSheet.show();
+	_goBack() {
+		this.props.navigation.goBack();
+	}
+	 
+	_showMenu() {
+		this.ActionSheet.show();
+	}
 
-	_save = () => {
-		const images = this.props.navigation.getParam('images',null);
+	_save(indent) {
+		if (indent === 0) return;
+
+		const images = this.props.navigation.getParam('images', null);
 		// const index = this.props.navigation.getParam('index',0);
 		const index = this.ImageViewer.state.currentShowIndex;
 		const { url } = images[index];
@@ -18,12 +31,14 @@ export default class PoctureDetail extends PureComponent {
 		savePhoto(url);
 	}
 
-    render () {
-		const images = this.props.navigation.getParam('images',null);
+	render () {
+		const { getParam } = this.props.navigation;
 
-		const index = this.props.navigation.getParam('index',0);
+		const images = getParam('images', null);
+
+		const index = getParam('index', 0);
 		
-        return (
+		return (
 			<View
 				style={styles.container}
 			>
@@ -34,22 +49,22 @@ export default class PoctureDetail extends PureComponent {
 					index={index}
 					onLongPress={this._showMenu}
 					saveToLocalByLongPress={false}
-					renderFooter={()=> { return null }}
+					renderFooter={() => null}
 				/>
 				<ActionSheet
 					ref={o => this.ActionSheet = o}
-					title={"保存图片"}
+					title={'保存图片'}
 					options={['保存图片到本地', '取消']}
 					cancelButtonIndex={1}
-					onPress={(index) => (index === 0) ? this._save(): null}
+					onPress={this._save}
 				/>
 			</View>
-        )
-    }
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-    container: {
+	container: {
 		flex: 1
 	},
 });

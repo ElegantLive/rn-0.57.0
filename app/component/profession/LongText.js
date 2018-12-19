@@ -11,25 +11,26 @@ export default class LongText extends PureComponent {
         shouLine:PropTypes.number,
         text: PropTypes.string,
         style: PropTypes.any
-    }
+    };
 
     static defaultProps = {
         readMore:false,
         shouLine:3,
-    }
+    };
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             readMore: props.readMore
-        }
+        };
+        this._handleReadMore = this._handleReadMore.bind(this);
     }
 
-    _handleReadMore = () => {
+    _handleReadMore() {
         this.setState({
             readMore:!this.state.readMore
         })
-    }
+    };
 
     render () {
         const { text,style,shouLine } = this.props;
@@ -70,4 +71,4 @@ const styles = StyleSheet.create({
     buttonText:{
         color:BaseColor.skayBlue
     }
-})
+});

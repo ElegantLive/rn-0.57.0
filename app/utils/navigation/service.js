@@ -14,7 +14,7 @@ function getTopLevelNavigator() {
 }
 
 /**
- * 路由跳转
+ * navigate
  * @param {string} routeName 路由的key
  * @param {object} params 携带的参数
  */
@@ -28,7 +28,7 @@ function navigate(routeName, params = null) {
 }
 
 /**
- * 返回上一层路由
+ * back
  * @param {string} routeName 路由的key
  * @param {object} params 携带的参数
  */

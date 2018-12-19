@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
     View,
     StyleSheet,
     Keyboard
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item } from 'native-base';
+import { Content, Container, Form, Label, Input, Item } from 'native-base';
 import validate from 'validate.js';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
@@ -29,7 +29,7 @@ const initState = {
     confirmPwd:'',
     sendSeconds: 0,
     sendBtn:true
-}
+};
 
 const constraints = {
     mobile:mobileConstraint,
@@ -40,10 +40,19 @@ const constraints = {
 }; // 定义验证约束集合
 
 @form(initState)
-export default class Register extends Component{
-    register = async () => {
-        const {mobile,code,name,password,confirmPwd} = this.props.state;
-        const data = {mobile,code,name,password,confirmPwd};
+export default class Register extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.register = this.register.bind(this);
+        this.getCode = this.getCode.bind(this);
+        this.goLogin = this.goLogin.bind(this);
+        this.goFindPwd = this.goFindPwd.bind(this);
+        this.checkItem = this.checkItem.bind(this);
+    }
+
+    async register() {
+        const { mobile, code, name, password, confirmPwd } = this.props.state;
+        const data = { mobile, code, name, password, confirmPwd };
 
         const response = validate(data,constraints);
 
@@ -63,9 +72,8 @@ export default class Register extends Component{
             })
         }
     }
-    
 
-    getCode = async () => {
+    async getCode() {
         const res = this.checkItem('mobile');
 
         if (res) {
@@ -90,30 +98,28 @@ export default class Register extends Component{
                 this.props._handleChange('sendBtn',true);
                 clearInterval(this.timers)
             }
-        },1000)
+        }, 1000)
     }
 
-    goLogin = () => {
+    goLogin() {
         this.props.navigation.navigate('Login');
-    }
+    };
 
-    goFindPwd = () => {
+    goFindPwd() {
         this.props.navigation.navigate('FindPwd');
-    }
+    };
 
-    checkItem = (key) => {
+    checkItem(key) {
         const data = {
             [key]:this.props.state[key]
-        }
+        };
 
         const item = {
             [key]:constraints[key]
-        }
+        };
 
-        const res = validate(data,item);
-        
-        return res;
-    }
+        return validate(data,item);
+    };
     
     render(){
         return (

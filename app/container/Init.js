@@ -3,7 +3,7 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default class Init extends Component {
 	componentDidMount() {
-		this.props.navigation.navigate('AppRouter');
+		this.props.navigation.navigate('AppRoute');
 	}
     
 	render() {
