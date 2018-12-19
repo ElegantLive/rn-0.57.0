@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function form(initState = {}) {
 	return function (Comp) {
-		return class WrapperComp extends React.Component {
+		return class WrapperComp extends React.PureComponent {
 			constructor(props) {
 				super(props);
 				this.state = initState;
