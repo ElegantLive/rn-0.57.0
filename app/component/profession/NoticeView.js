@@ -18,16 +18,16 @@ type Props = {
 // 定义出错提示-如访问失效的数据-网络连接出错-访问数据为空等等
 
 export default class NoticeView extends PureComponent <Props> {
-    static propTypes = {
-        onClickRefresh:PropTypes.oneOfType([
-            PropTypes.bool,
-            PropTypes.func
-        ]),
-        noticeText:PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.element
-        ]),
-    };
+    // static propTypes = {
+    //     onClickRefresh:PropTypes.oneOfType([
+    //         PropTypes.bool,
+    //         PropTypes.func
+    //     ]),
+    //     noticeText:PropTypes.oneOfType([
+    //         PropTypes.string,
+    //         PropTypes.element
+    //     ]),
+    // };
 
     static defaultProps = {
         type:"dataEmpty",

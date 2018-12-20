@@ -1,4 +1,8 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">VExldb6rvFEVPm_ha6Q2P0ppgX_fdfa0035d-dcd4-405d-8209-dad1033274e1</string>
+    <!--<string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">Cey8kpqZiWTR7L2d9llKEOCO7q-ddfa0035d-dcd4-405d-8209-dad1033274e1</string>-->
     // here is your appName,i named it as `rn-0.57.0`
     <string name="app_name">rn-0.57.0</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">ALWAYS_SEND</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">ALWAYS_SEND</string>
 </resources>

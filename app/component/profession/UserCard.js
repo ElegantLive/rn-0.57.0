@@ -17,24 +17,24 @@ type Props = {
 }
 
 export default class UserCard extends PureComponent <Props> {
-    static propTypes = {
-        name:PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.instanceOf(Text)
-        ]).isRequired,
-        avatar:PropTypes.any.isRequired,
-        description:PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func,
-            PropTypes.instanceOf(Text)
-        ]),
-        right:PropTypes.oneOfType([
-            PropTypes.oneOf(['follow','disfollow']),
-            PropTypes.element,
-            PropTypes.func,
-        ]),
-        rightPress:PropTypes.func,
-    };
+    // static propTypes = {
+    //     name:PropTypes.oneOfType([
+    //         PropTypes.string,
+    //         PropTypes.instanceOf(Text)
+    //     ]).isRequired,
+    //     avatar:PropTypes.any.isRequired,
+    //     description:PropTypes.oneOfType([
+    //         PropTypes.string,
+    //         PropTypes.func,
+    //         PropTypes.instanceOf(Text)
+    //     ]),
+    //     right:PropTypes.oneOfType([
+    //         PropTypes.oneOf(['follow','disfollow']),
+    //         PropTypes.element,
+    //         PropTypes.func,
+    //     ]),
+    //     rightPress:PropTypes.func,
+    // };
 
     static defaultProps = {
         cardPress:null,

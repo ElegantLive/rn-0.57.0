@@ -6,9 +6,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import FlashMessage from 'react-native-flash-message';
 import SplashScreen from 'react-native-splash-screen';
 import { SharedElementRenderer } from 'react-native-motion';
+// import codePush from "react-native-code-push";
 import './utils/request/axios';
 import './utils/validate/validate';
 
+// @codePush
 export default class App extends Component {
 	constructor(props) {
 		super(props);

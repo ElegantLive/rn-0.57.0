@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import CustomImage from '../base/CustomImage';
 
 export default class UserAvatar extends PureComponent {
-    static propTypes = {
-        source: PropTypes.any.isRequired,
-        type: PropTypes.oneOf(["small" , "default" , "large"]),
-        style: PropTypes.any,
-    };
+    // static propTypes = {
+    //     source: PropTypes.any.isRequired,
+    //     type: PropTypes.oneOf(["small" , "default" , "large"]),
+    //     style: PropTypes.any,
+    // };
 
     static defaultProps = {
         type:"default"
