@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
+import com.microsoft.codepush.react.CodePush;
 
 public class MainActivity extends ReactActivity {
 

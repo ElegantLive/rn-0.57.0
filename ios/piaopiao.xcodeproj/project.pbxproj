@@ -46,6 +46,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		32BFA225971B445397DCA70C /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AA306D72A3A436A98DC7F91 /* Foundation.ttf */; };
 		394B37068775452CBCB76FD4 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D68E7A52A7AB495A934F11DB /* rubicon-icon-font.ttf */; };
+		3B77EDE221CC950200E3A2C7 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 3B77EDB121CC950200E3A2C7 /* assets */; };
 		3BC2A23021880FB700727275 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC2A20D21880F9700727275 /* libRCTCameraRoll.a */; };
 		40B9CD8D42A446568422F0E5 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA5BFCBA2464886B9C07BC9 /* libRNVectorIcons.a */; };
 		4161EE9127F1425A8D95F267 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5CA6774F3741FDB1A00166 /* libRNGestureHandler.a */; };
@@ -481,6 +482,7 @@
 		3791FEA8D75F4AD18B0DC85D /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		3B016D37218873F60050FBA5 /* libSDWebImage watchOS static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libSDWebImage watchOS static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B016D61218873FB0050FBA5 /* libSDWebImage iOS static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libSDWebImage iOS static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B77EDB121CC950200E3A2C7 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		3BA4EB3721872A9500712901 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		3BC2A20221880F9700727275 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		3D5CA6774F3741FDB1A00166 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DE3AF7D9C34408AB2E87B45 /* libz.tbd in Frameworks */,
 				3BC2A23021880FB700727275 /* libRCTCameraRoll.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -562,7 +565,6 @@
 				4161EE9127F1425A8D95F267 /* libRNGestureHandler.a in Frameworks */,
 				257FA668FC3942E9B11C6D85 /* libSplashScreen.a in Frameworks */,
 				09946753C2DC46C79F879F20 /* libCodePush.a in Frameworks */,
-				0DE3AF7D9C34408AB2E87B45 /* libz.tbd in Frameworks */,
 				9E90B381A92E45399C347E56 /* libAppCenterReactNative.a in Frameworks */,
 				06D05F8092C440BBA52FDAF8 /* libPods-piaopiao.a in Frameworks */,
 				90F9F21C54A6499FBEB8C1A6 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
@@ -920,6 +922,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3B77EDB121CC950200E3A2C7 /* assets */,
 				13B07FAE1A68108700A75B9A /* piaopiao */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* piaopiaoTests */,
@@ -1560,6 +1563,7 @@
 				C5859367659549999B360815 /* MaterialCommunityIcons.ttf in Resources */,
 				EA29CCCA651A4C7F938B41DE /* MaterialIcons.ttf in Resources */,
 				EE4DA5EF134543A990CD297C /* Octicons.ttf in Resources */,
+				3B77EDE221CC950200E3A2C7 /* assets in Resources */,
 				F9DE92F93F4C4AA89C9A2945 /* Roboto_medium.ttf in Resources */,
 				436F0E74A96041ECA9D36BDB /* Roboto.ttf in Resources */,
 				394B37068775452CBCB76FD4 /* rubicon-icon-font.ttf in Resources */,

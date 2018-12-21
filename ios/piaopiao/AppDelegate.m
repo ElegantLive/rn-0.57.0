@@ -6,9 +6,9 @@
  */
 
 #import "AppDelegate.h"
-#import <AppCenterReactNativeCrashes/AppCenterReactNativeCrashes.h>
-#import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
-#import <AppCenterReactNative/AppCenterReactNative.h>
+#import <AppCenterReactNativeCrashes.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNative.h>
 #import <CodePush/CodePush.h>
 
 #import <React/RCTBundleURLProvider.h>
@@ -27,9 +27,8 @@
 
   [AppCenterReactNative register];  // Initialize AppCenter 
 
-  
     #ifdef DEBUG
-        jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+        jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios&dev=true"];
     #else
         jsCodeLocation = [CodePush bundleURL];
     #endif

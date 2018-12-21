@@ -20,7 +20,7 @@ export default class Drawer extends Component {
                 <Button title="asnycInit" onPress={this.initNameAsync} /> */}
 					<Button title="go back" onPress={() => this.props.navigation.goBack()} />
 					<Button title="go Detail" onPress={() => this.props.navigation.navigate('Detail')} />
-					<Button title="go Test" onPress={() => this.props.navigation.navigate('Test')} />
+					<Button title="go Detail" onPress={() => this.props.navigation.navigate('Detail')} />
 					<Button title="go login" onPress={() => this.props.navigation.navigate('Login')} />
 					<Button title="go Register" onPress={() => this.props.navigation.navigate('Register')} />
 					<Button title="keep development" onPress={() => console.log('keep development')} />
