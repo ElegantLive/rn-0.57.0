@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
 } from 'react-native';
-import { Content,Container,Form,Label,Input,Item} from 'native-base';
-import { connect } from 'react-redux';
+import { Content, Container, Form, Label, Input, Item } from 'native-base';
 import { login as LoginAction } from '../../redux/token';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
@@ -13,32 +12,26 @@ import validate from 'validate.js';
 import { mobileConstraint, passwordConstraint } from '../../utils/validate/constraints';
 import { dealValidate } from '../../utils/functions';
 
-const initState = {
-    mobile:'',
-    password:'',
-    disable:true
-};
-
-@connect(
-    state => state.token,
+@form(
+    { 
+        mobile: '',
+        password: ''
+    }, 
     { LoginAction }
 )
-
-@form(initState)
-export default class Login extends PureComponent {
+class Login extends Component {
     constructor(props){
         super(props);
         this.login = this.login.bind(this);
         this.goRegister = this.goRegister.bind(this);
         this.goFindPwd = this.goFindPwd.bind(this);
         this.check = this.check.bind(this);
-        this.handleMobile = this.handleMobile.bind(this);
     }
 
     componentWillReceiveProps() {
         if (true === this.props.auth) this.props.navigation.navigate('User');
     }
-    
+
     login() {
         const res = this.check();
 
@@ -63,23 +56,10 @@ export default class Login extends PureComponent {
         const constraints = {mobile:mobileConstraint,password:passwordConstraint};
 
         const user = this.props.state;
+        console.log(this.props.state);
 
         return validate(user,constraints);
     };
-
-    async handleMobile(v) {
-        await this.props._handleChange('mobile',v);
-
-        const constraints = {mobile:mobileConstraint};
-
-        const data = {mobile:v};
-
-        const res = validate(data,constraints);
-
-        const disable = !!res;
-
-        this.props._handleChange('disable',disable);
-    }
 
     render() {
         return (
@@ -96,8 +76,8 @@ export default class Login extends PureComponent {
                                 maxLength = {11}
                                 keyboardType = "number-pad"
                                 // autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
-                                clearButtonMode= "always" // 清除按钮-总是出现
-                                onChangeText = {v => this.handleMobile(v)} 
+                                clearButtonMode = "always" // 清除按钮-总是出现
+                                onChangeText = {v => this.props._handleChange('mobile',v)}
                             />
                         </Item>
                         <Item floatingLabel last>
@@ -121,7 +101,6 @@ export default class Login extends PureComponent {
                                 title="登录"
                                 primary={true}
                                 rounded={true}
-                                disabled={this.props.state.disable}
                                 block
                                 onPress={this.login}
                                 btnStyle={[styles.btn,styles.loginBtn]}
@@ -141,6 +120,8 @@ export default class Login extends PureComponent {
         )
     }
 }
+
+export default Login;
 
 const styles = StyleSheet.create({
     rightTitle:{

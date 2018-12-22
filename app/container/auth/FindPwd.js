@@ -71,7 +71,7 @@ export default class FindPwd extends Component {
     async getCode() {
         const res = this.checkItem('mobile');
 
-        if (res) {
+        if (true !== res) {
             const error = res.join("\n");
 
             showMessage({

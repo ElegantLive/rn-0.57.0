@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { logout } from '../redux/token';
 import { info } from '../redux/user';
-import {Button,View,Text,StyleSheet,ScrollView} from 'react-native';
+import { Button, View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Container } from 'native-base';
 import NavBar from '../component/base/NavBar';
 import backHandler from '../component/higher/backHandler';
@@ -36,7 +36,7 @@ export default class User extends Component{
                     headerTitle='我的'
                 />
                 <ScrollView style={styles.container}>
-                    <Button title='User screen' onPress={()=>console.log(`test for ${JSON.stringify(this.props)}`)} />
+                    <Text>User screen</Text>
                     <Button title="go to home" onPress={()=>this.props.navigation.navigate('Home')} />
                     <Button title="go to updatepwd" onPress={()=>this.props.navigation.navigate('UpdatePwd')} />
                     <Button title="login" onPress={this.login} />
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    //   alignItems: 'center',
+    //   justifyContent: 'center',
     },
 });

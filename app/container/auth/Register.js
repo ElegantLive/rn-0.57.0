@@ -39,7 +39,7 @@ const constraints = {
     confirmPwd:confirmPwdConstraint
 }; // 定义验证约束集合
 
-@form(initState)
+@form(initState,{})
 export default class Register extends PureComponent {
     constructor(props) {
         super(props);
@@ -76,14 +76,15 @@ export default class Register extends PureComponent {
     async getCode() {
         const res = this.checkItem('mobile');
 
-        if (res) {
+        if (true !== res) {
             const error = res.join("\n");
 
-            Toast.show({
-                text:error,
-                type:"warning"
+            showMessage({
+                type:"warning",
+                icon:"warning",
+                message:error,
             });
-            // Toast.showError(error);
+
             return false;
         }
 
@@ -133,6 +134,7 @@ export default class Register extends PureComponent {
                         <Item inlineLabel>
                             <Label style={styles.inputLable}> 手 机 号 </Label>
                             <Input
+                                value={this.props.state.mobile}
                                 maxLength = {11}
                                 keyboardType = "number-pad"
                                 // autoFocus= {true} // 在componentDidMount后会获得焦点。默认值为false
