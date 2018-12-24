@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-export default function form(initState, initAction = {}) {
+export default function form(initState = {}, initAction = {}) {
 	return function(Comp) {
 		@connect(
 			state => {
