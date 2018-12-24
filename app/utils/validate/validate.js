@@ -10,5 +10,5 @@ validate.async.options = {
 };
 
 // validate.validators.presence.options = {
-//     message: "不能为空"
+// 	message: '不能为空'
 // };

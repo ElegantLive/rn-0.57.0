@@ -9,8 +9,8 @@ import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
 import validate from 'validate.js';
-import { mobileConstraint, passwordConstraint } from '../../utils/validate/constraints';
 import { dealValidate } from '../../utils/functions';
+import check from '../../component/higher/check';
 
 @form(
     { 
@@ -19,6 +19,11 @@ import { dealValidate } from '../../utils/functions';
     }, 
     { LoginAction }
 )
+@check(constraints => {
+    const { mobile, password } = constraints;
+
+    return { mobile, password };
+})
 class Login extends Component {
     constructor(props){
         super(props);
@@ -33,11 +38,11 @@ class Login extends Component {
     }
 
     login() {
-        const res = this.check();
+        const res = this.props.checkAll();
 
-        const result = dealValidate(res);
+        const resBool = dealValidate(res);
 
-        if(true !== result) return false;
+        if(!resBool) return false;
 
         const { LoginAction, state } = this.props;
 
@@ -55,10 +60,9 @@ class Login extends Component {
     check() {
         const constraints = {mobile:mobileConstraint,password:passwordConstraint};
 
-        const user = this.props.state;
-        console.log(this.props.state);
+        const res = validate(this.props.state,constraints);
 
-        return validate(user,constraints);
+        return res ? res: true;
     };
 
     render() {

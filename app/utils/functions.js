@@ -1,18 +1,17 @@
 import { showMessage } from 'react-native-flash-message';
 
-const dealValidate = (result, toast = true) => {
-	if (result) {
+const dealValidate = result => {
+	if (true !== result) {
 		const error = (result.length > 2) ? result[0] : result.join('\n');
 
-		if (toast) showMessage({
+		showMessage({
 			message: error,
 			type: 'danger',
 			icon: 'danger'
 		});
 
-		return result;
+		return false;
 	}
-
 	return true;
 };
 

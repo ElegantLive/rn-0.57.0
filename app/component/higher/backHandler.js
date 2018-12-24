@@ -28,7 +28,7 @@ export default function backHandler(Comp) {
 		onBackButtonPressAndroid() {
 			const drawer = this.props.navigation.dangerouslyGetParent().dangerouslyGetParent();
 			// if the drawer is opened, do nothing
-			if (drawer.state.isDrawerOpen) return false;
+			if (drawer && drawer.state && drawer.state.isDrawerOpen) return false;
     
 			// if user press again in next 2's, the application will quit
 			if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) return false;
@@ -45,5 +45,5 @@ export default function backHandler(Comp) {
 		render () {
 			return <Comp {...this.props} />;
 		}
-	}
+	};
 }

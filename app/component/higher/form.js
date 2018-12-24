@@ -24,7 +24,7 @@ export default function form(initState = {}, initAction = {}) {
 			}
 		
 			render() {
-				const { state, ...props } = this.props; 
+				const { state, ...props } = this.props;
 				return <Comp
 					_handleChange={this._handleChange}
 					state={this.state}

@@ -4,20 +4,14 @@ import {
     StyleSheet,
 } from 'react-native';
 import { Content,Container,Form,Label,Input,Item } from 'native-base';
-import validate from 'validate.js';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
-import {
-    mobileConstraint,
-    codeConstraint,
-    passwordConstraint,
-    confirmPwdConstraint
-} from '../../utils/validate/constraints';
 import axios from 'axios';
 import { dealValidate } from '../../utils/functions';
-import {showMessage} from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import { sendCode } from '../../utils/request/functions';
+import check from '../../component/higher/check';
 
 const initState = {
     mobile:'',
@@ -28,14 +22,11 @@ const initState = {
     sendBtn:true
 };
 
-const constraints = {
-    mobile:mobileConstraint,
-    code:codeConstraint,
-    password:passwordConstraint,
-    confirmPwd:confirmPwdConstraint
-}; // 定义验证约束集合
-
 @form(initState)
+@check(constraints => {
+    const { mobileR, code, password, confirmPwd } = constraints;
+    return { mobile: mobileR, password, confirmPwd, code };
+})
 export default class FindPwd extends Component {
     constructor(props) {
         super(props);
@@ -43,14 +34,13 @@ export default class FindPwd extends Component {
         this.getCode = this.getCode.bind(this);
         this.goLogin = this.goLogin.bind(this);
         this.goRegister = this.goRegister.bind(this);
-        this.checkItem = this.checkItem.bind(this);
     }
 
     async findPwd() {
         const {mobile,code,password,confirmPwd} = this.props.state;
         const data = {mobile,code,password,confirmPwd};
 
-        const response = validate(data,constraints);
+        const response = this.props.checkAll();
 
         const result = dealValidate(response);
 
@@ -69,7 +59,7 @@ export default class FindPwd extends Component {
     };
 
     async getCode() {
-        const res = this.checkItem('mobile');
+        const res = this.props.checkItem('mobile');
 
         if (true !== res) {
             const error = res.join("\n");
@@ -102,18 +92,6 @@ export default class FindPwd extends Component {
 
     goRegister() {
         this.props.navigation.navigate('Register');
-    };
-
-    checkItem(key) {
-        const data = {
-            [key]:this.props.state[key]
-        };
-
-        const item = {
-            [key]:constraints[key]
-        };
-
-        return validate(data,item);
     };
     
     render() {

@@ -5,29 +5,22 @@ import {
     Keyboard
 } from 'react-native';
 import { Content, Container, Form, Label, Input, Item } from 'native-base';
-import validate from 'validate.js';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
-import {
-    passwordConstraint,
-    confirmPwdConstraint
-} from '../../utils/validate/constraints';
 import axios from 'axios';
 import { dealValidate } from '../../utils/functions';
 import { showMessage } from 'react-native-flash-message';
+import check from '../../component/higher/check';
 
-const initState = {
+@form({
     password:'',
     confirmPwd:'',
-};
-
-const constraints = {
-    password:passwordConstraint,
-    confirmPwd:confirmPwdConstraint
-}; // 定义验证约束集合
-
-@form(initState)
+})
+@check(constraints => {
+    const { password, confirmPwd } = constraints;
+    return { password, confirmPwd };
+})
 export default class UpdatePwd extends PureComponent {
     constructor(props) {
         super(props);
@@ -35,22 +28,22 @@ export default class UpdatePwd extends PureComponent {
     }
 
     async updatePwd() {
-        const data = this.props.state;
+        const { checkAll, state, navigation } = this.props;
 
-        const response = validate(data,constraints);
+        const response = checkAll();
 
         const result = dealValidate(response);
 
         if(true !== result) return false;
 
-        const res = await axios.post('user/update_pwd',data);
+        const res = await axios.post('user/update_pwd',state);
 
         if (res.error === 0) {
             showMessage({
                 message:"修改密码成功！",
                 type:"success",
                 onClose:() => {
-                    this.props.navigation.navigate('User');
+                    navigation.navigate('User');
                 }
             })
         }

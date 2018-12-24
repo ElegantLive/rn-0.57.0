@@ -9,17 +9,11 @@ import validate from 'validate.js';
 import NavBar from '../../component/base/NavBar';
 import LinkBar from "../../component/base/LinkBar";
 import form from "../../component/higher/form";
-import {
-    mobileConstraint,
-    codeConstraint,
-    passwordConstraint,
-    confirmPwdConstraint,
-    userNameConstraint
-} from '../../utils/validate/constraints';
 import axios from 'axios';
 import { dealValidate } from '../../utils/functions';
 import { showMessage } from 'react-native-flash-message';
 import { sendCode } from '../../utils/request/functions';
+import check from '../../component/higher/check';
 
 const initState = {
     mobile:'',
@@ -31,15 +25,18 @@ const initState = {
     sendBtn:true
 };
 
-const constraints = {
-    mobile:mobileConstraint,
-    code:codeConstraint,
-    name:userNameConstraint,
-    password:passwordConstraint,
-    confirmPwd:confirmPwdConstraint
-}; // 定义验证约束集合
-
 @form(initState,{})
+@check(constraints => {
+    const { mobileR, code, userName, confirmPwd, password } = constraints;
+
+    return {
+        code,
+        name: userName,
+        confirmPwd,
+        password,
+        mobile: mobileR
+    }
+})
 export default class Register extends PureComponent {
     constructor(props) {
         super(props);
@@ -47,14 +44,13 @@ export default class Register extends PureComponent {
         this.getCode = this.getCode.bind(this);
         this.goLogin = this.goLogin.bind(this);
         this.goFindPwd = this.goFindPwd.bind(this);
-        this.checkItem = this.checkItem.bind(this);
     }
 
     async register() {
         const { mobile, code, name, password, confirmPwd } = this.props.state;
         const data = { mobile, code, name, password, confirmPwd };
 
-        const response = validate(data,constraints);
+        const response = this.props.checkAll(data);
 
         const result = dealValidate(response);
 
@@ -74,7 +70,7 @@ export default class Register extends PureComponent {
     }
 
     async getCode() {
-        const res = this.checkItem('mobile');
+        const res = this.props.checkItem('mobile');
 
         if (true !== res) {
             const error = res.join("\n");
@@ -109,20 +105,8 @@ export default class Register extends PureComponent {
     goFindPwd() {
         this.props.navigation.navigate('FindPwd');
     };
-
-    checkItem(key) {
-        const data = {
-            [key]:this.props.state[key]
-        };
-
-        const item = {
-            [key]:constraints[key]
-        };
-
-        return validate(data,item);
-    };
     
-    render(){
+    render() {
         return (
             <Container>
                 <NavBar 
